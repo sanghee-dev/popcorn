@@ -1,19 +1,61 @@
 import React from "react";
+import { Link, withRouter } from "react-router-dom";
+import styled from "styled-components";
 
-const Header = () => {
+const HEADER = styled.header`
+  width: 100%;
+  height: cal(1rem + 40px);
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(40, 40, 40, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 17px -6px;
+`;
+const UL = styled.ul`
+  display: flex;
+`;
+const LI = styled.li`
+  padding: 20px;
+  border-bottom: 2px solid
+    ${(props) =>
+      props.current ? "rgba(255, 255, 0, 1)" : "rgba(255, 255, 0, 0)"};
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    text-shadow: 1px 1px 6px rgba(255, 255, 0, 0.5);
+  }
+`;
+const LINK = styled(Link)`
+  font-weight: 600;
+`;
+
+const Header = ({ location: { pathname } }) => {
+  console.log(pathname);
   return (
-    <ul>
-      <li>
-        <a href="/">Movies</a>
-      </li>
-      <li>
-        <a href="/tv">TV</a>
-      </li>
-      <li>
-        <a href="/search">Search</a>
-      </li>
-    </ul>
+    <HEADER>
+      <UL>
+        <LI current={pathname === ""}>
+          <LINK to="">🍿</LINK>
+        </LI>
+        <LI current={pathname === "/"}>
+          <LINK to="/">
+            <h2>Movies</h2>
+          </LINK>
+        </LI>
+        <LI current={pathname === "/tv"}>
+          <LINK to="/tv">
+            <h2>TV</h2>
+          </LINK>
+        </LI>
+        <LI current={pathname === "/search"}>
+          <LINK to="/search">
+            <h2>Search</h2>
+          </LINK>
+        </LI>
+      </UL>
+    </HEADER>
   );
 };
 
-export default Header;
+export default withRouter(Header);
