@@ -22,12 +22,15 @@ const LI = styled.li`
     ${(props) =>
       props.current ? "rgba(255, 255, 0, 1)" : "rgba(255, 255, 0, 0)"};
   transition: all 0.2s ease-in-out;
+  text-shadow: 2px 2px 10px
+    ${(props) =>
+      props.current ? "rgba(255, 255, 0, 0.5)" : "rgba(255, 255, 0, 0)"};
   &:hover {
-    text-shadow: 1px 1px 6px rgba(255, 255, 0, 0.5);
+    text-shadow: 2px 2px 10px rgba(255, 255, 0, 0.5);
   }
 `;
 const LINK = styled(Link)`
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 const Header = ({ location: { pathname } }) => {
@@ -36,7 +39,9 @@ const Header = ({ location: { pathname } }) => {
     <HEADER>
       <UL>
         <LI current={pathname === ""}>
-          <LINK to="">🍿</LINK>
+          <LINK to="">
+            <h2>🍿</h2>
+          </LINK>
         </LI>
         <LI current={pathname === "/"}>
           <LINK to="/">
