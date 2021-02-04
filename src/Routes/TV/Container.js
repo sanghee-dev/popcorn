@@ -31,6 +31,7 @@ const Container = () => {
       } catch (e) {
         setError("Can't find TV information.");
       } finally {
+        setLoading(false);
       }
     }
     return () => (mounted = false);

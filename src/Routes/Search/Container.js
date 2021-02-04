@@ -24,7 +24,6 @@ const Container = () => {
           setTvResults(tvResults);
         };
         fetchSearch();
-        console.log(movieResults, tvResults);
       } catch {
         setError("Can't find results.");
       } finally {
