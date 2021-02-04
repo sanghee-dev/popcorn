@@ -5,9 +5,9 @@ import { moviesApi } from "api";
 const Container = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
-  const [nowPlaying, setNowPlaying] = useState();
-  const [upcoming, setUpcoming] = useState();
-  const [popular, setPopular] = useState();
+  const [nowPlaying, setNowPlaying] = useState([]);
+  const [upcoming, setUpcoming] = useState([]);
+  const [popular, setPopular] = useState([]);
 
   useEffect(() => {
     let mounted = true;
