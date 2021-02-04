@@ -10,27 +10,30 @@ const Container = () => {
   const [popular, setPopular] = useState();
 
   useEffect(() => {
-    try {
-      const fetchHome = async () => {
-        const {
-          data: { results: nowPlaying },
-        } = await moviesApi.nowPlaying();
-        const {
-          data: { results: upcoming },
-        } = await moviesApi.upcoming();
-        const {
-          data: { results: popular },
-        } = await moviesApi.popular();
-        setNowPlaying(nowPlaying);
-        setUpcoming(upcoming);
-        setPopular(popular);
-      };
-      fetchHome();
-    } catch (e) {
-      setError("Can't find movies information.");
-    } finally {
+    let mounted = true;
+    if (mounted) {
+      try {
+        const fetchHome = async () => {
+          const {
+            data: { results: nowPlaying },
+          } = await moviesApi.nowPlaying();
+          const {
+            data: { results: upcoming },
+          } = await moviesApi.upcoming();
+          const {
+            data: { results: popular },
+          } = await moviesApi.popular();
+          setNowPlaying(nowPlaying);
+          setUpcoming(upcoming);
+          setPopular(popular);
+        };
+        fetchHome();
+      } catch (e) {
+        setError("Can't find movies information.");
+      } finally {
+      }
     }
-    return () => {};
+    return () => (mounted = false);
   }, []);
 
   return (
