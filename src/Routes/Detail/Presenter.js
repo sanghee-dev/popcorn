@@ -1,6 +1,6 @@
 import React from "react";
 
-const Detail = () => {
+const Detail = ({ loading, error, result }) => {
   return <div>Detail</div>;
 };
 

@@ -15,7 +15,7 @@ Popcorn is a movie service that offers a variety of TV shows, movies, anime, doc
 
 - Now playing
 - Upcoming
-- Top Rated
+- Popular
 - Movie Detail
 - Search Movies
 

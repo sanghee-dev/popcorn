@@ -1,6 +1,6 @@
 import React from "react";
 
-const TV = () => {
+const TV = ({ loading, error, airingToday, onTheAir, popular }) => {
   return <div>TV</div>;
 };
 
