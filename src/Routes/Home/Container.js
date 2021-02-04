@@ -11,7 +11,7 @@ const Container = () => {
 
   useEffect(() => {
     try {
-      const upcoming = async () => {
+      const fetchHome = async () => {
         const {
           data: { results: nowPlaying },
         } = await moviesApi.nowPlaying();
@@ -25,7 +25,7 @@ const Container = () => {
         setUpcoming(upcoming);
         setPopular(popular);
       };
-      upcoming();
+      fetchHome();
     } catch (e) {
       setError("Can't find movies information.");
     } finally {

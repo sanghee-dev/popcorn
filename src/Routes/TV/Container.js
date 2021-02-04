@@ -9,6 +9,10 @@ const Container = () => {
   const [popular, setPopular] = useState();
 
   useEffect(() => {
+    try {
+    } catch {
+    } finally {
+    }
     return () => {};
   }, []);
 
