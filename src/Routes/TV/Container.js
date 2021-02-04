@@ -29,7 +29,7 @@ const Container = () => {
         };
         fetchTV();
       } catch (e) {
-        setError("Can't find movies information.");
+        setError("Can't find TV information.");
       } finally {
       }
     }

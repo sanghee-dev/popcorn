@@ -7,7 +7,16 @@ const Container = () => {
   const [result, setResult] = useState();
 
   useEffect(() => {
-    return () => {};
+    let mounted = true;
+    try {
+      if (mounted) {
+        const fetchDetail = () => {};
+        fetchDetail();
+      }
+    } catch {
+    } finally {
+    }
+    return () => (mounted = false);
   }, []);
 
   return <Presenter loading={loading} error={error} result={result} />;
