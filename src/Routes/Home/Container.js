@@ -3,8 +3,8 @@ import Presenter from "./Presenter";
 import { moviesApi } from "api";
 
 const Container = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [upcoming, setUpcoming] = useState([]);
   const [popular, setPopular] = useState([]);
@@ -12,8 +12,9 @@ const Container = () => {
   useEffect(() => {
     let mounted = true;
     if (mounted) {
-      try {
-        const fetchHome = async () => {
+      setIsLoading(true);
+      const fetchData = async () => {
+        try {
           const {
             data: { results: nowPlaying },
           } = await moviesApi.nowPlaying();
@@ -26,21 +27,22 @@ const Container = () => {
           setNowPlaying(nowPlaying);
           setUpcoming(upcoming);
           setPopular(popular);
-        };
-        fetchHome();
-      } catch (e) {
-        setError("Can't find movies information.");
-      } finally {
-        setLoading(false);
-      }
+        } catch (e) {
+          setIsError("Can't find movies information.");
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchData();
     }
+
     return () => (mounted = false);
   }, []);
 
   return (
     <Presenter
-      loading={loading}
-      error={error}
+      isLoading={isLoading}
+      isError={isError}
       nowPlaying={nowPlaying}
       upcoming={upcoming}
       popular={popular}

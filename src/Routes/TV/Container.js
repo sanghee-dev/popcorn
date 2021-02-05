@@ -3,8 +3,8 @@ import Presenter from "./Presenter";
 import { tvApi } from "api";
 
 const Container = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [airingToday, setAiringToday] = useState([]);
   const [onTheAir, setOnTheAir] = useState([]);
   const [popular, setPopular] = useState([]);
@@ -12,8 +12,9 @@ const Container = () => {
   useEffect(() => {
     let mounted = true;
     if (mounted) {
-      try {
-        const fetchTV = async () => {
+      setIsLoading(true);
+      const fetchTV = async () => {
+        try {
           const {
             data: { results: airingToday },
           } = await tvApi.airingToday();
@@ -26,21 +27,21 @@ const Container = () => {
           setAiringToday(airingToday);
           setOnTheAir(onTheAir);
           setPopular(popular);
-        };
-        fetchTV();
-      } catch (e) {
-        setError("Can't find TV information.");
-      } finally {
-        setLoading(false);
-      }
+        } catch (e) {
+          setIsError("Can't find TV information.");
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchTV();
     }
     return () => (mounted = false);
   }, []);
 
   return (
     <Presenter
-      loading={loading}
-      error={error}
+      isLoading={isLoading}
+      isError={isError}
       airingToday={airingToday}
       onTheAir={onTheAir}
       popular={popular}

@@ -3,8 +3,8 @@ import Presenter from "./Presenter";
 import { moviesApi, tvApi } from "api";
 
 const Container = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [movieResults, setMovieResults] = useState([]);
   const [tvResults, setTvResults] = useState([]);
@@ -12,8 +12,9 @@ const Container = () => {
   useEffect(() => {
     let mounted = true;
     if (mounted) {
-      try {
-        const fetchSearch = async () => {
+      setIsLoading(true);
+      const fetchData = async () => {
+        try {
           const {
             data: { results: movieResults },
           } = await moviesApi.search(searchTerm);
@@ -22,26 +23,26 @@ const Container = () => {
           } = await tvApi.search(searchTerm);
           setMovieResults(movieResults);
           setTvResults(tvResults);
-        };
-        fetchSearch();
-      } catch {
-        setError("Can't find results.");
-      } finally {
-        setLoading(false);
-      }
+        } catch {
+          setIsError("Can't find results.");
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchData();
     }
   }, [searchTerm]);
 
   const handleSubmit = () => {
     if (searchTerm) {
-      setLoading(true);
+      setIsLoading(true);
     }
   };
 
   return (
     <Presenter
-      loading={loading}
-      error={error}
+      isLoading={isLoading}
+      isError={isError}
       searchTerm={searchTerm}
       movieResults={movieResults}
       tvResults={tvResults}
