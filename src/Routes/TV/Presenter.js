@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const Presenter = ({ loading, error, airingToday, onTheAir, popular }) => {
+const Presenter = ({ isLoading, error, airingToday, onTheAir, popular }) => {
   Presenter.propTypes = {
-    loading: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
     error: PropTypes.string,
     airingToday: PropTypes.array,
     onTheAir: PropTypes.array,

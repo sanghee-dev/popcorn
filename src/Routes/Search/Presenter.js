@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Presenter = ({
-  loading,
+  isLoading,
   error,
   searchTerm,
   movieResults,
@@ -11,7 +11,7 @@ const Presenter = ({
   handleSubmit,
 }) => {
   Presenter.propTypes = {
-    loading: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
     error: PropTypes.string,
     searchTerm: PropTypes.string,
     movieResults: PropTypes.array,
