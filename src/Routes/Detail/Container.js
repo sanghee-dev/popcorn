@@ -8,7 +8,7 @@ const Container = (props) => {
   const [isError, setIsError] = useState(false);
   const [isMovie, setIsMovie] = useState();
   const [isTV, setIsTV] = useState();
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState({});
 
   const {
     history: { push },
