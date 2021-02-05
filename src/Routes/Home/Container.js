@@ -27,7 +27,7 @@ const Container = () => {
           setNowPlaying(nowPlaying);
           setUpcoming(upcoming);
           setPopular(popular);
-        } catch (e) {
+        } catch {
           setIsError("Can't find movies information.");
         } finally {
           setIsLoading(false);
@@ -35,7 +35,6 @@ const Container = () => {
       };
       fetchData();
     }
-
     return () => (mounted = false);
   }, []);
 

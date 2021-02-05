@@ -13,7 +13,7 @@ const Container = () => {
     let mounted = true;
     if (mounted) {
       setIsLoading(true);
-      const fetchTV = async () => {
+      const fetchData = async () => {
         try {
           const {
             data: { results: airingToday },
@@ -27,13 +27,13 @@ const Container = () => {
           setAiringToday(airingToday);
           setOnTheAir(onTheAir);
           setPopular(popular);
-        } catch (e) {
+        } catch {
           setIsError("Can't find TV information.");
         } finally {
           setIsLoading(false);
         }
       };
-      fetchTV();
+      fetchData();
     }
     return () => (mounted = false);
   }, []);

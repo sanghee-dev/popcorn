@@ -31,6 +31,7 @@ const Container = () => {
       };
       fetchData();
     }
+    return () => (mounted = false);
   }, [searchTerm]);
 
   const handleSubmit = () => {
