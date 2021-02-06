@@ -8,7 +8,11 @@ const Container = styled.div`
   }
 `;
 const Title = styled.h1``;
-const Grid = styled.div``;
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 150px);
+  grid-gap: 20px;
+`;
 
 const Section = ({ title, children }) => {
   Section.propTypes = {
