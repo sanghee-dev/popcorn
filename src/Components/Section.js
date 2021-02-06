@@ -7,7 +7,9 @@ const Container = styled.div`
     margin-bottom: 50px;
   }
 `;
-const Title = styled.h1``;
+const Title = styled.h1`
+  margin-bottom: 1rem;
+`;
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, 150px);

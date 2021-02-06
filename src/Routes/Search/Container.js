@@ -34,10 +34,17 @@ const Container = () => {
     return () => (mounted = false);
   }, [searchTerm]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (searchTerm) {
       setIsLoading(true);
     }
+  };
+  const updateTerm = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSearchTerm(value);
   };
 
   return (
@@ -48,6 +55,7 @@ const Container = () => {
       movieResults={movieResults}
       tvResults={tvResults}
       handleSubmit={handleSubmit}
+      updateTerm={updateTerm}
     />
   );
 };
