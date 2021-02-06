@@ -8,6 +8,7 @@ const Container = () => {
   const [airingToday, setAiringToday] = useState([]);
   const [onTheAir, setOnTheAir] = useState([]);
   const [popular, setPopular] = useState([]);
+  const [topRated, setTopRated] = useState([]);
 
   useEffect(() => {
     let mounted = true;
@@ -24,9 +25,13 @@ const Container = () => {
           const {
             data: { results: popular },
           } = await tvApi.popular();
+          const {
+            data: { results: topRated },
+          } = await tvApi.topRated();
           setAiringToday(airingToday);
           setOnTheAir(onTheAir);
           setPopular(popular);
+          setTopRated(topRated);
         } catch {
           setIsError("Can't find TV information.");
         } finally {
@@ -45,6 +50,7 @@ const Container = () => {
       airingToday={airingToday}
       onTheAir={onTheAir}
       popular={popular}
+      topRated={topRated}
     />
   );
 };

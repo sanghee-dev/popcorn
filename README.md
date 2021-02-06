@@ -16,6 +16,7 @@ Popcorn is a movie service that offers a variety of TV shows, movies, anime, doc
 - Now playing
 - Upcoming
 - Popular
+- top rated
 - Movie Detail
 - Search Movies
 
@@ -24,5 +25,6 @@ Popcorn is a movie service that offers a variety of TV shows, movies, anime, doc
 - Airing Today
 - On the air
 - Popular
+- top rated
 - Tv Detail
 - Search TV

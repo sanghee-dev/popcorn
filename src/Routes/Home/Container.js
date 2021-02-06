@@ -8,6 +8,7 @@ const Container = () => {
   const [nowPlaying, setNowPlaying] = useState([]);
   const [upcoming, setUpcoming] = useState([]);
   const [popular, setPopular] = useState([]);
+  const [topRated, setTopRated] = useState([]);
 
   useEffect(() => {
     let mounted = true;
@@ -24,9 +25,13 @@ const Container = () => {
           const {
             data: { results: popular },
           } = await moviesApi.popular();
+          const {
+            data: { results: topRated },
+          } = await moviesApi.topRated();
           setNowPlaying(nowPlaying);
           setUpcoming(upcoming);
           setPopular(popular);
+          setTopRated(topRated);
         } catch {
           setIsError("Can't find movies information.");
         } finally {
@@ -45,6 +50,7 @@ const Container = () => {
       nowPlaying={nowPlaying}
       upcoming={upcoming}
       popular={popular}
+      topRated={topRated}
     />
   );
 };
