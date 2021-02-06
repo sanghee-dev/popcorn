@@ -10,9 +10,9 @@ const HEADER = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(40, 40, 40, 0.7);
+  background-color: rgba(40, 40, 40, 0.8);
   box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 17px -6px;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(8px);
 `;
 const UL = styled.ul`
   display: flex;
