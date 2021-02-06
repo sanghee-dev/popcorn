@@ -26,22 +26,22 @@ const Presenter = ({
     <div>
       <Container>
         {airingToday && airingToday.length > 0 && (
-          <Section title="airingToday">
+          <Section title="Airing Today Shows">
             {airingToday.map((movie) => movie.name)}
           </Section>
         )}
         {onTheAir && onTheAir.length > 0 && (
-          <Section title="onTheAir">
+          <Section title="On The Air Shows">
             {onTheAir.map((movie) => movie.name)}
           </Section>
         )}
         {popular && popular.length > 0 && (
-          <Section title="popular">
+          <Section title="Popular Shows">
             {popular.map((movie) => movie.name)}
           </Section>
         )}
         {topRated && topRated.length > 0 && (
-          <Section title="topRated">
+          <Section title="Top Rated Shows">
             {topRated.map((movie) => movie.title)}
           </Section>
         )}

@@ -24,20 +24,22 @@ const Presenter = ({
   return isLoading ? null : (
     <Container>
       {nowPlaying && nowPlaying.length > 0 && (
-        <Section title="NowPlaying">
+        <Section title="Now Playing Movies">
           {nowPlaying.map((movie) => movie.title)}
         </Section>
       )}
       {upcoming && upcoming.length > 0 && (
-        <Section title="Upcoming">
+        <Section title="Upcoming Movies">
           {upcoming.map((movie) => movie.title)}
         </Section>
       )}
       {popular && popular.length > 0 && (
-        <Section title="Popular">{popular.map((movie) => movie.title)}</Section>
+        <Section title="Popular Movies">
+          {popular.map((movie) => movie.title)}
+        </Section>
       )}
       {topRated && topRated.length > 0 && (
-        <Section title="topRated">
+        <Section title="Top Rated Movies">
           {topRated.map((movie) => movie.title)}
         </Section>
       )}
