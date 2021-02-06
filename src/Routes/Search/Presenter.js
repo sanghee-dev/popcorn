@@ -12,15 +12,19 @@ const Presenter = ({
   tvResults,
   handleSubmit,
 }) => {
-  Presenter.propTypes = {
-    isLoading: PropTypes.bool.isRequired,
-    error: PropTypes.string,
-    searchTerm: PropTypes.string,
-    movieResults: PropTypes.array,
-    tvResults: PropTypes.array,
-    handleSubmit: PropTypes.func.isRequired,
-  };
-  return <div>Search</div>;
+  const onSubmit = () => {};
+
+  return (
+  );
+};
+
+Presenter.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  searchTerm: PropTypes.string,
+  movieResults: PropTypes.array,
+  tvResults: PropTypes.array,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default Presenter;

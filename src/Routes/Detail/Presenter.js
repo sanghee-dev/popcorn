@@ -5,12 +5,13 @@ import styled from "styled-components";
 const Container = styled.div``;
 
 const Presenter = ({ isLoading, error, result }) => {
-  Presenter.propTypes = {
-    isLoading: PropTypes.bool.isRequired,
-    error: PropTypes.string,
-    result: PropTypes.object,
-  };
-  return <div>Detail</div>;
+  return <Container>Detail</Container>;
+};
+
+Presenter.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  result: PropTypes.object,
 };
 
 export default Presenter;

@@ -14,14 +14,6 @@ const Presenter = ({
   popular,
   topRated,
 }) => {
-  Presenter.propTypes = {
-    isLoading: PropTypes.bool.isRequired,
-    error: PropTypes.string,
-    nowPlaying: PropTypes.array,
-    upcoming: PropTypes.array,
-    popular: PropTypes.array,
-    topRated: PropTypes.array,
-  };
   return isLoading ? (
     <Loader />
   ) : (
@@ -56,6 +48,15 @@ const Presenter = ({
       )}
     </Container>
   );
+};
+
+Presenter.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  nowPlaying: PropTypes.array,
+  upcoming: PropTypes.array,
+  popular: PropTypes.array,
+  topRated: PropTypes.array,
 };
 
 export default Presenter;
