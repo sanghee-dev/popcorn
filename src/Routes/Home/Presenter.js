@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Section from "Components/Section";
+import Loader from "Components/Loader";
 
 const Container = styled.div``;
 
@@ -21,7 +22,9 @@ const Presenter = ({
     popular: PropTypes.array,
     topRated: PropTypes.array,
   };
-  return isLoading ? null : (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <Container>
       {nowPlaying && nowPlaying.length > 0 && (
         <Section title="Now Playing Movies">
