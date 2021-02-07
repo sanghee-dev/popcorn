@@ -62,41 +62,33 @@ const Presenter = ({
         <>
           {movieResults && movieResults.length > 0 && (
             <Section title="Movie Results">
-              {movieResults.map(
-                (movie) =>
-                  movie.original_title && (
-                    <Poster
-                      key={movie.id}
-                      id={movie.id}
-                      title={movie.original_title}
-                      imageUrl={movie.poster_path}
-                      year={
-                        movie.release_date && movie.release_date.substring(0, 4)
-                      }
-                      rating={movie.vote_average}
-                      isMovie={true}
-                    />
-                  )
-              )}
+              {movieResults.map((movie) => (
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  title={movie.original_title}
+                  imageUrl={movie.poster_path}
+                  year={
+                    movie.release_date && movie.release_date.substring(0, 4)
+                  }
+                  rating={movie.vote_average}
+                  isMovie={true}
+                />
+              ))}
             </Section>
           )}
           {tvResults && tvResults.length > 0 && (
             <Section title="TV Shows Results">
-              {movieResults.map(
-                (tv) =>
-                  tv.original_name && (
-                    <Poster
-                      key={tv.id}
-                      id={tv.id}
-                      title={tv.original_name}
-                      imageUrl={tv.poster_path}
-                      year={
-                        tv.first_air_date && tv.first_air_date.substring(0, 4)
-                      }
-                      rating={tv.vote_average}
-                    />
-                  )
-              )}
+              {tvResults.map((tv) => (
+                <Poster
+                  key={tv.id}
+                  id={tv.id}
+                  title={tv.original_name}
+                  imageUrl={tv.poster_path}
+                  year={tv.first_air_date && tv.first_air_date.substring(0, 4)}
+                  rating={tv.vote_average}
+                />
+              ))}
             </Section>
           )}
         </>
