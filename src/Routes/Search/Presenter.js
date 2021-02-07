@@ -79,16 +79,21 @@ const Presenter = ({
           )}
           {tvResults && tvResults.length > 0 && (
             <Section title="TV Shows Results">
-              {movieResults.map((tv) => (
-                <Poster
-                  key={tv.id}
-                  id={tv.id}
-                  title={tv.original_name}
-                  imageUrl={tv.poster_path}
-                  year={tv.first_air_date && tv.first_air_date.substring(0, 4)}
-                  rating={tv.vote_average}
-                />
-              ))}
+              {movieResults.map(
+                (tv) =>
+                  tv.original_name && (
+                    <Poster
+                      key={tv.id}
+                      id={tv.id}
+                      title={tv.original_name}
+                      imageUrl={tv.poster_path}
+                      year={
+                        tv.first_air_date && tv.first_air_date.substring(0, 4)
+                      }
+                      rating={tv.vote_average}
+                    />
+                  )
+              )}
             </Section>
           )}
         </>
