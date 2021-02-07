@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
+import Error from "Components/Error";
 import { IoSearch } from "react-icons/io5";
 
 const Container = styled.div`
@@ -50,7 +51,7 @@ const Presenter = ({
         <IoSearch />
         <Input
           onChange={updateTerm}
-          placeholder="Search Monies or TV shows..."
+          placeholder="Search Movies or TV shows..."
           value={searchTerm}
         />
       </Form>
@@ -74,6 +75,13 @@ const Presenter = ({
           )}
         </>
       )}
+      {error && <Error text={error} />}
+      {movieResults &&
+        tvResults &&
+        movieResults.length === 0 &&
+        tvResults.length === 0 && (
+          <Error text={`Nothing found for ${searchTerm}`} color="yellow" />
+        )}
     </Container>
   );
 };

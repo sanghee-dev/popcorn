@@ -5,7 +5,7 @@ import { moviesApi, tvApi } from "api";
 
 const Container = (props) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("");
   const [isMovie, setIsMovie] = useState();
   const [isTV, setIsTV] = useState();
   const [result, setResult] = useState({});
@@ -38,7 +38,7 @@ const Container = (props) => {
             setResult(result);
           }
         } catch {
-          setIsError("Can't find anything.");
+          setError("Can't find anything :(");
         } finally {
           setIsLoading(false);
         }
@@ -48,7 +48,7 @@ const Container = (props) => {
     return () => (mounted = false);
   }, []);
 
-  return <Presenter isLoading={isLoading} isError={isError} result={result} />;
+  return <Presenter isLoading={isLoading} error={error} result={result} />;
 };
 
 export default withRouter(Container);

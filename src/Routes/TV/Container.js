@@ -4,7 +4,7 @@ import { tvApi } from "api";
 
 const Container = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("");
   const [airingToday, setAiringToday] = useState([]);
   const [onTheAir, setOnTheAir] = useState([]);
   const [popular, setPopular] = useState([]);
@@ -33,7 +33,7 @@ const Container = () => {
           setPopular(popular);
           setTopRated(topRated);
         } catch {
-          setIsError("Can't find TV information.");
+          setError("Can't find TV shows information :(");
         } finally {
           setIsLoading(false);
         }
@@ -46,7 +46,7 @@ const Container = () => {
   return (
     <Presenter
       isLoading={isLoading}
-      isError={isError}
+      error={error}
       airingToday={airingToday}
       onTheAir={onTheAir}
       popular={popular}

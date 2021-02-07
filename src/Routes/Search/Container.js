@@ -4,14 +4,14 @@ import { moviesApi, tvApi } from "api";
 
 const Container = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [movieResults, setMovieResults] = useState([]);
-  const [tvResults, setTvResults] = useState([]);
+  const [movieResults, setMovieResults] = useState(null);
+  const [tvResults, setTvResults] = useState(null);
 
   useEffect(() => {
     let mounted = true;
-    if (mounted) {
+    if (searchTerm !== "" && mounted) {
       setIsLoading(true);
       const fetchData = async () => {
         try {
@@ -23,8 +23,8 @@ const Container = () => {
           } = await tvApi.search(searchTerm);
           setMovieResults(movieResults);
           setTvResults(tvResults);
-        } catch {
-          setIsError("Can't find results.");
+        } catch (e) {
+          setError("Can't search results :(");
         } finally {
           setIsLoading(false);
         }
@@ -39,6 +39,7 @@ const Container = () => {
     if (searchTerm) {
       setIsLoading(true);
     }
+    setSearchTerm("");
   };
   const updateTerm = (event) => {
     const {
@@ -50,7 +51,7 @@ const Container = () => {
   return (
     <Presenter
       isLoading={isLoading}
-      isError={isError}
+      error={error}
       searchTerm={searchTerm}
       movieResults={movieResults}
       tvResults={tvResults}

@@ -4,7 +4,7 @@ import { moviesApi } from "api";
 
 const Container = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("");
   const [nowPlaying, setNowPlaying] = useState([]);
   const [upcoming, setUpcoming] = useState([]);
   const [popular, setPopular] = useState([]);
@@ -33,7 +33,7 @@ const Container = () => {
           setPopular(popular);
           setTopRated(topRated);
         } catch {
-          setIsError("Can't find movies information.");
+          setError("Can't find movies information :(");
         } finally {
           setIsLoading(false);
         }
@@ -46,7 +46,7 @@ const Container = () => {
   return (
     <Presenter
       isLoading={isLoading}
-      isError={isError}
+      error={error}
       nowPlaying={nowPlaying}
       upcoming={upcoming}
       popular={popular}
