@@ -8,14 +8,11 @@ const Container = styled.div`
   justify-content: center;
   padding: 100px;
 `;
-const Text = styled.h2`
-  color: ${(props) => props.color};
-`;
 
 const Error = ({ text, color = "white" }) => {
   return (
     <Container>
-      <Text color={color}>{text}</Text>
+      <h2 style={{ color: `${color}` }}>{text}</h2>
     </Container>
   );
 };
