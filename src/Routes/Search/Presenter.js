@@ -64,6 +64,7 @@ const Presenter = ({
             <Section title="Movie Results">
               {movieResults.map((movie) => (
                 <Poster
+                  key={movie.id}
                   id={movie.id}
                   title={movie.original_title}
                   imageUrl={movie.poster_path}
@@ -80,6 +81,7 @@ const Presenter = ({
             <Section title="TV Shows Results">
               {movieResults.map((tv) => (
                 <Poster
+                  key={tv.id}
                   id={tv.id}
                   title={tv.original_name}
                   imageUrl={tv.poster_path}

@@ -24,6 +24,7 @@ const Presenter = ({
         <Section title="Now Playing Movies">
           {nowPlaying.map((movie) => (
             <Poster
+              key={movie.id}
               id={movie.id}
               title={movie.original_title}
               imageUrl={movie.poster_path}
@@ -38,6 +39,7 @@ const Presenter = ({
         <Section title="Upcoming Movies">
           {upcoming.map((movie) => (
             <Poster
+              key={movie.id}
               id={movie.id}
               title={movie.original_title}
               imageUrl={movie.poster_path}
@@ -52,6 +54,7 @@ const Presenter = ({
         <Section title="Popular Movies">
           {popular.map((movie) => (
             <Poster
+              key={movie.id}
               id={movie.id}
               title={movie.original_title}
               imageUrl={movie.poster_path}
@@ -66,6 +69,7 @@ const Presenter = ({
         <Section title="Top Rated Movies">
           {topRated.map((movie) => (
             <Poster
+              key={movie.id}
               id={movie.id}
               title={movie.original_title}
               imageUrl={movie.poster_path}

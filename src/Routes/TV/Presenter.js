@@ -25,6 +25,7 @@ const Presenter = ({
           <Section title="Airing Today Shows">
             {airingToday.map((tv) => (
               <Poster
+                key={tv.id}
                 id={tv.id}
                 title={tv.original_name}
                 imageUrl={tv.poster_path}
@@ -38,6 +39,7 @@ const Presenter = ({
           <Section title="On The Air Shows">
             {onTheAir.map((tv) => (
               <Poster
+                key={tv.id}
                 id={tv.id}
                 title={tv.original_name}
                 imageUrl={tv.poster_path}
@@ -51,6 +53,7 @@ const Presenter = ({
           <Section title="Popular Shows">
             {popular.map((tv) => (
               <Poster
+                key={tv.id}
                 id={tv.id}
                 title={tv.original_name}
                 imageUrl={tv.poster_path}
@@ -64,10 +67,11 @@ const Presenter = ({
           <Section title="Top Rated Shows">
             {topRated.map((tv) => (
               <Poster
+                key={tv.id}
                 id={tv.id}
-                title={tv.original_name}
+                title={tv.original_title}
                 imageUrl={tv.poster_path}
-                year={tv.first_air_date && tv.first_air_date.substring(0, 4)}
+                year={tv.release_date && tv.release_date.substring(0, 4)}
                 rating={tv.vote_average}
               />
             ))}
