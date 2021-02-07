@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
+import Poster from "Components/Poster";
 
 const Container = styled.div``;
 
@@ -22,28 +23,56 @@ const Presenter = ({
       {nowPlaying && nowPlaying.length > 0 && (
         <Section title="Now Playing Movies">
           {nowPlaying.map((movie) => (
-            <h3 key={movie.id}>{movie.title}</h3>
+            <Poster
+              id={movie.id}
+              title={movie.original_title}
+              imageUrl={movie.poster_path}
+              year={movie.release_date && movie.release_date.substring(0, 4)}
+              rating={movie.vote_average}
+              isMovie={true}
+            />
           ))}
         </Section>
       )}
       {upcoming && upcoming.length > 0 && (
         <Section title="Upcoming Movies">
           {upcoming.map((movie) => (
-            <h3 key={movie.id}>{movie.title}</h3>
+            <Poster
+              id={movie.id}
+              title={movie.original_title}
+              imageUrl={movie.poster_path}
+              year={movie.release_date && movie.release_date.substring(0, 4)}
+              rating={movie.vote_average}
+              isMovie={true}
+            />
           ))}
         </Section>
       )}
       {popular && popular.length > 0 && (
         <Section title="Popular Movies">
           {popular.map((movie) => (
-            <h3 key={movie.id}>{movie.title}</h3>
+            <Poster
+              id={movie.id}
+              title={movie.original_title}
+              imageUrl={movie.poster_path}
+              year={movie.release_date && movie.release_date.substring(0, 4)}
+              rating={movie.vote_average}
+              isMovie={true}
+            />
           ))}
         </Section>
       )}
       {topRated && topRated.length > 0 && (
         <Section title="Top Rated Movies">
           {topRated.map((movie) => (
-            <h3 key={movie.id}>{movie.title}</h3>
+            <Poster
+              id={movie.id}
+              title={movie.original_title}
+              imageUrl={movie.poster_path}
+              year={movie.release_date && movie.release_date.substring(0, 4)}
+              rating={movie.vote_average}
+              isMovie={true}
+            />
           ))}
         </Section>
       )}

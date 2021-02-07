@@ -13,6 +13,7 @@ const HEADER = styled.header`
   background-color: rgba(40, 40, 40, 0.8);
   box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 17px -6px;
   backdrop-filter: blur(8px);
+  z-index: 2;
 `;
 const UL = styled.ul`
   display: flex;

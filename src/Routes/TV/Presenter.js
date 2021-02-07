@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
+import Poster from "Components/Poster";
 
 const Container = styled.div``;
 
@@ -22,29 +23,53 @@ const Presenter = ({
       <Container>
         {airingToday && airingToday.length > 0 && (
           <Section title="Airing Today Shows">
-            {airingToday.map((movie) => (
-              <h3 key={movie.id}>{movie.name}</h3>
+            {airingToday.map((tv) => (
+              <Poster
+                id={tv.id}
+                title={tv.original_name}
+                imageUrl={tv.poster_path}
+                year={tv.first_air_date && tv.first_air_date.substring(0, 4)}
+                rating={tv.vote_average}
+              />
             ))}
           </Section>
         )}
         {onTheAir && onTheAir.length > 0 && (
           <Section title="On The Air Shows">
-            {onTheAir.map((movie) => (
-              <h3 key={movie.id}>{movie.name}</h3>
+            {onTheAir.map((tv) => (
+              <Poster
+                id={tv.id}
+                title={tv.original_name}
+                imageUrl={tv.poster_path}
+                year={tv.first_air_date && tv.first_air_date.substring(0, 4)}
+                rating={tv.vote_average}
+              />
             ))}
           </Section>
         )}
         {popular && popular.length > 0 && (
           <Section title="Popular Shows">
-            {popular.map((movie) => (
-              <h3 key={movie.id}>{movie.name}</h3>
+            {popular.map((tv) => (
+              <Poster
+                id={tv.id}
+                title={tv.original_name}
+                imageUrl={tv.poster_path}
+                year={tv.first_air_date && tv.first_air_date.substring(0, 4)}
+                rating={tv.vote_average}
+              />
             ))}
           </Section>
         )}
         {topRated && topRated.length > 0 && (
           <Section title="Top Rated Shows">
-            {topRated.map((movie) => (
-              <h3 key={movie.id}>{movie.title}</h3>
+            {topRated.map((tv) => (
+              <Poster
+                id={tv.id}
+                title={tv.original_name}
+                imageUrl={tv.poster_path}
+                year={tv.first_air_date && tv.first_air_date.substring(0, 4)}
+                rating={tv.vote_average}
+              />
             ))}
           </Section>
         )}
