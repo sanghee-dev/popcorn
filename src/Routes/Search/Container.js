@@ -4,14 +4,14 @@ import { moviesApi, tvApi } from "api";
 
 const Container = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [movieResults, setMovieResults] = useState(null);
-  const [tvResults, setTvResults] = useState(null);
+  const [error, setError] = useState();
+  const [searchTerm, setSearchTerm] = useState();
+  const [movieResults, setMovieResults] = useState();
+  const [tvResults, setTvResults] = useState();
 
   useEffect(() => {
     let mounted = true;
-    if (searchTerm !== "" && mounted) {
+    if (searchTerm !== "" && searchTerm !== undefined && mounted) {
       setIsLoading(true);
       const fetchData = async () => {
         try {

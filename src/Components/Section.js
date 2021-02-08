@@ -17,19 +17,20 @@ const Grid = styled.div`
 `;
 
 const Section = ({ title, children }) => {
-  Section.propTypes = {
-    title: PropTypes.string.isRequired,
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
-    ]).isRequired,
-  };
   return (
     <Container>
       <Title>{title}</Title>
       <Grid>{children}</Grid>
     </Container>
   );
+};
+
+Section.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Section;

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
@@ -48,6 +49,11 @@ const Presenter = ({
 }) => {
   return (
     <Container>
+      <HelmetProvider>
+        <Helmet>
+          <title>Search | Popcorn</title>
+        </Helmet>
+      </HelmetProvider>
       <Form onSubmit={handleSubmit}>
         <IoSearch />
         <Input

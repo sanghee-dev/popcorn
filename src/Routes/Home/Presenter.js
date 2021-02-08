@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
@@ -16,72 +17,89 @@ const Presenter = ({
   popular,
   topRated,
 }) => {
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <Container>
-      {nowPlaying && nowPlaying.length > 0 && (
-        <Section title="Now Playing Movies">
-          {nowPlaying.map((movie) => (
-            <Poster
-              key={movie.id}
-              id={movie.id}
-              title={movie.original_title}
-              imageUrl={movie.poster_path}
-              year={movie.release_date && movie.release_date.substring(0, 4)}
-              rating={movie.vote_average}
-              isMovie={true}
-            />
-          ))}
-        </Section>
+  return (
+    <>
+      <HelmetProvider>
+        <Helmet>
+          <title>Movies | Popcorn</title>
+        </Helmet>
+      </HelmetProvider>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Container>
+          {nowPlaying && nowPlaying.length > 0 && (
+            <Section title="Now Playing Movies">
+              {nowPlaying.map((movie) => (
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  title={movie.original_title}
+                  imageUrl={movie.poster_path}
+                  year={
+                    movie.release_date && movie.release_date.substring(0, 4)
+                  }
+                  rating={movie.vote_average}
+                  isMovie={true}
+                />
+              ))}
+            </Section>
+          )}
+          {upcoming && upcoming.length > 0 && (
+            <Section title="Upcoming Movies">
+              {upcoming.map((movie) => (
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  title={movie.original_title}
+                  imageUrl={movie.poster_path}
+                  year={
+                    movie.release_date && movie.release_date.substring(0, 4)
+                  }
+                  rating={movie.vote_average}
+                  isMovie={true}
+                />
+              ))}
+            </Section>
+          )}
+          {popular && popular.length > 0 && (
+            <Section title="Popular Movies">
+              {popular.map((movie) => (
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  title={movie.original_title}
+                  imageUrl={movie.poster_path}
+                  year={
+                    movie.release_date && movie.release_date.substring(0, 4)
+                  }
+                  rating={movie.vote_average}
+                  isMovie={true}
+                />
+              ))}
+            </Section>
+          )}
+          {topRated && topRated.length > 0 && (
+            <Section title="Top Rated Movies">
+              {topRated.map((movie) => (
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  title={movie.original_title}
+                  imageUrl={movie.poster_path}
+                  year={
+                    movie.release_date && movie.release_date.substring(0, 4)
+                  }
+                  rating={movie.vote_average}
+                  isMovie={true}
+                />
+              ))}
+            </Section>
+          )}
+          {error && <Error text={error} />}
+        </Container>
       )}
-      {upcoming && upcoming.length > 0 && (
-        <Section title="Upcoming Movies">
-          {upcoming.map((movie) => (
-            <Poster
-              key={movie.id}
-              id={movie.id}
-              title={movie.original_title}
-              imageUrl={movie.poster_path}
-              year={movie.release_date && movie.release_date.substring(0, 4)}
-              rating={movie.vote_average}
-              isMovie={true}
-            />
-          ))}
-        </Section>
-      )}
-      {popular && popular.length > 0 && (
-        <Section title="Popular Movies">
-          {popular.map((movie) => (
-            <Poster
-              key={movie.id}
-              id={movie.id}
-              title={movie.original_title}
-              imageUrl={movie.poster_path}
-              year={movie.release_date && movie.release_date.substring(0, 4)}
-              rating={movie.vote_average}
-              isMovie={true}
-            />
-          ))}
-        </Section>
-      )}
-      {topRated && topRated.length > 0 && (
-        <Section title="Top Rated Movies">
-          {topRated.map((movie) => (
-            <Poster
-              key={movie.id}
-              id={movie.id}
-              title={movie.original_title}
-              imageUrl={movie.poster_path}
-              year={movie.release_date && movie.release_date.substring(0, 4)}
-              rating={movie.vote_average}
-              isMovie={true}
-            />
-          ))}
-        </Section>
-      )}
-      {error && <Error text={error} />}
-    </Container>
+    </>
   );
 };
 

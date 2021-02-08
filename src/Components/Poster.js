@@ -44,7 +44,7 @@ const Poster = ({ id, title, imageUrl, year, rating, isMovie = false }) => {
           <Image
             imageUrl={
               imageUrl
-                ? `https://image.tmdb.org/t/p/w200/${imageUrl}`
+                ? `https://image.tmdb.org/t/p/original/${imageUrl}`
                 : require("../assets/noPosterSmall.png").default
             }
           />
