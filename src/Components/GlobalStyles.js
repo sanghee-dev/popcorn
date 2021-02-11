@@ -4,8 +4,9 @@ import reset from "styled-reset";
 const globalStyles = createGlobalStyle`
   ${reset};
   :root {
-    --main-color: rgb(190,184,184);
-    --default-space: 20px;
+    --gray: rgb(190,184,184);
+    --green: rgb(0, 255, 0);
+    --space: 20px;
   }
   *{
     box-sizing: border-box;
@@ -13,7 +14,7 @@ const globalStyles = createGlobalStyle`
   body{
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    background-color: var(--main-color);
+    background-color: var(--gray);
     color: black;
     padding: var(--default-space);
     padding-top: 200px;
