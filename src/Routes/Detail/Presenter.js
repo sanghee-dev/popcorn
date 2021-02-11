@@ -40,8 +40,19 @@ const Data = styled.div`
   height: 100%;
 `;
 const Divider = styled.div``;
+const IMDb = styled.div`
+  width: 48px;
+  height: 24px;
+  border-radius: 6px;
+  background-color: yellow;
+  color: black;
+  font-weight: 600;
+  text-align: center;
+  padding: 4px;
+  cursor: pointer;
+`;
 
-const Presenter = ({ isLoading, error, result }) => (
+const Presenter = ({ isLoading, error, isMovie, result }) => (
   <>
     <HelmetProvider>
       <Helmet>
@@ -91,6 +102,15 @@ const Presenter = ({ isLoading, error, result }) => (
             <Divider>|</Divider>
             <h1>{result.runtime && `${result.runtime} min`}</h1>
             <h1>{result.vote_average && `${result.vote_average} / 10`}</h1>
+            <IMDb
+              onClick={() =>
+                isMovie
+                  ? (window.location = `http://www.imdb.com/title/${result.imdb_id}`)
+                  : (window.location = result.homepage)
+              }
+            >
+              IMDb
+            </IMDb>
             <h1>{result.overview && `overview : ${result.overview}`}</h1>
           </Data>
         </Content>

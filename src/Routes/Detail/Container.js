@@ -4,10 +4,6 @@ import Presenter from "./Presenter";
 import { moviesApi, tvApi } from "api";
 
 const Container = (props) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
-  const [result, setResult] = useState();
-
   const {
     history: { push },
     location: { pathname },
@@ -20,13 +16,18 @@ const Container = (props) => {
     push("/");
   }
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+  const [isMovie, setIsMovie] = useState(pathname.includes("/movie/"));
+  const [result, setResult] = useState();
+
   useEffect(() => {
     let mounted = true;
     if (mounted) {
       setIsLoading(true);
       const fetchData = async () => {
         try {
-          if (pathname.includes("/movie/")) {
+          if (isMovie) {
             const { data: result } = await moviesApi.detail(id);
             setResult(result);
           } else {
@@ -43,7 +44,14 @@ const Container = (props) => {
     }
     return () => (mounted = false);
   }, []);
-  return <Presenter isLoading={isLoading} error={error} result={result} />;
+  return (
+    <Presenter
+      isLoading={isLoading}
+      error={error}
+      isMovie={isMovie}
+      result={result}
+    />
+  );
 };
 
 export default withRouter(Container);

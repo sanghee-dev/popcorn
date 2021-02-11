@@ -17,22 +17,18 @@ const Form = styled.form`
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  background-color: black;
+  background-color: white;
   border-radius: 40px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 17px -6px;
   font-size: 18px;
-  color: rgb(200, 200, 200);
 `;
 const Input = styled.input`
   width: 300px;
   height: 40px;
   padding-left: 8px;
   border: none;
-  background-color: black;
   color: white;
   font-size: 18px;
   ::placeholder {
-    color: rgb(200, 200, 200);
     font-size: 18px;
     font-weight: 500;
   }

@@ -1,66 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
+import { IoEllipsisHorizontal } from "react-icons/io5";
 
-const HEADER = styled.header`
-  width: 100%;
-  height: cal(1rem + 40px);
-  display: flex;
-  align-items: center;
+const Container = styled.div`
+  width: calc(100vw-40px);
   position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(40, 40, 40, 0.8);
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 17px -6px;
-  backdrop-filter: blur(8px);
+  top: var(--default-space);
   z-index: 2;
 `;
-const UL = styled.ul`
+const ToggleContainer = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--default-space);
 `;
-const LI = styled.li`
-  padding: 20px;
-  border-bottom: 2px solid
-    ${(props) =>
-      props.current ? "rgba(255, 255, 0, 1)" : "rgba(255, 255, 0, 0)"};
-  transition: all 0.2s ease-in-out;
-  text-shadow: 2px 2px 10px
-    ${(props) =>
-      props.current ? "rgba(255, 255, 0, 0.5)" : "rgba(255, 255, 0, 0)"};
-  &:hover {
-    text-shadow: 2px 2px 10px rgba(255, 255, 0, 0.5);
+const Toggle = styled.div`
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 var(--default-space);
+  :first-child {
+    width: 40px;
+    background-color: white;
+  }
+  :last-child {
+    background-color: white;
   }
 `;
-const LINK = styled(Link)`
-  font-weight: 500;
+const ListContainer = styled.div`
+  width: 100%;
+  height: calc(1rem + 40px);
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
 `;
+const List = styled.ul`
+  display: flex;
+`;
+const Item = styled.li`
+  padding: 0 20px;
+  color: ${(props) => (props.current ? "rgb(0, 255, 0)" : "rgb(0, 0, 0)")};
+`;
+const LINK = styled(Link)``;
 
 const Header = ({ location: { pathname } }) => {
+  const [toggleList, setToggleList] = useState();
+  const [toggleMedia, setToggleMedia] = useState("Movies");
   return (
-    <HEADER>
-      <UL>
-        <LI current={pathname === ""}>
-          <LINK to="">
-            <h2>🍿</h2>
-          </LINK>
-        </LI>
-        <LI current={pathname === "/"}>
-          <LINK to="/">
-            <h2>Movies</h2>
-          </LINK>
-        </LI>
-        <LI current={pathname === "/tv"}>
-          <LINK to="/tv">
-            <h2>TV</h2>
-          </LINK>
-        </LI>
-        <LI current={pathname === "/search"}>
-          <LINK to="/search">
-            <h2>Search</h2>
-          </LINK>
-        </LI>
-      </UL>
-    </HEADER>
+    <Container>
+      <ToggleContainer>
+        <Toggle>
+          <h1>
+            <IoEllipsisHorizontal />
+          </h1>
+        </Toggle>
+        <Toggle>
+          <h1>Popcorn movies</h1>
+        </Toggle>
+        <Toggle>
+          <h1>{toggleMedia}</h1>
+        </Toggle>
+      </ToggleContainer>
+
+      <ListContainer>
+        <List>
+          <Item current={pathname === "/"}>
+            <LINK to="/">
+              <h1>Home</h1>
+            </LINK>
+          </Item>
+          <Item current={pathname === "/movie"}>
+            <LINK to="/movie">
+              <h1>Movies</h1>
+            </LINK>
+          </Item>
+          <Item current={pathname === "/tv"}>
+            <LINK to="/tv">
+              <h1>TV</h1>
+            </LINK>
+          </Item>
+          <Item current={pathname === "/search"}>
+            <LINK to="/search">
+              <h1>Search</h1>
+            </LINK>
+          </Item>
+        </List>
+      </ListContainer>
+    </Container>
   );
 };
 
