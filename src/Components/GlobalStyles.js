@@ -11,7 +11,7 @@ const globalStyles = createGlobalStyle`
   *{
     box-sizing: border-box;
   }
-  body{
+  body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     background-color: var(--gray);

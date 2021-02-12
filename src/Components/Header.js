@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory, withRouter } from "react-router-dom";
 import styled from "styled-components";
-import { IoEllipsisHorizontal } from "react-icons/io5";
+import { IoSearch, IoEllipsisHorizontal } from "react-icons/io5";
 
 const Container = styled.div`
-  width: 100vw;
+  width: calc(100vw - 20px);
   padding: var(--space);
   position: fixed;
   top: 0;
@@ -15,7 +15,7 @@ const ToggleContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--space);
-  & :first-child {
+  & > div {
     display: flex;
     align-items: center;
   }
@@ -32,73 +32,123 @@ const Toggle = styled.div`
   cursor: pointer;
   :first-child {
     margin-right: var(--space);
+    color: ${(props) => (props.current ? "rgb(0, 255, 0)" : "rgb(0, 0, 0)")};
   }
-  :last-child {
+  &.ellipsis {
+  }
+  &.Title {
+    width: 100%;
+    color: ${(props) =>
+      props.current ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 0)"};
+    background-color: transparent;
+    transition: all 0.2s;
+  }
+  &.Search {
+  }
+  &.Movie {
     width: 130px;
+    font-size: 23px;
   }
 `;
-const ListContainer = styled.div`
+const Ellipsis = styled.h1`
+  position: absolute;
+  top: 26px;
+  transition: all 0.2s;
+  :first-child {
+    transform-origin: 50% 43.7%;
+    transform: ${(props) => (props.current ? "rotate(45deg)" : "rotate(0)")};
+  }
+  :last-child {
+    transform-origin: 50% 43.7%;
+    transform: ${(props) => (props.current ? "rotate(-45deg)" : "rotate(0)")};
+  }
+`;
+
+const List = styled.ul`
   width: 100%;
-  height: calc(1rem + 40px);
-  display: flex;
-  align-items: center;
   background-color: white;
+  padding: var(--space);
   border-radius: 20px;
   display: ${(props) => (props.current ? "block" : "none")};
 `;
-const List = styled.ul`
-  display: flex;
-`;
 const Item = styled.li`
-  padding: 0 20px;
+  font-size: 28px;
   color: ${(props) => (props.current ? "rgb(0, 255, 0)" : "rgb(0, 0, 0)")};
+  transition: all 0.2s;
+  :not(:last-child) {
+    margin-bottom: 20px;
+  }
+  :hover {
+    color: var(--green);
+  }
 `;
-const LINK = styled(Link)``;
 
 const Header = ({ location: { pathname } }) => {
   const [toggleList, setToggleList] = useState(false);
+  const [title, setTitle] = useState(true);
   const [isMovie, setIsMovie] = useState(true);
+  const [search, setSearch] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => setTitle(window.scrollY < 50));
+    return () => {
+      window.removeEventListener("scroll", () => setTitle(window.scrollY < 50));
+    };
+  }, []);
+
   return (
     <Container>
       <ToggleContainer>
         <div>
-          <Toggle onClick={() => setToggleList((prev) => !prev)}>
-            <h2>
+          <Toggle
+            className="ellipsis"
+            onClick={() => setToggleList((prev) => !prev)}
+            current={toggleList}
+          >
+            <Ellipsis current={toggleList}>
               <IoEllipsisHorizontal />
-            </h2>
+            </Ellipsis>
+            <Ellipsis current={toggleList}>
+              <IoEllipsisHorizontal />
+            </Ellipsis>
           </Toggle>
-          <h1>Popcorn movies</h1>
+          <Toggle className="Title" current={title}>
+            <h1>Popcorn house</h1>
+          </Toggle>
         </div>
-        <Toggle
-          onClick={() => setIsMovie((prev) => !prev)}
-          current={toggleList}
-        >
-          {isMovie === true ? (
-            <LINK to="/movie">
-              <h2>Movies</h2>
-            </LINK>
-          ) : (
-            <LINK to="/tv">
-              <h2>TV</h2>
-            </LINK>
-          )}
-        </Toggle>
+
+        <div>
+          <Toggle
+            className="Search"
+            onClick={() => setSearch((prev) => !prev)}
+            current={search}
+          >
+            <Link to="/search">
+              <h1>
+                <IoSearch />
+              </h1>
+            </Link>
+          </Toggle>
+          <Toggle className="Movie" onClick={() => setIsMovie((prev) => !prev)}>
+            {isMovie !== true ? (
+              <Link to="/movie">Movies</Link>
+            ) : (
+              <Link to="/tv">TV</Link>
+            )}
+          </Toggle>
+        </div>
       </ToggleContainer>
 
-      <ListContainer current={toggleList}>
-        <List>
-          <Item current={pathname === "/"}>
-            <LINK to="/">
-              <h2>Home</h2>
-            </LINK>
-          </Item>
-          <Item current={pathname === "/search"}>
-            <LINK to="/search">
-              <h2>Search</h2>
-            </LINK>
-          </Item>
-        </List>
-      </ListContainer>
+      <List current={toggleList}>
+        <Item current={pathname === "/"}>
+          <Link to="/">Home</Link>
+        </Item>
+        <Item>Intro</Item>
+        <Item>Now Playing Movies</Item>
+        <Item>Upcoming Movies</Item>
+        <Item>Popular Movies</Item>
+        <Item>Top Rated Movies</Item>
+      </List>
     </Container>
   );
 };
