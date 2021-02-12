@@ -1,7 +1,13 @@
 import React from "react";
+import Slide from "Components/Slide";
 
 const Presenter = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <h1>Home</h1>
+      <Slide />
+    </div>
+  );
 };
 
 export default Presenter;

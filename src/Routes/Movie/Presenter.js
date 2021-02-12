@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Section from "Components/Section";
+import Slide from "Components/Slide";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
 import Poster from "Components/Poster";
@@ -28,6 +29,10 @@ const Presenter = ({
         <Loader />
       ) : (
         <Container>
+          {nowPlaying && nowPlaying.length > 0 && (
+            <Slide title="Now Playing Movies" movies={nowPlaying}></Slide>
+          )}
+
           {nowPlaying && nowPlaying.length > 0 && (
             <Section title="Now Playing Movies">
               {nowPlaying.map((movie) => (

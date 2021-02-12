@@ -4,10 +4,11 @@ import styled from "styled-components";
 import { IoSearch, IoEllipsisHorizontal } from "react-icons/io5";
 
 const Container = styled.div`
-  width: calc(100vw - 20px);
-  padding: var(--space);
+  width: calc(100vw - 40px);
+  padding: var(--space) 0;
   position: fixed;
   top: 0;
+  right: 20px;
   z-index: 2;
 `;
 const ToggleContainer = styled.div`
@@ -38,9 +39,10 @@ const Toggle = styled.div`
   }
   &.Title {
     width: 100%;
+    background-color: transparent;
+    font-size: 28px;
     color: ${(props) =>
       props.current ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 0)"};
-    background-color: transparent;
     transition: all 0.2s;
   }
   &.Search {
@@ -113,7 +115,7 @@ const Header = ({ location: { pathname } }) => {
             </Ellipsis>
           </Toggle>
           <Toggle className="Title" current={title}>
-            <h1>Popcorn house</h1>
+            <Link to="/">Popcorn house</Link>
           </Toggle>
         </div>
 
