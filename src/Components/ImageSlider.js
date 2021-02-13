@@ -6,6 +6,7 @@ import styled from "styled-components";
 const Container = styled.div`
   width: calc(100vw - 40px);
   height: 100%;
+  margin-bottom: 20px;
   padding: var(--space);
   display: flex;
   justify-content: space-between;
@@ -50,24 +51,24 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 28px;
   transition: all 0.2s;
-  &:hover {
-    color: var(--green);
-  }
 `;
 
-const ImageSlider = ({ title, movies }) => {
+const ImageSlider = ({ title, movies, reverse = false }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const containerRef = useRef(null);
   const sliderRef = useRef(null);
   const imageRef = useRef(null);
   const SLIDES = movies.length;
 
   useEffect(() => {
+    containerRef.current.style.flexDirection = reverse ? "row-reverse" : "row";
+    containerRef.current.style.textAlign = reverse ? "right" : "left";
     sliderRef.current.style.width = `${SLIDES * 400}px`;
     sliderRef.current.style.transform = `translateX(-${currentSlide * 400}px)`;
   }, [currentSlide]);
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <Column>
         <h1>{title}</h1>
         <h1>
@@ -99,7 +100,7 @@ const ImageSlider = ({ title, movies }) => {
           </Button>
           <Button
             onClick={() =>
-              setCurrentSlide(currentSlide >= SLIDES - 1 ? 0 : currentSlide + 1)
+              setCurrentSlide(currentSlide > SLIDES - 1 ? 0 : currentSlide + 1)
             }
           >
             Next

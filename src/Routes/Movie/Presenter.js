@@ -34,6 +34,7 @@ const Presenter = ({
             <ImageSlider
               title="Now Playing Movies"
               movies={nowPlaying}
+              reverse={true}
             ></ImageSlider>
           )}
 
