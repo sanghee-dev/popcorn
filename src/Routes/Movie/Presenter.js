@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Section from "Components/Section";
-import Slide from "Components/Slide";
+import ImageSlider from "Components/ImageSlider";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
 import Poster from "Components/Poster";
@@ -25,12 +25,16 @@ const Presenter = ({
           <title>Movies | Popcorn</title>
         </Helmet>
       </HelmetProvider>
+
       {isLoading ? (
         <Loader />
       ) : (
         <Container>
           {nowPlaying && nowPlaying.length > 0 && (
-            <Slide title="Now Playing Movies" movies={nowPlaying}></Slide>
+            <ImageSlider
+              title="Now Playing Movies"
+              movies={nowPlaying}
+            ></ImageSlider>
           )}
 
           {nowPlaying && nowPlaying.length > 0 && (

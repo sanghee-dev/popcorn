@@ -5,10 +5,8 @@ import { IoSearch, IoEllipsisHorizontal } from "react-icons/io5";
 
 const Container = styled.div`
   width: calc(100vw - 40px);
-  padding: var(--space) 0;
   position: fixed;
-  top: 0;
-  right: 20px;
+  top: 20px;
   z-index: 2;
 `;
 const ToggleContainer = styled.div`
@@ -54,7 +52,7 @@ const Toggle = styled.div`
 `;
 const Ellipsis = styled.h1`
   position: absolute;
-  top: 26px;
+  top: 6px;
   transition: all 0.2s;
   :first-child {
     transform-origin: 50% 43.7%;

@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import ObjectSansRegular from "../Fonts/ObjectSans-Regular.otf";
+import ObjectSansSlanted from "../Fonts/ObjectSans-Slanted.otf";
 
 const globalStyles = createGlobalStyle`
   ${reset};
@@ -11,12 +13,24 @@ const globalStyles = createGlobalStyle`
   *{
     box-sizing: border-box;
   }
+  @font-face {
+    font-family: "ObjectSans"; 
+    font-style: normal;
+    font-weight: 400;
+    src: url(${ObjectSansRegular});
+  }
+  @font-face {
+    font-family: "ObjectSans"; 
+    font-style: italic;
+    font-weight: 500;
+    src: url(${ObjectSansSlanted});
+  }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+    font-family: "ObjectSans", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     background-color: var(--gray);
     color: black;
-    padding: var(--default-space);
+    padding: var(--space);
     padding-top: 200px;
     font-size: 16px;
   }

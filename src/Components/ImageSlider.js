@@ -7,11 +7,13 @@ const Container = styled.div`
   width: calc(100vw - 40px);
   height: 100%;
   padding: var(--space);
-  margin-left: 20px;
   display: flex;
   justify-content: space-between;
   border: 1px dotted black;
   border-radius: 20px;
+  &:hover {
+    background-color: var(--green);
+  }
 `;
 const Column = styled.div`
   display: flex;
@@ -25,14 +27,16 @@ const Column = styled.div`
   }
 `;
 const Slider = styled.div`
-  width: 100%;
   display: flex;
-  border: 1px dotted red;
+  height: 600px;
+  margin-bottom: 20px;
   border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.2s;
 `;
-const Slide = styled.img`
+const Image = styled.img`
   width: 100%;
-  height: 400px;
+  height: 600px;
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center center;
@@ -51,14 +55,15 @@ const Button = styled.button`
   }
 `;
 
-const Section = ({ title, movies }) => {
+const ImageSlider = ({ title, movies }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slideRef = useRef(null);
-  const TOTAL_SLIDES = movies.length;
+  const sliderRef = useRef(null);
+  const imageRef = useRef(null);
+  const SLIDES = movies.length;
 
   useEffect(() => {
-    slideRef.current.style.transition = "all 0.5s ease-in-out";
-    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
+    sliderRef.current.style.width = `${SLIDES * 400}px`;
+    sliderRef.current.style.transform = `translateX(-${currentSlide * 400}px)`;
   }, [currentSlide]);
 
   return (
@@ -66,14 +71,16 @@ const Section = ({ title, movies }) => {
       <Column>
         <h1>{title}</h1>
         <h1>
-          {currentSlide} / {TOTAL_SLIDES}
+          {currentSlide + 1} / {SLIDES}
         </h1>
       </Column>
 
       <Column>
-        <Slider ref={slideRef}>
+        <Slider ref={sliderRef}>
           {movies.map((movie) => (
-            <Slide
+            <Image
+              key={movie.id}
+              ref={imageRef}
               imageUrl={
                 movie.poster_path
                   ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
@@ -85,18 +92,14 @@ const Section = ({ title, movies }) => {
         <ButtonContainer>
           <Button
             onClick={() =>
-              setCurrentSlide(
-                currentSlide === 0 ? TOTAL_SLIDES : currentSlide - 1
-              )
+              setCurrentSlide(currentSlide === 0 ? SLIDES : currentSlide - 1)
             }
           >
             Previous
           </Button>
           <Button
             onClick={() =>
-              setCurrentSlide(
-                currentSlide >= TOTAL_SLIDES ? 0 : currentSlide + 1
-              )
+              setCurrentSlide(currentSlide >= SLIDES - 1 ? 0 : currentSlide + 1)
             }
           >
             Next
@@ -107,8 +110,8 @@ const Section = ({ title, movies }) => {
   );
 };
 
-Section.propTypes = {
+ImageSlider.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default Section;
+export default ImageSlider;
