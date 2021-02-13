@@ -12,9 +12,6 @@ const Container = styled.div`
   justify-content: space-between;
   border: 1px dotted black;
   border-radius: 20px;
-  &:hover {
-    background-color: var(--green);
-  }
 `;
 const Column = styled.div`
   display: flex;
@@ -61,10 +58,34 @@ const ImageSlider = ({ title, movies, reverse = false }) => {
   const SLIDES = movies.length;
 
   useEffect(() => {
-    containerRef.current.style.flexDirection = reverse ? "row-reverse" : "row";
-    containerRef.current.style.textAlign = reverse ? "right" : "left";
-    sliderRef.current.style.width = `${SLIDES * 400}px`;
-    sliderRef.current.style.transform = `translateX(-${currentSlide * 400}px)`;
+    const styleRef = () => {
+      containerRef.current.style.flexDirection = reverse
+        ? "row-reverse"
+        : "row";
+      containerRef.current.style.textAlign = reverse ? "right" : "left";
+      sliderRef.current.style.width = `${SLIDES * 400}px`;
+      sliderRef.current.style.transform = `translateX(-${
+        currentSlide * 400
+      }px)`;
+    };
+    styleRef();
+
+    const mouseGradient = () => {
+      containerRef.current.addEventListener("mousemove", (e) => {
+        const mouseX = Math.round(
+          (e.offsetX < 0 ? 0 : e.offsetX / containerRef.current.clientWidth) *
+            100
+        );
+        const mouseY = Math.round(
+          (e.offsetY < 0 ? 0 : e.offsetY / containerRef.current.clientHeight) *
+            100
+        );
+
+        containerRef.current.backgroundImage = `radial-gradient(
+        at ${mouseX}% ${mouseY}%, rgba(0, 255, 0, 1) 0%, rgba(0, 255, 0, 0) 100%)`;
+      });
+    };
+    mouseGradient();
   }, [currentSlide]);
 
   return (
