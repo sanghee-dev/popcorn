@@ -2,11 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
-import Poster from "Components/Poster";
 import { IoSearch } from "react-icons/io5";
+import ImageSlider from "Components/ImageSlider";
 
 const Container = styled.div`
   display: flex;
@@ -63,35 +62,21 @@ const Presenter = ({
       ) : (
         <>
           {movieResults && movieResults.length > 0 && (
-            <Section title="Movie Results">
-              {movieResults.map((movie) => (
-                <Poster
-                  key={movie.id}
-                  id={movie.id}
-                  title={movie.original_title}
-                  imageUrl={movie.poster_path}
-                  year={
-                    movie.release_date && movie.release_date.substring(0, 4)
-                  }
-                  rating={movie.vote_average}
-                  isMovie={true}
-                />
-              ))}
-            </Section>
+            <ImageSlider
+              title="Movie Results"
+              data={movieResults}
+              isMovie={true}
+              reverse={false}
+            />
           )}
+
           {tvResults && tvResults.length > 0 && (
-            <Section title="TV Shows Results">
-              {tvResults.map((tv) => (
-                <Poster
-                  key={tv.id}
-                  id={tv.id}
-                  title={tv.original_name}
-                  imageUrl={tv.poster_path}
-                  year={tv.first_air_date && tv.first_air_date.substring(0, 4)}
-                  rating={tv.vote_average}
-                />
-              ))}
-            </Section>
+            <ImageSlider
+              title="TV Shows Results"
+              data={tvResults}
+              isMovie={false}
+              reverse={true}
+            />
           )}
         </>
       )}

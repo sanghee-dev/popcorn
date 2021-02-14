@@ -126,14 +126,18 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
         <ButtonContainer>
           <Button
             onClick={() =>
-              setCurrentSlide(currentSlide === 0 ? SLIDES : currentSlide - 1)
+              setCurrentSlide(
+                currentSlide === 0 ? SLIDES - 1 : currentSlide - 1
+              )
             }
           >
             Previous
           </Button>
           <Button
             onClick={() =>
-              setCurrentSlide(currentSlide > SLIDES - 1 ? 0 : currentSlide + 1)
+              setCurrentSlide(
+                currentSlide === SLIDES - 1 ? 0 : currentSlide + 1
+              )
             }
           >
             Next
