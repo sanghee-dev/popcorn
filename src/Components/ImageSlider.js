@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Gradient from "Components/Gradient";
 
 const Container = styled.div`
   width: calc(100vw - 40px);
@@ -80,23 +81,8 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
     };
     styleRef();
 
-    const addGradient = (e) => {
-      const mouseX = Math.round(
-        (e.offsetX < 0 ? 0 : e.offsetX / containerRef.current.clientWidth) * 100
-      );
-      const mouseY = Math.round(
-        (e.offsetY < 0 ? 0 : e.offsetY / containerRef.current.clientHeight) *
-          100
-      );
-      containerRef.current.style.background = `radial-gradient(
-        farthest-side at ${mouseX}% ${mouseY}%, rgba(0, 255, 0, 1) 0%, rgba(0, 255, 0, 0) 100%)`;
-    };
-    const cleanGradient = () => {
-      containerRef.current.style.background = `transparent`;
-    };
-    containerRef.current.addEventListener("mousemove", addGradient);
-    containerRef.current.addEventListener("mouseout", cleanGradient);
-  }, [currentSlide]);
+    Gradient(containerRef);
+  }, [currentSlide, SLIDES, reverse]);
 
   return (
     <Container ref={containerRef}>
@@ -120,7 +106,10 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
         <Slider ref={sliderRef}>
           {data.map((movie) => (
             <>
-              <Poster to={isMovie ? `/movie/${movie.id}` : `/tv/${movie.id}`}>
+              <Poster
+                key={movie.id}
+                to={isMovie ? `/movie/${movie.id}` : `/tv/${movie.id}`}
+              >
                 <Image
                   key={movie.id}
                   ref={imageRef}

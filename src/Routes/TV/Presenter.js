@@ -2,11 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import Section from "Components/Section";
-import ImageSlider from "Components/ImageSlider";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
-import Poster from "Components/Poster";
+import ImageSlider from "Components/ImageSlider";
 
 const Container = styled.div``;
 

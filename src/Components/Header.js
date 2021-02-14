@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory, withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { IoSearch, IoEllipsisHorizontal } from "react-icons/io5";
 
@@ -44,6 +44,7 @@ const Toggle = styled.div`
     transition: all 0.2s;
   }
   &.Search {
+    font-size: 26px;
   }
   &.Movie {
     width: 130px;
@@ -129,9 +130,7 @@ const Header = ({ location: { pathname } }) => {
             current={search}
           >
             <Link to="/search">
-              <h1>
-                <IoSearch />
-              </h1>
+              <IoSearch />
             </Link>
           </Toggle>
           <Toggle
