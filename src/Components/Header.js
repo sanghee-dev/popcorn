@@ -48,6 +48,11 @@ const Toggle = styled.div`
   &.Movie {
     width: 130px;
     font-size: 23px;
+    transition: all 0.2s;
+    color: ${(props) =>
+      props.current ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"};
+    background-color: ${(props) =>
+      props.current ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)"};
   }
 `;
 const Ellipsis = styled.h1`
@@ -129,7 +134,11 @@ const Header = ({ location: { pathname } }) => {
               </h1>
             </Link>
           </Toggle>
-          <Toggle className="Movie" onClick={() => setIsMovie((prev) => !prev)}>
+          <Toggle
+            className="Movie"
+            onClick={() => setIsMovie((prev) => !prev)}
+            current={isMovie}
+          >
             {isMovie !== true ? (
               <Link to="/movie">Movies</Link>
             ) : (
