@@ -17,10 +17,16 @@ const Column = styled.div`
   flex-direction: column;
   justify-content: space-between;
   :first-child {
+    margin-right: 20px;
   }
   :last-child {
     width: 80%;
     overflow: hidden;
+  }
+`;
+const Info = styled.div`
+  & :not(:last-child) {
+    margin-bottom: 20px;
   }
 `;
 const Slider = styled.div`
@@ -34,6 +40,7 @@ const Slider = styled.div`
 const Poster = styled(Link)`
   width: 100%;
   height: 100%;
+  border-radius: 20px;
 `;
 const Image = styled.img`
   width: 100%;
@@ -94,7 +101,16 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
   return (
     <Container ref={containerRef}>
       <Column>
-        <h1>{title}</h1>
+        <Info>
+          <h1>{title}</h1>
+          <h2>
+            {isMovie
+              ? data[currentSlide].original_title
+              : data[currentSlide].original_name
+              ? data[currentSlide].original_name
+              : data[currentSlide].original_title}
+          </h2>
+        </Info>
         <h1>
           {currentSlide + 1} / {SLIDES}
         </h1>
@@ -103,17 +119,19 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
       <Column>
         <Slider ref={sliderRef}>
           {data.map((movie) => (
-            <Poster to={isMovie ? `/movie/${movie.id}` : `/tv/${movie.id}`}>
-              <Image
-                key={movie.id}
-                ref={imageRef}
-                imageUrl={
-                  movie.poster_path
-                    ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
-                    : require("../assets/noPosterSmall.png").default
-                }
-              />
-            </Poster>
+            <>
+              <Poster to={isMovie ? `/movie/${movie.id}` : `/tv/${movie.id}`}>
+                <Image
+                  key={movie.id}
+                  ref={imageRef}
+                  imageUrl={
+                    movie.poster_path
+                      ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+                      : require("../assets/noPosterSmall.png").default
+                  }
+                />
+              </Poster>
+            </>
           ))}
         </Slider>
         <ButtonContainer>

@@ -57,7 +57,7 @@ const Presenter = ({
               title="Top Rated Movies"
               data={topRated}
               isMovie={true}
-              reverse={false}
+              reverse={true}
             />
           )}
           {error && <Error text={error} />}
