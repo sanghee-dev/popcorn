@@ -49,6 +49,7 @@ const Presenter = ({
           <title>Search | Popcorn</title>
         </Helmet>
       </HelmetProvider>
+
       <Form onSubmit={handleSubmit}>
         <IoSearch />
         <Input

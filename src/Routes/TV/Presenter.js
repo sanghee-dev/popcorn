@@ -23,6 +23,7 @@ const Presenter = ({
           <title>TV | Popcorn</title>
         </Helmet>
       </HelmetProvider>
+
       {isLoading ? (
         <Loader />
       ) : (

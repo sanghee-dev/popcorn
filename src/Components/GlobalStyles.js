@@ -31,7 +31,7 @@ const globalStyles = createGlobalStyle`
     background-color: var(--gray);
     color: black;
     padding: var(--space);
-    padding-top: 200px;
+    padding-top: 80px;
     font-size: 16px;
   }
   a {

@@ -5,7 +5,6 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
 import ImageSlider from "Components/ImageSlider";
-import Title from "Components/Title";
 
 const Container = styled.div``;
 
@@ -29,8 +28,6 @@ const Presenter = ({
         <Loader />
       ) : (
         <Container>
-          <Title />
-
           {nowPlaying && nowPlaying.length > 0 && (
             <ImageSlider
               title="Now Playing Movies"
