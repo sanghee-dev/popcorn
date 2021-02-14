@@ -10,7 +10,6 @@ const Container = styled.div`
   padding: var(--space);
   display: flex;
   justify-content: space-between;
-  border: 1px dotted black;
   border-radius: 20px;
 `;
 const Column = styled.div`
@@ -70,22 +69,22 @@ const ImageSlider = ({ title, movies, reverse = false }) => {
     };
     styleRef();
 
-    const mouseGradient = () => {
-      containerRef.current.addEventListener("mousemove", (e) => {
-        const mouseX = Math.round(
-          (e.offsetX < 0 ? 0 : e.offsetX / containerRef.current.clientWidth) *
-            100
-        );
-        const mouseY = Math.round(
-          (e.offsetY < 0 ? 0 : e.offsetY / containerRef.current.clientHeight) *
-            100
-        );
-
-        containerRef.current.backgroundImage = `radial-gradient(
-        at ${mouseX}% ${mouseY}%, rgba(0, 255, 0, 1) 0%, rgba(0, 255, 0, 0) 100%)`;
-      });
+    const addGradient = (e) => {
+      const mouseX = Math.round(
+        (e.offsetX < 0 ? 0 : e.offsetX / containerRef.current.clientWidth) * 100
+      );
+      const mouseY = Math.round(
+        (e.offsetY < 0 ? 0 : e.offsetY / containerRef.current.clientHeight) *
+          100
+      );
+      containerRef.current.style.background = `radial-gradient(
+        farthest-side at ${mouseX}% ${mouseY}%, rgba(0, 255, 0, 1) 0%, rgba(0, 255, 0, 0) 100%)`;
     };
-    mouseGradient();
+    const cleanGradient = () => {
+      containerRef.current.style.background = `transparent`;
+    };
+    containerRef.current.addEventListener("mousemove", addGradient);
+    containerRef.current.addEventListener("mouseout", cleanGradient);
   }, [currentSlide]);
 
   return (
