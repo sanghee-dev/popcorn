@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Section from "Components/Section";
+import ImageSlider from "Components/ImageSlider";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
 import Poster from "Components/Poster";
@@ -30,66 +31,36 @@ const Presenter = ({
         <div>
           <Container>
             {airingToday && airingToday.length > 0 && (
-              <Section title="Airing Today Shows">
-                {airingToday.map((tv) => (
-                  <Poster
-                    key={tv.id}
-                    id={tv.id}
-                    title={tv.original_name}
-                    imageUrl={tv.poster_path}
-                    year={
-                      tv.first_air_date && tv.first_air_date.substring(0, 4)
-                    }
-                    rating={tv.vote_average}
-                  />
-                ))}
-              </Section>
+              <ImageSlider
+                title="Airing Today Shows"
+                data={airingToday}
+                isMovie={false}
+                reverse={false}
+              />
             )}
             {onTheAir && onTheAir.length > 0 && (
-              <Section title="On The Air Shows">
-                {onTheAir.map((tv) => (
-                  <Poster
-                    key={tv.id}
-                    id={tv.id}
-                    title={tv.original_name}
-                    imageUrl={tv.poster_path}
-                    year={
-                      tv.first_air_date && tv.first_air_date.substring(0, 4)
-                    }
-                    rating={tv.vote_average}
-                  />
-                ))}
-              </Section>
+              <ImageSlider
+                title="On The Air Shows"
+                data={onTheAir}
+                isMovie={false}
+                reverse={true}
+              />
             )}
             {popular && popular.length > 0 && (
-              <Section title="Popular Shows">
-                {popular.map((tv) => (
-                  <Poster
-                    key={tv.id}
-                    id={tv.id}
-                    title={tv.original_name}
-                    imageUrl={tv.poster_path}
-                    year={
-                      tv.first_air_date && tv.first_air_date.substring(0, 4)
-                    }
-                    rating={tv.vote_average}
-                  />
-                ))}
-              </Section>
+              <ImageSlider
+                title="Popular Shows"
+                data={popular}
+                isMovie={false}
+                reverse={false}
+              />
             )}
             {topRated && topRated.length > 0 && (
-              <Section title="Top Rated Shows">
-                {topRated.map((tv) => (
-                  <Poster
-                    key={tv.id}
-                    id={tv.id}
-                    title={tv.original_title}
-                    imageUrl={tv.poster_path}
-                    year={tv.release_date && tv.release_date.substring(0, 4)}
-                    rating={tv.vote_average}
-                  />
-                ))}
-              </Section>
+              <ImageSlider
+                title="Top Rated Shows"
+                data={topRated}
+                isMovie={false}
+                reverse={true}
+              />
             )}
             {error && <Error text={error} />}
           </Container>

@@ -31,9 +31,13 @@ const Slider = styled.div`
   overflow: hidden;
   transition: all 0.2s;
 `;
+const Poster = styled(Link)`
+  width: 100%;
+  height: 100%;
+`;
 const Image = styled.img`
   width: 100%;
-  height: 600px;
+  height: 100%;
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center center;
@@ -49,12 +53,12 @@ const Button = styled.button`
   transition: all 0.2s;
 `;
 
-const ImageSlider = ({ title, movies, reverse = false }) => {
+const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const containerRef = useRef(null);
   const sliderRef = useRef(null);
   const imageRef = useRef(null);
-  const SLIDES = movies.length;
+  const SLIDES = data.length;
 
   useEffect(() => {
     const styleRef = () => {
@@ -98,16 +102,18 @@ const ImageSlider = ({ title, movies, reverse = false }) => {
 
       <Column>
         <Slider ref={sliderRef}>
-          {movies.map((movie) => (
-            <Image
-              key={movie.id}
-              ref={imageRef}
-              imageUrl={
-                movie.poster_path
-                  ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
-                  : require("../assets/noPosterSmall.png").default
-              }
-            />
+          {data.map((movie) => (
+            <Poster to={isMovie ? `/movie/${movie.id}` : `/tv/${movie.id}`}>
+              <Image
+                key={movie.id}
+                ref={imageRef}
+                imageUrl={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+                    : require("../assets/noPosterSmall.png").default
+                }
+              />
+            </Poster>
           ))}
         </Slider>
         <ButtonContainer>

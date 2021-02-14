@@ -2,11 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import Section from "Components/Section";
 import ImageSlider from "Components/ImageSlider";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
-import Poster from "Components/Poster";
 
 const Container = styled.div``;
 
@@ -33,78 +31,34 @@ const Presenter = ({
           {nowPlaying && nowPlaying.length > 0 && (
             <ImageSlider
               title="Now Playing Movies"
-              movies={nowPlaying}
-              reverse={true}
-            ></ImageSlider>
-          )}
-
-          {nowPlaying && nowPlaying.length > 0 && (
-            <Section title="Now Playing Movies">
-              {nowPlaying.map((movie) => (
-                <Poster
-                  key={movie.id}
-                  id={movie.id}
-                  title={movie.original_title}
-                  imageUrl={movie.poster_path}
-                  year={
-                    movie.release_date && movie.release_date.substring(0, 4)
-                  }
-                  rating={movie.vote_average}
-                  isMovie={true}
-                />
-              ))}
-            </Section>
+              data={nowPlaying}
+              isMovie={true}
+              reverse={false}
+            />
           )}
           {upcoming && upcoming.length > 0 && (
-            <Section title="Upcoming Movies">
-              {upcoming.map((movie) => (
-                <Poster
-                  key={movie.id}
-                  id={movie.id}
-                  title={movie.original_title}
-                  imageUrl={movie.poster_path}
-                  year={
-                    movie.release_date && movie.release_date.substring(0, 4)
-                  }
-                  rating={movie.vote_average}
-                  isMovie={true}
-                />
-              ))}
-            </Section>
+            <ImageSlider
+              title="Upcoming Movies"
+              data={upcoming}
+              isMovie={true}
+              reverse={true}
+            />
           )}
           {popular && popular.length > 0 && (
-            <Section title="Popular Movies">
-              {popular.map((movie) => (
-                <Poster
-                  key={movie.id}
-                  id={movie.id}
-                  title={movie.original_title}
-                  imageUrl={movie.poster_path}
-                  year={
-                    movie.release_date && movie.release_date.substring(0, 4)
-                  }
-                  rating={movie.vote_average}
-                  isMovie={true}
-                />
-              ))}
-            </Section>
+            <ImageSlider
+              title="Popular Movies"
+              data={popular}
+              isMovie={true}
+              reverse={false}
+            />
           )}
           {topRated && topRated.length > 0 && (
-            <Section title="Top Rated Movies">
-              {topRated.map((movie) => (
-                <Poster
-                  key={movie.id}
-                  id={movie.id}
-                  title={movie.original_title}
-                  imageUrl={movie.poster_path}
-                  year={
-                    movie.release_date && movie.release_date.substring(0, 4)
-                  }
-                  rating={movie.vote_average}
-                  isMovie={true}
-                />
-              ))}
-            </Section>
+            <ImageSlider
+              title="Top Rated Movies"
+              data={topRated}
+              isMovie={true}
+              reverse={false}
+            />
           )}
           {error && <Error text={error} />}
         </Container>
