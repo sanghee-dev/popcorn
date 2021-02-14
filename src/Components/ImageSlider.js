@@ -150,6 +150,9 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
 
 ImageSlider.propTypes = {
   title: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
+  isMovie: PropTypes.bool,
+  reverse: PropTypes.bool,
 };
 
 export default ImageSlider;

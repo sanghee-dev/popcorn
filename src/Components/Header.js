@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { IoSearch, IoEllipsisHorizontal } from "react-icons/io5";
@@ -159,6 +160,10 @@ const Header = ({ location: { pathname } }) => {
       </List>
     </Container>
   );
+};
+
+Header.propTypes = {
+  pathname: PropTypes.string.isRequired,
 };
 
 export default withRouter(Header);
