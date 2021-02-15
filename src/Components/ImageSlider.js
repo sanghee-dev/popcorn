@@ -156,3 +156,13 @@ ImageSlider.propTypes = {
 };
 
 export default ImageSlider;
+
+// import ImageSlider from "Components/ImageSlider";
+// {Object && Object.length > 0 && (
+//   <ImageSlider
+//     title="Object Title"
+//     data={Object}
+//     isMovie={true}
+//     reverse={false}
+//   />
+// )}

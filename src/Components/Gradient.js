@@ -17,3 +17,6 @@ const Gradient = (element) => {
 };
 
 export default Gradient;
+
+// import Gradient from "Components/Gradient";
+// Gradient(Object);
