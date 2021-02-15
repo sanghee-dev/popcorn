@@ -6,12 +6,15 @@ import Gradient from "Components/Gradient";
 
 const Container = styled.div`
   width: calc(100vw - 40px);
-  height: 100%;
+  height: calc(100vw - 60px);
   margin-bottom: 20px;
   padding: var(--space);
   display: flex;
   justify-content: space-between;
   border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
 `;
 const Column = styled.div`
   display: flex;
@@ -19,9 +22,9 @@ const Column = styled.div`
   justify-content: space-between;
   :first-child {
     margin-right: 20px;
+    order: 2;
   }
   :last-child {
-    width: 80%;
     overflow: hidden;
   }
 `;
@@ -32,7 +35,7 @@ const Info = styled.div`
 `;
 const Slider = styled.div`
   display: flex;
-  height: 600px;
+  height: 100%;
   margin-bottom: 20px;
   border-radius: 20px;
   overflow: hidden;
@@ -41,7 +44,6 @@ const Slider = styled.div`
 const Poster = styled(Link)`
   width: 100%;
   height: 100%;
-  border-radius: 20px;
 `;
 const Image = styled.img`
   width: 100%;
@@ -49,6 +51,7 @@ const Image = styled.img`
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center center;
+  border-radius: 20px;
 `;
 const ButtonContainer = styled.div`
   display: flex;
@@ -66,13 +69,15 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
   const containerRef = useRef(null);
   const sliderRef = useRef(null);
   const imageRef = useRef(null);
+  const sliderColumnRef = useRef(null);
   const SLIDES = data.length;
 
   useEffect(() => {
     const styleRef = () => {
-      containerRef.current.style.flexDirection = reverse
-        ? "row-reverse"
-        : "row";
+      containerRef.current.style.gridTemplateColumns = reverse
+        ? "2fr 1fr"
+        : "1fr 2fr";
+      sliderColumnRef.current.style.order = reverse ? "1" : "3";
       containerRef.current.style.textAlign = reverse ? "right" : "left";
       sliderRef.current.style.width = `${SLIDES * 400}px`;
       sliderRef.current.style.transform = `translateX(-${
@@ -102,7 +107,7 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
         </h1>
       </Column>
 
-      <Column>
+      <Column ref={sliderColumnRef}>
         <Slider ref={sliderRef}>
           {data.map((movie) => (
             <>
