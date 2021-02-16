@@ -74,7 +74,6 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
       <Column ref={sliderColumnRef}>
         <Slider
           data={data}
-          hasLink={true}
           isMovie={isMovie}
           currentSlide={currentSlide}
           setCurrentSlide={setCurrentSlide}

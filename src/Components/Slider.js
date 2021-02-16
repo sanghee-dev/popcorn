@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Gradient from "Components/Gradient";
 
 const Container = styled.div`
   width: 100%;
@@ -35,6 +34,13 @@ const Image = styled.img`
   background-position: center center;
   border-radius: 20px;
 `;
+
+const Iframe = styled.iframe`
+  width: 100%;
+  height: 100%;
+  border: 20px;
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -48,9 +54,8 @@ const Button = styled.button`
 
 const Slider = ({
   data,
-  hasLink = false,
   isMovie = true,
-  gradient = false,
+  isVideo = false,
   currentSlide,
   setCurrentSlide,
 }) => {
@@ -66,36 +71,44 @@ const Slider = ({
       }px)`;
     };
     styleRef();
-
-    if (gradient) {
-      Gradient(containerRef);
-    }
-  }, [currentSlide, SLIDES, gradient]);
+  }, [currentSlide, SLIDES]);
 
   return (
     <Container ref={containerRef}>
       <Column>
-        <SliderContainer ref={sliderContainerRef}>
-          {data.map((movie) => (
-            <>
-              <ImageLink
-                key={movie.id}
-                to={
-                  hasLink && isMovie ? `/movie/${movie.id}` : `/tv/${movie.id}`
-                }
-              >
-                <Image
+        {!isVideo ? (
+          <SliderContainer ref={sliderContainerRef}>
+            {data.map((movie) => (
+              <>
+                <ImageLink
                   key={movie.id}
-                  imageUrl={
-                    movie.poster_path
-                      ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
-                      : require("../assets/noPosterSmall.png").default
-                  }
-                />
-              </ImageLink>
-            </>
-          ))}
-        </SliderContainer>
+                  to={isMovie ? `/movie/${movie.id}` : `/tv/${movie.id}`}
+                >
+                  <Image
+                    key={movie.id}
+                    imageUrl={
+                      movie.poster_path
+                        ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+                        : require("../assets/noPosterSmall.png").default
+                    }
+                  />
+                </ImageLink>
+              </>
+            ))}
+          </SliderContainer>
+        ) : (
+          <SliderContainer ref={sliderContainerRef}>
+            {data.map((video) => (
+              <Iframe
+                src={`https://www.youtube.com/embed/${video.key}`}
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                title="video"
+              />
+            ))}
+          </SliderContainer>
+        )}
       </Column>
 
       <ButtonContainer>
@@ -120,8 +133,11 @@ const Slider = ({
 
 Slider.propTypes = {
   data: PropTypes.array.isRequired,
-  isLink: PropTypes.bool,
+  hasLink: PropTypes.bool,
   isMovie: PropTypes.bool,
+  gradient: PropTypes.bool,
+  currentSlide: PropTypes.func,
+  setCurrentSlide: PropTypes.func,
 };
 
 export default Slider;

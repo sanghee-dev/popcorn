@@ -1,31 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { moviesApi, tvApi } from "api";
+import Slider from "Components/Slider";
+import Gradient from "Components/Gradient";
 
 const Container = styled.div`
   width: calc(100vw - 40px);
-  height: 200px;
+  height: 400px;
   padding: var(--space);
   margin-bottom: 20px;
-  border: 1px solid var(--green);
   border-radius: 20px;
-`;
-const Iframe = styled.iframe`
-  width: 100%;
-  height: 100%;
-  border: 20px;
 `;
 
 const Video = ({ id, isMovie = true }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const [results, setResults] = useState();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     let mounted = true;
     if (mounted) {
       setIsLoading(true);
+      Gradient(containerRef);
       const fetchData = async () => {
         try {
           if (isMovie) {
@@ -38,6 +37,7 @@ const Video = ({ id, isMovie = true }) => {
               data: { results },
             } = await tvApi.video(id);
             setResults(results);
+            console.log(results);
           }
         } catch {
           setError("Can't find video :(");
@@ -48,21 +48,18 @@ const Video = ({ id, isMovie = true }) => {
       fetchData();
     }
     return () => (mounted = false);
-  }, []);
+  }, [id, isMovie]);
 
   return (
-    <Container>
-      {results &&
-        results.length > 0 &&
-        results.map((video) => (
-          <Iframe
-            src={`https://www.youtube.com/embed/${video.key}`}
-            frameborder="0"
-            allow="autoplay; encrypted-media"
-            allowfullscreen
-            title="video"
-          />
-        ))}
+    <Container ref={containerRef}>
+      {results && results.length > 0 && (
+        <Slider
+          data={results}
+          isVideo={true}
+          currentSlide={currentSlide}
+          setCurrentSlide={setCurrentSlide}
+        />
+      )}
     </Container>
   );
 };
