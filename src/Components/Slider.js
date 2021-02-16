@@ -35,7 +35,19 @@ const Image = styled.img`
   border-radius: 20px;
 `;
 
-const Iframe = styled.iframe`
+const VideoContainer = styled.div`
+  width: calc(100vw - 40px);
+  display: flex;
+  flex-direction: column;
+`;
+const VideoTitle = styled.h1`
+  width: calc(100vw - 80px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 20px;
+`;
+const Video = styled.iframe`
   width: 100%;
   height: 100%;
   border: 20px;
@@ -62,51 +74,39 @@ const Slider = ({
   const containerRef = useRef(null);
   const sliderContainerRef = useRef(null);
   const SLIDES = data.length;
-
-  useEffect(() => {
-    const styleRef = () => {
-      sliderContainerRef.current.style.width = `${SLIDES * 400}px`;
-      sliderContainerRef.current.style.transform = `translateX(-${
-        currentSlide * 400
-      }px)`;
-    };
-    styleRef();
-  }, [currentSlide, SLIDES]);
+  const media = data[currentSlide];
 
   return (
     <Container ref={containerRef}>
       <Column>
         {!isVideo ? (
           <SliderContainer ref={sliderContainerRef}>
-            {data.map((movie) => (
-              <>
-                <ImageLink
-                  key={movie.id}
-                  to={isMovie ? `/movie/${movie.id}` : `/tv/${movie.id}`}
-                >
-                  <Image
-                    key={movie.id}
-                    imageUrl={
-                      movie.poster_path
-                        ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
-                        : require("../assets/noPosterSmall.png").default
-                    }
-                  />
-                </ImageLink>
-              </>
-            ))}
+            <ImageLink
+              key={media.id}
+              to={isMovie ? `/movie/${media.id}` : `/tv/${media.id}`}
+            >
+              <Image
+                key={media.id}
+                imageUrl={
+                  media.poster_path
+                    ? `https://image.tmdb.org/t/p/original/${media.poster_path}`
+                    : require("../assets/noPosterSmall.png").default
+                }
+              />
+            </ImageLink>
           </SliderContainer>
         ) : (
           <SliderContainer ref={sliderContainerRef}>
-            {data.map((video) => (
-              <Iframe
-                src={`https://www.youtube.com/embed/${video.key}`}
+            <VideoContainer>
+              <VideoTitle>{data && media.name}</VideoTitle>
+              <Video
+                src={`https://www.youtube.com/embed/${data && media.key}`}
                 frameborder="0"
                 allow="autoplay; encrypted-media"
                 allowfullscreen
                 title="video"
               />
-            ))}
+            </VideoContainer>
           </SliderContainer>
         )}
       </Column>

@@ -37,7 +37,6 @@ const Video = ({ id, isMovie = true }) => {
               data: { results },
             } = await tvApi.video(id);
             setResults(results);
-            console.log(results);
           }
         } catch {
           setError("Can't find video :(");
