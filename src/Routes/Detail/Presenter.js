@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
+import Video from "Components/Video";
 
 const Container = styled.div`
   width: 100%;
@@ -115,6 +116,7 @@ const Presenter = ({ isLoading, error, isMovie, result }) => (
           </Data>
         </Content>
         {error && <Error text={error} />}
+        <Video id={result.id} isMovie={isMovie} />
       </Container>
     ) : (
       <></>

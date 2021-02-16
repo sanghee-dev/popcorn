@@ -43,7 +43,7 @@ const Container = (props) => {
       fetchData();
     }
     return () => (mounted = false);
-  }, []);
+  }, [id, isMovie]);
   return (
     <Presenter
       isLoading={isLoading}
