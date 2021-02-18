@@ -7,7 +7,7 @@ import Gradient from "Components/Gradient";
 
 const Container = styled.div`
   width: calc(100vw - 40px);
-  height: 400px;
+  height: 600px;
   padding: var(--space);
   margin-bottom: 20px;
   border-radius: 20px;
@@ -17,7 +17,7 @@ const Video = ({ id, isMovie = true }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const [results, setResults] = useState();
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [index, setIndex] = useState(0);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -55,14 +55,17 @@ const Video = ({ id, isMovie = true }) => {
         <Slider
           data={results}
           isVideo={true}
-          currentSlide={currentSlide}
-          setCurrentSlide={setCurrentSlide}
+          index={index}
+          setIndex={setIndex}
         />
       )}
     </Container>
   );
 };
 
-Video.propTypes = {};
+Video.propTypes = {
+  id: PropTypes.number.isRequired,
+  isMovie: PropTypes.bool,
+};
 
 export default Video;
