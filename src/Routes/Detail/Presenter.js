@@ -73,6 +73,8 @@ const Presenter = ({ isLoading, error, isMovie, result }) => (
       </Helmet>
     </HelmetProvider>
 
+    {console.log(result)}
+
     {isLoading ? (
       <Loader />
     ) : result ? (

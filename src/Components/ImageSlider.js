@@ -36,7 +36,7 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
   const [index, setIndex] = useState(0);
   const containerRef = useRef(null);
   const sliderColumnRef = useRef(null);
-  const SLIDES = data.length;
+  const count = data.length;
 
   useEffect(() => {
     const styleRef = () => {
@@ -49,7 +49,7 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
     styleRef();
 
     Gradient(containerRef);
-  }, [index, SLIDES, reverse]);
+  }, [index, count, reverse]);
 
   return (
     <Container ref={containerRef}>
@@ -65,7 +65,7 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
           </h2>
         </Info>
         <h1>
-          {index + 1} / {SLIDES}
+          {index + 1} / {count}
         </h1>
       </Column>
 
@@ -73,8 +73,8 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
         <Slider
           data={data}
           isMovie={isMovie}
-          currentSlide={index}
-          setCurrentSlide={setIndex}
+          index={index}
+          setIndex={setIndex}
         />
       </Column>
     </Container>

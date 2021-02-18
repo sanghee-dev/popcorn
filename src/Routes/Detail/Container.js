@@ -34,6 +34,7 @@ const Container = (props) => {
             const { data: result } = await tvApi.detail(id);
             setResult(result);
           }
+          console.log(result);
         } catch {
           setError("Can't find anything :(");
         } finally {

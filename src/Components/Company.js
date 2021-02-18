@@ -9,20 +9,53 @@ const Container = styled.div`
   padding: var(--space);
   border-radius: 20px;
   overflow: hidden;
+  position: relative;
 `;
 const Logo = styled.div`
   width: 90px;
   height: 90px;
   background-image: url(${(props) => props.imageUrl});
-  background-size: cover;
+  background-size: 90px;
   background-position: center center;
+`;
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+const Button = styled.div`
+  width: 40px;
+  height: 130px;
+  cursor: pointer;
+  position: absolute;
+  :first-child {
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 255, 0, 0)
+    );
+  }
+  :last-child {
+    top: 0;
+    right: 0;
+    background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 255, 0, 0)
+    );
+  }
 `;
 
 const Company = ({ result }) => {
   const [index, setIndex] = useState(0);
   const containerRef = useRef(null);
-
-  console.log(result);
+  const count = result.length;
 
   useEffect(() => {
     Gradient(containerRef);
@@ -30,17 +63,23 @@ const Company = ({ result }) => {
 
   return (
     <Container ref={containerRef}>
-      {result &&
-        result.map((logo) => (
-          <Logo
-            key={logo.id}
-            imageUrl={
-              logo.logo_path
-                ? `https://image.tmdb.org/t/p/original${logo.logo_path}`
-                : require("../assets/noPosterSmall.png").default
-            }
-          />
-        ))}
+      <Logo
+        key={result[index].id}
+        imageUrl={
+          result[index].logo_path
+            ? `https://image.tmdb.org/t/p/original${result[index].logo_path}`
+            : setIndex(index === count - 1 ? 0 : index + 1)
+        }
+      />
+
+      <ButtonContainer>
+        <Button onClick={() => setIndex(index === 0 ? count - 1 : index - 1)}>
+          <h1></h1>
+        </Button>
+        <Button onClick={() => setIndex(index === count - 1 ? 0 : index + 1)}>
+          <h1></h1>
+        </Button>
+      </ButtonContainer>
     </Container>
   );
 };

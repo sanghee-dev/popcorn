@@ -54,20 +54,33 @@ const Video = styled.iframe`
 `;
 
 const ButtonContainer = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 `;
 const Button = styled.button`
   all: unset;
+  width: 33%;
   cursor: pointer;
-  font-size: 28px;
-  transition: all 0.2s;
+  :first-child {
+    margin-right: auto;
+  }
+  :nth-child(2) {
+    text-align: center;
+    cursor: auto;
+  }
+  :last-child {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+  }
 `;
 
 const Slider = ({ data, isMovie = true, isVideo = false, index, setIndex }) => {
   const containerRef = useRef(null);
   const sliderContainerRef = useRef(null);
-  const SLIDES = data.length;
+  const count = data.length;
   const media = data[index];
 
   return (
@@ -106,11 +119,18 @@ const Slider = ({ data, isMovie = true, isVideo = false, index, setIndex }) => {
       </Column>
 
       <ButtonContainer>
-        <Button onClick={() => setIndex(index === 0 ? SLIDES - 1 : index - 1)}>
-          Previous
+        <Button onClick={() => setIndex(index === 0 ? count - 1 : index - 1)}>
+          <h1>Previous</h1>
         </Button>
-        <Button onClick={() => setIndex(index === SLIDES - 1 ? 0 : index + 1)}>
-          Next
+        {isVideo ? (
+          <Button>
+            <h1>{count > 2 ? `${index + 1} / ${count}` : ""}</h1>
+          </Button>
+        ) : (
+          <></>
+        )}
+        <Button onClick={() => setIndex(index === count - 1 ? 0 : index + 1)}>
+          <h1>Next</h1>
         </Button>
       </ButtonContainer>
     </Container>
