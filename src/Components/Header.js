@@ -7,7 +7,7 @@ import { IoSearch, IoEllipsisHorizontal } from "react-icons/io5";
 const Container = styled.div`
   width: calc(100vw - 40px);
   position: fixed;
-  top: 20px;
+  top: var(--space);
   z-index: 2;
 `;
 const ToggleContainer = styled.div`

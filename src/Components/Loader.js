@@ -6,10 +6,6 @@ const Container = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
-  & h1 {
-    margin-top: 28px;
-    font-size: 28px;
-  }
 `;
 
 const Loader = () => {

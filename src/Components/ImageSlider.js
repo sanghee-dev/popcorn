@@ -7,19 +7,19 @@ import Slider from "Components/Slider";
 const Container = styled.div`
   width: calc(100vw - 40px);
   height: calc(100vw - 60px);
-  margin-bottom: 20px;
+  margin-bottom: var(--space);
   padding: var(--space);
   border-radius: 20px;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 20px;
+  gap: var(--space);
 `;
 const Column = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   :first-child {
-    margin-right: 20px;
+    margin-right: var(--space);
     order: 2;
   }
   :last-child {
@@ -28,7 +28,7 @@ const Column = styled.div`
 `;
 const Info = styled.div`
   & :not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: var(--space);
   }
 `;
 

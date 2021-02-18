@@ -15,11 +15,10 @@ const Container = styled.div`
 const InfoContainer = styled.div`
   width: calc(100vw - 40px);
   display: flex;
-  margin-bottom: 20px;
 `;
 const Info = styled.div`
   width: 130px;
-  margin-left: 20px;
+  margin-left: var(--space);
 `;
 const IMDb = styled.div`
   width: 130px;
@@ -39,7 +38,7 @@ const Backdrop = styled.div`
   width: 50%;
   height: 50%;
   position: absolute;
-  top: 1000px;
+  top: 1200px;
   left: 0;
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
@@ -47,22 +46,12 @@ const Backdrop = styled.div`
   filter: blur(3px);
   opacity: 50%;
 `;
-const Content = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  position: relative;
-`;
 const Cover = styled.div`
-  width: 30%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center center;
-`;
-const Data = styled.div`
-  width: 70%;
-  height: 100%;
 `;
 
 const Presenter = ({ isLoading, error, isMovie, result }) => (
@@ -102,6 +91,24 @@ const Presenter = ({ isLoading, error, isMovie, result }) => (
           </Info>
         </InfoContainer>
         <Video id={result.id} isMovie={isMovie} />
+        <Title
+          title={
+            result.genres &&
+            result.genres.map((genre, index) =>
+              index === result.genres.length - 1 ? genre.name : `${genre.name}&`
+            )
+          }
+          text={`${
+            result.release_date
+              ? result.release_date.substring(0, 4)
+              : result.first_air_date
+              ? result.first_air_date.substring(0, 4)
+              : null
+          } ${result.runtime && `${result.runtime} min`} ${
+            result.vote_average && `${result.vote_average} / 10`
+          }`}
+        />
+        {error && <Error text={error} />}
 
         <Backdrop
           imageUrl={
@@ -110,35 +117,13 @@ const Presenter = ({ isLoading, error, isMovie, result }) => (
               : require("../../assets/noPosterSmall.png").default
           }
         />
-        <Content>
-          <Cover
-            imageUrl={
-              result.poster_path
-                ? `https://image.tmdb.org/t/p/original/${result.poster_path}`
-                : require("../../assets/noPosterSmall.png").default
-            }
-          />
-          <Data>
-            <h1>
-              {result.genres &&
-                result.genres.map((genre, index) =>
-                  index === result.genres.length - 1
-                    ? genre.name
-                    : `${genre.name}&`
-                )}
-            </h1>
-            <h1>
-              {result.release_date
-                ? result.release_date.substring(0, 4)
-                : result.first_air_date
-                ? result.first_air_date.substring(0, 4)
-                : null}
-            </h1>
-            <h1>{result.runtime && `${result.runtime} min`}</h1>
-            <h1>{result.vote_average && `${result.vote_average} / 10`}</h1>
-          </Data>
-        </Content>
-        {error && <Error text={error} />}
+        <Cover
+          imageUrl={
+            result.poster_path
+              ? `https://image.tmdb.org/t/p/original/${result.poster_path}`
+              : require("../../assets/noPosterSmall.png").default
+          }
+        />
       </Container>
     ) : (
       <></>

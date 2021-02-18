@@ -14,12 +14,12 @@ const Column = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: var(--space);
 `;
 const SliderContainer = styled.div`
   display: flex;
   height: 100%;
-  margin-bottom: 20px;
+  margin-bottom: var(--space);
   transition: all 0.2s;
 `;
 const ImageLink = styled(Link)`
@@ -45,12 +45,12 @@ const VideoTitle = styled.h1`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-bottom: 20px;
+  margin-bottom: var(--space);
 `;
 const Video = styled.iframe`
   width: 100%;
   height: 100%;
-  border: 20px;
+  border-radius: 20px;
 `;
 
 const ButtonContainer = styled.div`

@@ -59,6 +59,10 @@ const Company = ({ result }) => {
 
   useEffect(() => {
     Gradient(containerRef);
+    const interval = setInterval(() => {
+      setIndex(index === count - 1 ? 0 : index + 1);
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   return (

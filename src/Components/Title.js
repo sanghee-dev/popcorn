@@ -8,8 +8,9 @@ const Container = styled.div`
   height: 190px;
   padding: var(--space);
   border-radius: 20px;
+  margin-bottom: var(--space);
   & h1 {
-    margin-bottom: 20px;
+    margin-bottom: var(--space);
     width: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -27,7 +28,7 @@ const Container = styled.div`
   }
 `;
 
-const Title = ({ title, text }) => {
+const Title = ({ title, text, color = "black" }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const Title = ({ title, text }) => {
   }, []);
 
   return (
-    <Container ref={containerRef}>
+    <Container ref={containerRef} style={{ color: `${color}` }}>
       <h1>{title}</h1>
       <h2>{text}</h2>
     </Container>
@@ -45,6 +46,7 @@ const Title = ({ title, text }) => {
 Title.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
+  color: PropTypes.string,
 };
 
 export default Title;
