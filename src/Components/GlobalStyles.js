@@ -46,10 +46,10 @@ const globalStyles = createGlobalStyle`
     font-size: 23px;
   }
   h3{
-    font-size: 16px;
+    font-size: 20px;
   }
   h4{
-    font-size: 12px;
+    font-size: 16px;
   }
 `;
 

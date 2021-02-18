@@ -72,7 +72,7 @@ Presenter.propTypes = {
   error: PropTypes.string,
   airingToday: PropTypes.array,
   onTheAir: PropTypes.array,
-  popula: PropTypes.array,
+  popular: PropTypes.array,
   topRated: PropTypes.array,
 };
 

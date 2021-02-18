@@ -7,8 +7,7 @@ import Error from "Components/Error";
 import Video from "Components/Video";
 import Title from "Components/Title";
 import Company from "Components/Company";
-import ImageSlider from "Components/ImageSlider";
-import Slider from "Components/Slider";
+import Credit from "Components/Credit";
 
 const Container = styled.div`
   width: calc(100vw - 40px);
@@ -38,7 +37,6 @@ const IMDb = styled.div`
 
 const Presenter = ({ isLoading, error, isMovie, result, credits }) => {
   const [index, setIndex] = useState(0);
-  console.log(credits);
 
   return (
     <>
@@ -50,14 +48,6 @@ const Presenter = ({ isLoading, error, isMovie, result, credits }) => {
         <Loader />
       ) : result ? (
         <Container>
-          {credits && credits.length > 0 && (
-            <Slider
-              data={credits}
-              hasCount={true}
-              index={index}
-              setIndex={setIndex}
-            />
-          )}
           <InfoContainer>
             <Title
               title={
@@ -102,6 +92,8 @@ const Presenter = ({ isLoading, error, isMovie, result, credits }) => {
               result.vote_average && `${result.vote_average} / 10`
             }`}
           />
+
+          <Credit credits={credits} />
 
           {error && <Error text={error} />}
         </Container>

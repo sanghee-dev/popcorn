@@ -54,6 +54,7 @@ const Video = ({ id, isMovie = true }) => {
       {results && results.length > 0 && (
         <Slider
           data={results}
+          isMovie={isMovie}
           isVideo={true}
           hasCount={true}
           index={index}

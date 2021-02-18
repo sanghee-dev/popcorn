@@ -73,6 +73,7 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
         <Slider
           data={data}
           isMovie={isMovie}
+          isTV={!isMovie}
           index={index}
           setIndex={setIndex}
         />

@@ -81,6 +81,7 @@ const Slider = ({
   data,
   isMovie = true,
   isVideo = false,
+  isCredit = false,
   hasCount = false,
   index,
   setIndex,
