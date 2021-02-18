@@ -9,8 +9,6 @@ const Container = styled.div`
   height: calc(100vw - 60px);
   margin-bottom: 20px;
   padding: var(--space);
-  display: flex;
-  justify-content: space-between;
   border-radius: 20px;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -35,7 +33,7 @@ const Info = styled.div`
 `;
 
 const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [index, setIndex] = useState(0);
   const containerRef = useRef(null);
   const sliderColumnRef = useRef(null);
   const SLIDES = data.length;
@@ -51,7 +49,7 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
     styleRef();
 
     Gradient(containerRef);
-  }, [currentSlide, SLIDES, reverse]);
+  }, [index, SLIDES, reverse]);
 
   return (
     <Container ref={containerRef}>
@@ -60,14 +58,14 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
           <h1>{title}</h1>
           <h2>
             {isMovie
-              ? data[currentSlide].original_title
-              : data[currentSlide].original_name
-              ? data[currentSlide].original_name
-              : data[currentSlide].original_title}
+              ? data[index].original_title
+              : data[index].original_name
+              ? data[index].original_name
+              : data[index].original_title}
           </h2>
         </Info>
         <h1>
-          {currentSlide + 1} / {SLIDES}
+          {index + 1} / {SLIDES}
         </h1>
       </Column>
 
@@ -75,8 +73,8 @@ const ImageSlider = ({ title, data, isMovie = true, reverse = false }) => {
         <Slider
           data={data}
           isMovie={isMovie}
-          currentSlide={currentSlide}
-          setCurrentSlide={setCurrentSlide}
+          currentSlide={index}
+          setCurrentSlide={setIndex}
         />
       </Column>
     </Container>

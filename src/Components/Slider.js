@@ -64,17 +64,11 @@ const Button = styled.button`
   transition: all 0.2s;
 `;
 
-const Slider = ({
-  data,
-  isMovie = true,
-  isVideo = false,
-  currentSlide,
-  setCurrentSlide,
-}) => {
+const Slider = ({ data, isMovie = true, isVideo = false, index, setIndex }) => {
   const containerRef = useRef(null);
   const sliderContainerRef = useRef(null);
   const SLIDES = data.length;
-  const media = data[currentSlide];
+  const media = data[index];
 
   return (
     <Container ref={containerRef}>
@@ -112,18 +106,10 @@ const Slider = ({
       </Column>
 
       <ButtonContainer>
-        <Button
-          onClick={() =>
-            setCurrentSlide(currentSlide === 0 ? SLIDES - 1 : currentSlide - 1)
-          }
-        >
+        <Button onClick={() => setIndex(index === 0 ? SLIDES - 1 : index - 1)}>
           Previous
         </Button>
-        <Button
-          onClick={() =>
-            setCurrentSlide(currentSlide === SLIDES - 1 ? 0 : currentSlide + 1)
-          }
-        >
+        <Button onClick={() => setIndex(index === SLIDES - 1 ? 0 : index + 1)}>
           Next
         </Button>
       </ButtonContainer>
@@ -136,8 +122,8 @@ Slider.propTypes = {
   hasLink: PropTypes.bool,
   isMovie: PropTypes.bool,
   gradient: PropTypes.bool,
-  currentSlide: PropTypes.func,
-  setCurrentSlide: PropTypes.func,
+  index: PropTypes.number,
+  setIndex: PropTypes.func,
 };
 
 export default Slider;

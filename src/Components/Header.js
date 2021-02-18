@@ -31,7 +31,6 @@ const Toggle = styled.div`
   background-color: white;
   cursor: pointer;
   :first-child {
-    margin-right: var(--space);
     color: ${(props) => (props.current ? "rgb(0, 255, 0)" : "rgb(0, 0, 0)")};
   }
   &.ellipsis {
@@ -45,11 +44,11 @@ const Toggle = styled.div`
     transition: all 0.2s;
   }
   &.Search {
+    margin-right: var(--space);
     font-size: 26px;
   }
   &.Movie {
     width: 130px;
-    font-size: 23px;
     transition: all 0.2s;
     color: ${(props) =>
       props.current ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"};
@@ -140,9 +139,13 @@ const Header = ({ location: { pathname } }) => {
             current={isMovie}
           >
             {isMovie !== true ? (
-              <Link to="/movie">Movies</Link>
+              <Link to="/movie">
+                <h2>Movies</h2>
+              </Link>
             ) : (
-              <Link to="/tv">TV</Link>
+              <Link to="/tv">
+                <h2>TV</h2>
+              </Link>
             )}
           </Toggle>
         </div>

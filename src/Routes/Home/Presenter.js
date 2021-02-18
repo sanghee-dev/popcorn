@@ -23,7 +23,7 @@ const Presenter = ({ isLoading, error }) => {
           <Loader />
         ) : (
           <div>
-            <Title />
+            <Title text="Home" />
             <Video />
           </div>
         )}
