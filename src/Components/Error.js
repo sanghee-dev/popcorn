@@ -6,19 +6,18 @@ import Gradient from "Components/Gradient";
 const Container = styled.div`
   width: calc(100vw - 40px);
   height: 190px;
-  position: fixed;
-  top: 80px;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 20px;
 `;
 
 const Error = ({ text }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    Gradient(containerRef, "red");
+    Gradient(containerRef, "var(--red)");
   }, []);
 
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
 import { IoSearch } from "react-icons/io5";
@@ -44,11 +44,9 @@ const Presenter = ({
 }) => {
   return (
     <Container>
-      <HelmetProvider>
-        <Helmet>
-          <title>Search | Popcorn</title>
-        </Helmet>
-      </HelmetProvider>
+      <Helmet>
+        <title>Search</title>
+      </Helmet>
 
       <Form onSubmit={handleSubmit}>
         <IoSearch />

@@ -89,7 +89,7 @@ const Company = ({ result }) => {
 };
 
 Company.propTypes = {
-  title: PropTypes.string,
+  result: PropTypes.array,
 };
 
 export default Company;

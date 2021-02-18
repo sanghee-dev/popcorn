@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
 import Title from "Components/Title";
@@ -12,11 +12,9 @@ const Container = styled.div``;
 const Presenter = ({ isLoading, error }) => {
   return (
     <>
-      <HelmetProvider>
-        <Helmet>
-          <title>Home | Popcorn</title>
-        </Helmet>
-      </HelmetProvider>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
 
       <Container>
         {isLoading ? (

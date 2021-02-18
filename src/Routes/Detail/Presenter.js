@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
 import Video from "Components/Video";
 import Title from "Components/Title";
 import Company from "Components/Company";
+import ImageSlider from "Components/ImageSlider";
+import Slider from "Components/Slider";
 
 const Container = styled.div`
   width: calc(100vw - 40px);
-  height: calc(100vh - 50px);
+  height: 100%;
 `;
 const InfoContainer = styled.div`
   width: calc(100vw - 40px);
@@ -34,102 +36,81 @@ const IMDb = styled.div`
   text-align: center;
 `;
 
-const Backdrop = styled.div`
-  width: 50%;
-  height: 50%;
-  position: absolute;
-  top: 1200px;
-  left: 0;
-  background-image: url(${(props) => props.imageUrl});
-  background-size: cover;
-  background-position: center center;
-  filter: blur(3px);
-  opacity: 50%;
-`;
-const Cover = styled.div`
-  width: 50%;
-  height: 50%;
-  background-image: url(${(props) => props.imageUrl});
-  background-size: cover;
-  background-position: center center;
-`;
+const Presenter = ({ isLoading, error, isMovie, result, credits }) => {
+  const [index, setIndex] = useState(0);
+  console.log(credits);
 
-const Presenter = ({ isLoading, error, isMovie, result }) => (
-  <>
-    <HelmetProvider>
+  return (
+    <>
       <Helmet>
-        <title>Detail | Popcorn</title>
+        <title>{result && result.original_title}</title>
       </Helmet>
-    </HelmetProvider>
 
-    {console.log(result)}
-
-    {isLoading ? (
-      <Loader />
-    ) : result ? (
-      <Container>
-        <InfoContainer>
-          <Title
-            title={
-              result.original_title
-                ? result.original_title
-                : result.original_name
-            }
-            text={result.overview && result.overview}
-          />
-          <Info>
-            <IMDb
-              onClick={() =>
-                isMovie
-                  ? (window.location = `http://www.imdb.com/title/${result.imdb_id}`)
-                  : (window.location = result.homepage)
+      {isLoading ? (
+        <Loader />
+      ) : result ? (
+        <Container>
+          {credits && credits.length > 0 && (
+            <Slider
+              data={credits}
+              hasCount={true}
+              index={index}
+              setIndex={setIndex}
+            />
+          )}
+          <InfoContainer>
+            <Title
+              title={
+                result.original_title
+                  ? result.original_title
+                  : result.original_name
               }
-            >
-              <h2>IMDb</h2>
-            </IMDb>
-            <Company result={result.production_companies} />
-          </Info>
-        </InfoContainer>
-        <Video id={result.id} isMovie={isMovie} />
-        <Title
-          title={
-            result.genres &&
-            result.genres.map((genre, index) =>
-              index === result.genres.length - 1 ? genre.name : `${genre.name}&`
-            )
-          }
-          text={`${
-            result.release_date
-              ? result.release_date.substring(0, 4)
-              : result.first_air_date
-              ? result.first_air_date.substring(0, 4)
-              : null
-          } ${result.runtime && `${result.runtime} min`} ${
-            result.vote_average && `${result.vote_average} / 10`
-          }`}
-        />
-        {error && <Error text={error} />}
+              text={result.overview && result.overview}
+            />
+            <Info>
+              <IMDb
+                onClick={() =>
+                  isMovie
+                    ? (window.location = `http://www.imdb.com/title/${result.imdb_id}`)
+                    : (window.location = result.homepage)
+                }
+              >
+                <h2>IMDb</h2>
+              </IMDb>
+              <Company result={result.production_companies} />
+            </Info>
+          </InfoContainer>
 
-        <Backdrop
-          imageUrl={
-            result.backdrop_path
-              ? `https://image.tmdb.org/t/p/original/${result.backdrop_path}`
-              : require("../../assets/noPosterSmall.png").default
-          }
-        />
-        <Cover
-          imageUrl={
-            result.poster_path
-              ? `https://image.tmdb.org/t/p/original/${result.poster_path}`
-              : require("../../assets/noPosterSmall.png").default
-          }
-        />
-      </Container>
-    ) : (
-      <></>
-    )}
-  </>
-);
+          <Video id={result.id} isMovie={isMovie} />
+
+          <Title
+            title={`${
+              result.genres &&
+              result.genres.map((genre, index) =>
+                index === result.genres.length - 1
+                  ? genre.name
+                  : `${genre.name}&`
+              )
+            }`}
+            text={`${
+              result.release_date
+                ? result.release_date.substring(0, 4)
+                : result.first_air_date
+                ? result.first_air_date.substring(0, 4)
+                : null
+            } ${result.runtime && `${result.runtime} min`} ${
+              result.vote_average && `${result.vote_average} / 10`
+            }`}
+          />
+
+          {error && <Error text={error} />}
+        </Container>
+      ) : (
+        <></>
+      )}
+    </>
+  );
+};
 
 Presenter.propTypes = {
   isLoading: PropTypes.bool.isRequired,

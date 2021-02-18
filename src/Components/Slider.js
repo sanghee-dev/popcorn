@@ -77,7 +77,14 @@ const Button = styled.button`
   }
 `;
 
-const Slider = ({ data, isMovie = true, isVideo = false, index, setIndex }) => {
+const Slider = ({
+  data,
+  isMovie = true,
+  isVideo = false,
+  hasCount = false,
+  index,
+  setIndex,
+}) => {
   const containerRef = useRef(null);
   const sliderContainerRef = useRef(null);
   const count = data.length;
@@ -122,7 +129,7 @@ const Slider = ({ data, isMovie = true, isVideo = false, index, setIndex }) => {
         <Button onClick={() => setIndex(index === 0 ? count - 1 : index - 1)}>
           <h1>Previous</h1>
         </Button>
-        {isVideo ? (
+        {hasCount ? (
           <Button>
             <h1>{count > 2 ? `${index + 1} / ${count}` : ""}</h1>
           </Button>

@@ -55,6 +55,7 @@ const Video = ({ id, isMovie = true }) => {
         <Slider
           data={results}
           isVideo={true}
+          hasCount={true}
           index={index}
           setIndex={setIndex}
         />

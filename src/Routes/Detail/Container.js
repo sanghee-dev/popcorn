@@ -20,6 +20,7 @@ const Container = (props) => {
   const [error, setError] = useState();
   const [isMovie, setIsMovie] = useState(pathname.includes("/movie/"));
   const [result, setResult] = useState();
+  const [credits, setCredits] = useState();
 
   useEffect(() => {
     let mounted = true;
@@ -33,6 +34,17 @@ const Container = (props) => {
           } else {
             const { data: result } = await tvApi.detail(id);
             setResult(result);
+          }
+          if (isMovie) {
+            const {
+              data: { cast },
+            } = await moviesApi.credits(id);
+            cast.length > 20 ? setCredits(cast.slice(0, 20)) : setCredits(cast);
+          } else {
+            const {
+              data: { cast },
+            } = await tvApi.credits(id);
+            cast.length > 20 ? setCredits(cast.slice(0, 20)) : setCredits(cast);
           }
         } catch {
           setError("Can't find anything :(");
@@ -50,6 +62,7 @@ const Container = (props) => {
       error={error}
       isMovie={isMovie}
       result={result}
+      credits={credits}
     />
   );
 };
