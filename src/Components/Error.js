@@ -1,25 +1,35 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Gradient from "Components/Gradient";
 
 const Container = styled.div`
-  width: 100vw;
+  width: calc(100vw - 40px);
+  height: 190px;
+  position: fixed;
+  top: 80px;
+  z-index: 2;
   display: flex;
   justify-content: center;
-  padding: 100px;
+  align-items: center;
 `;
 
-const Error = ({ text, color = "white" }) => {
+const Error = ({ text }) => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    Gradient(containerRef, "red");
+  }, []);
+
   return (
-    <Container>
-      <h2 style={{ color: `${color}` }}>{text}</h2>
+    <Container ref={containerRef}>
+      <h1>{text}</h1>
     </Container>
   );
 };
 
 Error.propTypes = {
   text: PropTypes.string.isRequired,
-  color: PropTypes.string,
 };
 
 export default Error;
