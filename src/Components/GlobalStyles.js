@@ -10,6 +10,11 @@ const globalStyles = createGlobalStyle`
     --green: rgb(0, 255, 0);
     --red: rgb(255, 0, 0);
     --space: 20px;
+
+    --h1: 28px;
+    --h2: 22px;
+    --h3: 18px;
+    --h4: 15px;
   }
   *{
     box-sizing: border-box;

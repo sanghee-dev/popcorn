@@ -9,6 +9,7 @@ import Title from "Components/Title";
 import Company from "Components/Company";
 import Credit from "Components/Credit";
 import Collection from "Components/Collection";
+import Season from "Components/Season";
 
 const Container = styled.div`
   width: calc(100vw - 40px);
@@ -43,62 +44,55 @@ const Presenter = ({
   result,
   credits,
   collection,
-}) => {
-  const [index, setIndex] = useState(0);
+}) => (
+  <>
+    <Helmet>
+      <title>{result && result.original_title}</title>
+    </Helmet>
 
-  console.log(collection);
-
-  return (
-    <>
-      <Helmet>
-        <title>{result && result.original_title}</title>
-      </Helmet>
-
-      {isLoading ? (
-        <Loader />
-      ) : result ? (
-        <Container>
-          <InfoContainer>
-            <Title
-              title={`${
-                result && result.original_title
-                  ? result && result.original_title
-                  : result.original_name
-              } ${
-                result && result.release_date
-                  ? result.release_date.substring(0, 4)
-                  : result && result.first_air_date
-                  ? result.first_air_date.substring(0, 4)
-                  : null
-              } `}
-              text={result && result.tagline}
-            />
-            <Info>
-              <IMDb
-                onClick={() =>
-                  isMovie
-                    ? (window.location = `http://www.imdb.com/title/${result.imdb_id}`)
-                    : (window.location = result.homepage)
-                }
-              >
-                <h2>IMDb</h2>
-              </IMDb>
-              <Company result={result.production_companies} />
-            </Info>
-          </InfoContainer>
-
-          <Video id={result.id} isMovie={isMovie} />
-
+    {isLoading ? (
+      <Loader />
+    ) : result ? (
+      <Container>
+        <InfoContainer>
           <Title
             title={`${
-              result.genres &&
-              result.genres.map((genre, index) =>
-                index === result.genres.length - 1
-                  ? genre.name
-                  : `${genre.name}&`
-              )
+              result && result.original_title
+                ? result && result.original_title
+                : result.original_name
+            } ${
+              result && result.release_date
+                ? result.release_date.substring(0, 4)
+                : result && result.first_air_date
+                ? result.first_air_date.substring(0, 4)
+                : null
             } `}
-            text={`${result.runtime && `${result.runtime} min`} 
+            text={result && result.tagline}
+          />
+          <Info>
+            <IMDb
+              onClick={() =>
+                isMovie
+                  ? (window.location = `http://www.imdb.com/title/${result.imdb_id}`)
+                  : (window.location = result.homepage)
+              }
+            >
+              <h2>IMDb</h2>
+            </IMDb>
+            <Company result={result.production_companies} />
+          </Info>
+        </InfoContainer>
+
+        <Video id={result.id} isMovie={isMovie} />
+
+        <Title
+          title={`${
+            result.genres &&
+            result.genres.map((genre, index) =>
+              index === result.genres.length - 1 ? genre.name : `${genre.name}&`
+            )
+          } `}
+          text={`${result.runtime && `${result.runtime} min`} 
             ${result.vote_average && `${result.vote_average} / 10`}
             ${
               result && result.release_date
@@ -108,19 +102,20 @@ const Presenter = ({
                 : null
             }
             ${result && result.overview}`}
-          />
+        />
 
-          <Credit results={credits} />
-          {!isMovie && <Collection results={result.seasons} />}
+        <Credit results={credits} />
 
-          {error && <Error text={error} />}
-        </Container>
-      ) : (
-        <></>
-      )}
-    </>
-  );
-};
+        {isMovie && <Collection results={collection} currentId={result.id} />}
+        {!isMovie && <Season results={result.seasons} />}
+
+        {/* {error && <Error text={error} />} */}
+      </Container>
+    ) : (
+      <></>
+    )}
+  </>
+);
 
 Presenter.propTypes = {
   isLoading: PropTypes.bool.isRequired,

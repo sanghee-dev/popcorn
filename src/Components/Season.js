@@ -23,30 +23,32 @@ const DataContainer = styled.div`
   overflow: hidden;
   height: ${(props) =>
     props.current
-      ? `calc(${25 * props.count}vw + ${80 * props.count}px - 20px)`
-      : "calc(25vw + 60px)"};
-  border-radius: 20px;
+      ? // height: Image*count + Info*count + 40px*count - 20px
+        `calc(${37.5 * props.count}vw + ${-56.25 * props.count}px 
+        + ${44 * props.count}px + ${40 * props.count}px - 20px)`
+      : // Image height + 20px + Info
+        "calc(37.5vw - 56.25px + 20px + 44px)"};
 `;
 const Data = styled.div`
   display: flex;
   flex-direction: column;
-  & h3:last-child {
+  & h3:not(:first-child) {
     color: rgb(100, 100, 100);
   }
 `;
 const Image = styled.img`
   width: calc(25vw - 35px);
-  height: calc(25vw - 35px);
+  height: calc(37.5vw - 56.25px);
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center center;
-  border-radius: 20px;
+  border-radius: 10px;
   filter: grayscale(100%);
   margin-bottom: var(--space);
 `;
 const Info = styled.div`
   width: calc(25vw - 35px);
-  height: 75px;
+  height: calc(2 * var(--h2));
   & h3 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -69,33 +71,41 @@ const More = styled.div`
   }
 `;
 
-const Credit = ({ title = "Credits", results }) => {
+const Seasons = ({ results }) => {
   const [more, setMore] = useState(false);
   const containerRef = useRef(null);
-  const count = Math.ceil(results.length / 4);
+  const count = results ? Math.ceil(results.length / 4) : 1;
 
   useEffect(() => {
     Gradient(containerRef);
   }, []);
 
+  console.log(results);
+
   return (
     <Container ref={containerRef}>
-      <Title>{title}</Title>
+      <Title>
+        <h1>Seasons</h1>
+        {/* <h2>{results.overview}</h2> */}
+      </Title>
 
       <DataContainer current={more} count={count}>
         {results &&
           results.map((result) => (
-            <Data key={result.cast_id}>
+            <Data key={result.id}>
               <Image
                 imageUrl={
-                  result.profile_path
-                    ? `https://image.tmdb.org/t/p/original/${result.profile_path}`
+                  result.poster_path
+                    ? `https://image.tmdb.org/t/p/original/${result.poster_path}`
                     : require("../assets/noPosterSmall.png").default
                 }
               />
               <Info>
-                <h3>{result.character}</h3>
-                <h3>{result.original_name}</h3>
+                <h3>{result.name}</h3>
+                <h3>
+                  {result.air_date &&
+                    result.air_date.substring(0, 7).replace(/-/g, "/")}
+                </h3>
               </Info>
             </Data>
           ))}
@@ -111,8 +121,8 @@ const Credit = ({ title = "Credits", results }) => {
   );
 };
 
-Credit.propTypes = {
-  result: PropTypes.array,
+Seasons.propTypes = {
+  results: PropTypes.array.isRequired,
 };
 
-export default Credit;
+export default Seasons;

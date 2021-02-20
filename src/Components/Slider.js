@@ -62,18 +62,18 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   all: unset;
   width: 33%;
-  cursor: pointer;
   :first-child {
     margin-right: auto;
+    cursor: pointer;
   }
   :nth-child(2) {
     text-align: center;
-    cursor: auto;
   }
   :last-child {
     margin-left: auto;
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
   }
 `;
 

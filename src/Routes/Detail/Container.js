@@ -21,8 +21,8 @@ const Container = (props) => {
   const [isMovie, setIsMovie] = useState(pathname.includes("/movie/"));
   const [result, setResult] = useState();
   const [credits, setCredits] = useState();
-  const [collectionId, setCollectionId] = useState();
   const [collection, setCollection] = useState();
+  const [collectionId, setCollectionId] = useState();
 
   useEffect(() => {
     let mounted = true;
