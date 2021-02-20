@@ -38,12 +38,12 @@ const Button = styled.div`
   :first-child {
     top: 0;
     left: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
     transition: all 0.5s;
     :hover {
       background: linear-gradient(
         to right,
-        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.6),
         rgba(0, 0, 0, 0)
       );
     }
@@ -51,12 +51,12 @@ const Button = styled.div`
   :last-child {
     top: 0;
     right: 0;
-    background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
     transition: all 0.5s;
     :hover {
       background: linear-gradient(
         to left,
-        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.6),
         rgba(0, 0, 0, 0)
       );
     }

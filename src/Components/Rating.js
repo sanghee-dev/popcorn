@@ -16,7 +16,7 @@ const Star = styled.div`
   font-size: 200px;
 `;
 
-const Rating = ({ grade }) => {
+const Rating = ({ grade, height = "190px" }) => {
   const [rating, setRating] = useState();
   const containerRef = useRef(null);
 
@@ -27,7 +27,7 @@ const Rating = ({ grade }) => {
   }, []);
 
   return (
-    <Container ref={containerRef}>
+    <Container ref={containerRef} style={{ height: height }}>
       <Star>✱</Star>
     </Container>
   );

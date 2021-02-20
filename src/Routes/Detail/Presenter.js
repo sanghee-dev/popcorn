@@ -18,13 +18,14 @@ const Container = styled.div`
 `;
 const TitleContainer = styled.div`
   width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: var(--space);
 `;
 
 const Overview = styled.div`
-  height: 250px;
+  height: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: var(--space);
@@ -71,6 +72,7 @@ const Presenter = ({
                   : result.original_name
               }
               text={result && result.tagline}
+              height="calc(33.3vw - 20px)"
             />
             <Company result={result.production_companies} />
           </TitleContainer>
@@ -82,9 +84,9 @@ const Presenter = ({
               title="Overview"
               text={result && result.overview}
               marginBottom="var(--quadruple-space)"
-              height="240px"
+              height="calc(33.3vw - 20px)"
             />
-            <Rating grade={result.vote_average} />
+            <Rating grade={result.vote_average} height="calc(33.3vw - 20px)" />
           </Overview>
 
           {credits && <Credit results={credits} />}
