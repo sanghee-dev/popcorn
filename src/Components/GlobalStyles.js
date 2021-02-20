@@ -7,9 +7,12 @@ const globalStyles = createGlobalStyle`
   ${reset};
   :root {
     --gray: rgb(190,184,184);
+    --dark-gray: rgb(95, 95, 95);
     --green: rgb(0, 255, 0);
     --red: rgb(255, 0, 0);
+    
     --space: 20px;
+    --half-space: 10px;
 
     --h1: 28px;
     --h2: 22px;

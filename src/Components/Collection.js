@@ -26,30 +26,36 @@ const DataContainer = styled.div`
   overflow: hidden;
   height: ${(props) =>
     props.current
-      ? // PartTitle*c + Image*c + Info*c + 60*c
-        `calc(${2 * 22 * props.count}px + 
-          ${37.5 * props.count}vw + ${-56.25 * props.count}px 
-        + ${18 * 4 * props.count}px + ${60 * props.count}px)`
-      : // PartTitle + Image height + 20px + Info
-        "calc(2 * 22px + 37.5vw - 56.25px + 20px + 4 * 18px)"};
+      ? // SubTitle + Image + Info
+        `calc(${2 * 18 * props.count}px + 
+        ${37.5 * props.count}vw + ${-112.5 * props.count}px + 
+        ${4 * 18 * props.count}px + 
+        ${100 * props.count}px + 
+        ${-20}px
+        )`
+      : `calc(${2 * 18}px + 
+        ${37.5}vw + ${-112.5}px + 
+        ${4 * 18}px + 
+        ${100}px + 
+        ${-20}px
+        )`};
 `;
-
 const Data = styled.div`
   width: calc(25vw - 35px);
-  height: calc(2 * var(--h2) + 37.5vw - 56.25px + 20px);
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  border-radius: var(--half-space);
+  padding: var(--space);
+  background-color: var(--gray);
   & h3:not(:first-child) {
     color: rgb(100, 100, 100);
   }
-  box-sizing: border-box;
-  border-radius: var(--space);
-  /* padding: var(--space); */
-  background-color: var(--gray);
 `;
-const PartTitle = styled.div`
-  height: calc(2 * var(--h2));
-  & h2 {
+const SubTitle = styled.div`
+  height: calc(2 * var(--h3));
+  margin-bottom: var(--space);
+  & h3 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -58,8 +64,8 @@ const PartTitle = styled.div`
   }
 `;
 const Image = styled.img`
-  width: calc(25vw - 35px);
-  height: calc(37.5vw - 56.25px);
+  width: calc(25vw - 75px);
+  height: calc((25vw - 75px) * 1.5);
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center center;
@@ -69,7 +75,7 @@ const Image = styled.img`
   filter: ${(props) => (props.current ? "grayscale(25%)" : "grayscale(100%)")};
 `;
 const Info = styled.div`
-  width: calc(25vw - 35px);
+  width: calc(25vw - 75px);
   height: calc(4 * var(--h3));
   & h3 {
     display: -webkit-box;
@@ -81,10 +87,12 @@ const Info = styled.div`
     -webkit-line-clamp: 1;
   }
   & h3:last-child {
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
+    color: var(--dark-gray);
   }
 `;
 const More = styled.div`
+  margin-top: var(--space);
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -119,11 +127,16 @@ const Collection = ({ results, currentId }) => {
 
       <DataContainer current={more} count={count}>
         {results &&
-          results.parts.map((part) => (
+          results.parts.map((part, index) => (
             <Data key={part.id}>
-              <PartTitle>
-                <h3>{part.original_title}</h3>
-              </PartTitle>
+              {/* {index % 0 === 0 ? (
+                <button>Show Description</button>
+              ) : (
+                <button>No</button>
+              )} */}
+              <SubTitle>
+                <h3>{part.original_title.toUpperCase()}</h3>
+              </SubTitle>
               <Image
                 imageUrl={
                   part.poster_path
@@ -133,10 +146,10 @@ const Collection = ({ results, currentId }) => {
                 current={part.id === currentId}
               />
               <Info>
-                <h3>
+                {/* <h3>
                   {part.release_date &&
                     part.release_date.substring(0, 7).replace(/-/g, "/")}
-                </h3>
+                </h3> */}
                 <h3>{part.overview}</h3>
               </Info>
             </Data>

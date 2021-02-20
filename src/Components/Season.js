@@ -18,46 +18,57 @@ const DataContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
   grid-gap: 20px;
-  margin-bottom: var(--space);
   transition: all 0.5s;
   overflow: hidden;
   height: ${(props) =>
     props.current
-      ? // height: Image*count + Info*count + 40px*count - 20px
-        `calc(${37.5 * props.count}vw + ${-56.25 * props.count}px 
-        + ${44 * props.count}px + ${40 * props.count}px - 20px)`
-      : // Image height + 20px + Info
-        "calc(37.5vw - 56.25px + 20px + 44px)"};
+      ? // SubTitle + Image
+        `calc(${18 * props.count}px + 
+        ${37.5 * props.count}vw + ${-112.5 * props.count}px + 
+        ${80 * props.count}px + 
+        ${-20}px
+        )`
+      : `calc(${18}px + 
+        ${37.5}vw + ${-112.5}px + 
+        ${80}px + 
+        ${-20}px
+        )`};
 `;
 const Data = styled.div`
+  width: calc(25vw - 35px);
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  border-radius: var(--half-space);
+  padding: var(--space);
+  background-color: var(--gray);
   & h3:not(:first-child) {
     color: rgb(100, 100, 100);
   }
 `;
-const Image = styled.img`
-  width: calc(25vw - 35px);
-  height: calc(37.5vw - 56.25px);
-  background-image: url(${(props) => props.imageUrl});
-  background-size: cover;
-  background-position: center center;
-  border-radius: 10px;
-  filter: grayscale(100%);
+const SubTitle = styled.div`
+  height: calc(1 * var(--h3));
   margin-bottom: var(--space);
-`;
-const Info = styled.div`
-  width: calc(25vw - 35px);
-  height: calc(2 * var(--h2));
   & h3 {
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 `;
+const Image = styled.img`
+  width: calc(25vw - 75px);
+  height: calc((25vw - 75px) * 1.5);
+  background-image: url(${(props) => props.imageUrl});
+  background-size: cover;
+  background-position: center center;
+  border-radius: 10px;
+  filter: grayscale(100%);
+  filter: ${(props) => (props.current ? "grayscale(25%)" : "grayscale(100%)")};
+`;
 const More = styled.div`
+  margin-top: var(--space);
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -93,6 +104,9 @@ const Seasons = ({ results }) => {
         {results &&
           results.map((result) => (
             <Data key={result.id}>
+              <SubTitle>
+                <h3>{result.name.toUpperCase()}</h3>
+              </SubTitle>
               <Image
                 imageUrl={
                   result.poster_path
@@ -100,13 +114,6 @@ const Seasons = ({ results }) => {
                     : require("../assets/noPosterSmall.png").default
                 }
               />
-              <Info>
-                <h3>{result.name}</h3>
-                <h3>
-                  {result.air_date &&
-                    result.air_date.substring(0, 7).replace(/-/g, "/")}
-                </h3>
-              </Info>
             </Data>
           ))}
       </DataContainer>

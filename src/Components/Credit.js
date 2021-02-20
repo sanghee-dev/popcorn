@@ -40,7 +40,7 @@ const Image = styled.img`
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center center;
-  border-radius: 20px;
+  border-radius: var(--half-space);
   filter: grayscale(100%);
   margin-bottom: var(--space);
 `;
@@ -72,7 +72,7 @@ const More = styled.div`
 const Credit = ({ title = "Credits", results }) => {
   const [more, setMore] = useState(false);
   const containerRef = useRef(null);
-  const count = Math.ceil(results.length / 4);
+  const count = results ? Math.ceil(results.length / 4) : 1;
 
   useEffect(() => {
     Gradient(containerRef);
