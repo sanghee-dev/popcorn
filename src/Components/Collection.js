@@ -11,7 +11,7 @@ const Container = styled.div`
   margin-bottom: var(--space);
 `;
 const Title = styled.h1`
-  margin-bottom: 80px;
+  margin-bottom: var(--quadruple-space);
   & h1 {
     margin-bottom: var(--space);
   }
@@ -21,8 +21,7 @@ const DataContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
   grid-gap: 20px;
-  margin-bottom: var(--space);
-  transition: all 0.5s;
+  transition: all 1s;
   overflow: hidden;
   height: ${(props) =>
     props.current
@@ -72,10 +71,10 @@ const Image = styled.img`
   border-radius: 10px;
   filter: grayscale(100%);
   margin-bottom: var(--space);
-  filter: ${(props) => (props.current ? "grayscale(25%)" : "grayscale(100%)")};
+  filter: ${(props) => (props.current ? "grayscale(40%)" : "grayscale(100%)")};
 `;
 const Info = styled.div`
-  width: calc(25vw - 75px);
+  width: 100%;
   height: calc(4 * var(--h3));
   & h3 {
     display: -webkit-box;
@@ -115,9 +114,6 @@ const Collection = ({ results, currentId }) => {
     Gradient(containerRef);
   }, []);
 
-  console.log(currentId);
-  console.log(results);
-
   return (
     <Container ref={containerRef}>
       <Title>
@@ -129,11 +125,6 @@ const Collection = ({ results, currentId }) => {
         {results &&
           results.parts.map((part, index) => (
             <Data key={part.id}>
-              {/* {index % 0 === 0 ? (
-                <button>Show Description</button>
-              ) : (
-                <button>No</button>
-              )} */}
               <SubTitle>
                 <h3>{part.original_title.toUpperCase()}</h3>
               </SubTitle>
@@ -146,10 +137,6 @@ const Collection = ({ results, currentId }) => {
                 current={part.id === currentId}
               />
               <Info>
-                {/* <h3>
-                  {part.release_date &&
-                    part.release_date.substring(0, 7).replace(/-/g, "/")}
-                </h3> */}
                 <h3>{part.overview}</h3>
               </Info>
             </Data>

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { IoSearch, IoEllipsisHorizontal } from "react-icons/io5";
 
 const Container = styled.div`
-  width: calc(100vw - 40px);
+  width: calc(100vw - 60px);
   position: fixed;
   top: var(--space);
   z-index: 2;

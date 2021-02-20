@@ -36,12 +36,12 @@ const Image = styled.img`
 `;
 
 const VideoContainer = styled.div`
-  width: calc(100vw - 40px);
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
 const VideoTitle = styled.h1`
-  width: calc(100vw - 80px);
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -65,6 +65,7 @@ const Button = styled.button`
   :first-child {
     margin-right: auto;
     cursor: pointer;
+    text-align: left;
   }
   :nth-child(2) {
     text-align: center;

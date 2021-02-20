@@ -11,14 +11,14 @@ const Container = styled.div`
   margin-bottom: var(--space);
 `;
 const Title = styled.h1`
-  margin-bottom: 80px;
+  margin-bottom: var(--quadruple-space);
 `;
 const DataContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
   grid-gap: 20px;
-  transition: all 0.5s;
+  transition: all 1s;
   overflow: hidden;
   height: ${(props) =>
     props.current
@@ -90,8 +90,6 @@ const Seasons = ({ results }) => {
   useEffect(() => {
     Gradient(containerRef);
   }, []);
-
-  console.log(results);
 
   return (
     <Container ref={containerRef}>

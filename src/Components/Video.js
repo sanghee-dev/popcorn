@@ -6,7 +6,7 @@ import Slider from "Components/Slider";
 import Gradient from "Components/Gradient";
 
 const Container = styled.div`
-  width: calc(100vw - 40px);
+  width: 100%;
   height: 600px;
   padding: var(--space);
   margin-bottom: var(--space);

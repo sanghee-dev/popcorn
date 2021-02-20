@@ -11,7 +11,7 @@ const Container = styled.div`
   margin-bottom: var(--space);
 `;
 const Title = styled.h1`
-  margin-bottom: 80px;
+  margin-bottom: var(--quadruple-space);
 `;
 const DataContainer = styled.div`
   display: grid;
@@ -19,7 +19,7 @@ const DataContainer = styled.div`
   grid-auto-rows: auto;
   grid-gap: 20px;
   margin-bottom: var(--space);
-  transition: all 0.5s;
+  transition: all 1s;
   overflow: hidden;
   height: ${(props) =>
     props.current

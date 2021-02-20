@@ -8,9 +8,10 @@ const globalStyles = createGlobalStyle`
   :root {
     --gray: rgb(190,184,184);
     --dark-gray: rgb(95, 95, 95);
-    --green: rgb(0, 255, 0);
+    --green: rgb(0, 255, 84);
     --red: rgb(255, 0, 0);
     
+    --quadruple-space: 80px;
     --space: 20px;
     --half-space: 10px;
 
@@ -42,6 +43,7 @@ const globalStyles = createGlobalStyle`
     padding: var(--space);
     padding-top: 80px;
     font-size: 16px;
+    overflow-x: hidden;
   }
   a {
     text-decoration: none;

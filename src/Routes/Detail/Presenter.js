@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
@@ -10,31 +10,39 @@ import Company from "Components/Company";
 import Credit from "Components/Credit";
 import Collection from "Components/Collection";
 import Season from "Components/Season";
+import Rating from "Components/Rating";
 
 const Container = styled.div`
-  width: calc(100vw - 40px);
+  width: 100%;
   height: 100%;
 `;
-const InfoContainer = styled.div`
-  width: calc(100vw - 40px);
-  display: flex;
+const TitleContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: var(--space);
 `;
-const Info = styled.div`
-  width: 130px;
-  margin-left: var(--space);
+
+const Overview = styled.div`
+  height: 250px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: var(--space);
 `;
-const IMDb = styled.div`
-  width: 130px;
-  height: 40px;
-  border-radius: 20px;
-  padding: 0 var(--space);
-  margin-bottom: var(--space);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: yellow;
+const IMDbButton = styled.div`
+  width: 100%;
+  padding: var(--space);
+  border-radius: 40px;
+  background-color: white;
+  color: black;
   cursor: pointer;
   text-align: center;
+  font-size: 23px;
+  transition: all 0.5s;
+  :hover {
+    background-color: black;
+    color: white;
+  }
 `;
 
 const Presenter = ({
@@ -44,78 +52,66 @@ const Presenter = ({
   result,
   credits,
   collection,
-}) => (
-  <>
-    <Helmet>
-      <title>{result && result.original_title}</title>
-    </Helmet>
+}) => {
+  return (
+    <>
+      <Helmet>
+        <title>{result && result.original_title}</title>
+      </Helmet>
 
-    {isLoading ? (
-      <Loader />
-    ) : result ? (
-      <Container>
-        <InfoContainer>
-          <Title
-            title={`${
-              result && result.original_title
-                ? result && result.original_title
-                : result.original_name
-            } ${
-              result && result.release_date
-                ? result.release_date.substring(0, 4)
-                : result && result.first_air_date
-                ? result.first_air_date.substring(0, 4)
-                : null
-            } `}
-            text={result && result.tagline}
-          />
-          <Info>
-            <IMDb
-              onClick={() =>
-                isMovie
-                  ? (window.location = `http://www.imdb.com/title/${result.imdb_id}`)
-                  : (window.location = result.homepage)
+      {isLoading ? (
+        <Loader />
+      ) : result ? (
+        <Container>
+          <TitleContainer>
+            <Title
+              title={
+                result && result.original_title
+                  ? result && result.original_title
+                  : result.original_name
               }
-            >
-              <h2>IMDb</h2>
-            </IMDb>
+              text={result && result.tagline}
+            />
             <Company result={result.production_companies} />
-          </Info>
-        </InfoContainer>
+          </TitleContainer>
 
-        <Video id={result.id} isMovie={isMovie} />
+          <Video id={result.id} isMovie={isMovie} />
 
-        <Title
-          title={`${
-            result.genres &&
-            result.genres.map((genre, index) =>
-              index === result.genres.length - 1 ? genre.name : `${genre.name}&`
-            )
-          } `}
-          text={`${result.runtime && `${result.runtime} min`} 
-            ${result.vote_average && `${result.vote_average} / 10`}
-            ${
-              result && result.release_date
-                ? result.release_date.substring(0, 4)
-                : result && result.first_air_date
-                ? result.first_air_date.substring(0, 4)
-                : null
+          <Overview>
+            <Title
+              title="Overview"
+              text={result && result.overview}
+              marginBottom="var(--quadruple-space)"
+              height="240px"
+            />
+            <Rating grade={result.vote_average} />
+          </Overview>
+
+          {credits && <Credit results={credits} />}
+
+          {isMovie && collection && (
+            <Collection results={collection} currentId={result.id} />
+          )}
+          {!isMovie && result.seasons && <Season results={result.seasons} />}
+
+          <IMDbButton
+            onClick={() =>
+              isMovie
+                ? (window.location = `http://www.imdb.com/title/${result.imdb_id}`)
+                : (window.location = result.homepage)
             }
-            ${result && result.overview}`}
-        />
+          >
+            <h2>IMDb</h2>
+          </IMDbButton>
 
-        <Credit results={credits} />
-
-        {isMovie && <Collection results={collection} currentId={result.id} />}
-        {!isMovie && <Season results={result.seasons} />}
-
-        {/* {error && <Error text={error} />} */}
-      </Container>
-    ) : (
-      <></>
-    )}
-  </>
-);
+          {/* {error && <Error text={error} />} */}
+        </Container>
+      ) : (
+        <></>
+      )}
+    </>
+  );
+};
 
 Presenter.propTypes = {
   isLoading: PropTypes.bool.isRequired,

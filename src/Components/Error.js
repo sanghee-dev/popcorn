@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Gradient from "Components/Gradient";
 
 const Container = styled.div`
-  width: calc(100vw - 40px);
+  width: 100%;
   height: 190px;
   z-index: 3;
   display: flex;
