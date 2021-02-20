@@ -68,7 +68,7 @@ const More = styled.div`
   }
 `;
 
-const Credit = ({ title = "Credits", results }) => {
+const Credit = ({ title = "Collection", results }) => {
   const [more, setMore] = useState(false);
   const containerRef = useRef(null);
   const count = Math.ceil(results.length / 4);
@@ -84,8 +84,9 @@ const Credit = ({ title = "Credits", results }) => {
       <ActorContainer current={more} count={count}>
         {results &&
           results.map((result) => (
-            <Actor key={result.cast_id}>
+            <Actor>
               <Image
+                key={result.cast_id}
                 imageUrl={
                   result.profile_path
                     ? `https://image.tmdb.org/t/p/original/${result.profile_path}`

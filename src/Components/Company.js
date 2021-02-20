@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Gradient from "Components/Gradient";
 
 const Container = styled.div`
   width: 100%;
@@ -58,7 +57,6 @@ const Company = ({ result }) => {
   const count = result.length;
 
   useEffect(() => {
-    Gradient(containerRef);
     const interval = setInterval(() => {
       setIndex(index === count - 1 ? 0 : index + 1);
     }, 5000);

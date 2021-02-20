@@ -8,6 +8,7 @@ import Video from "Components/Video";
 import Title from "Components/Title";
 import Company from "Components/Company";
 import Credit from "Components/Credit";
+import Collection from "Components/Collection";
 
 const Container = styled.div`
   width: calc(100vw - 40px);
@@ -35,8 +36,17 @@ const IMDb = styled.div`
   text-align: center;
 `;
 
-const Presenter = ({ isLoading, error, isMovie, result, credits }) => {
+const Presenter = ({
+  isLoading,
+  error,
+  isMovie,
+  result,
+  credits,
+  collection,
+}) => {
   const [index, setIndex] = useState(0);
+
+  console.log(collection);
 
   return (
     <>
@@ -50,12 +60,18 @@ const Presenter = ({ isLoading, error, isMovie, result, credits }) => {
         <Container>
           <InfoContainer>
             <Title
-              title={
-                result.original_title
-                  ? result.original_title
+              title={`${
+                result && result.original_title
+                  ? result && result.original_title
                   : result.original_name
-              }
-              text={result.overview && result.overview}
+              } ${
+                result && result.release_date
+                  ? result.release_date.substring(0, 4)
+                  : result && result.first_air_date
+                  ? result.first_air_date.substring(0, 4)
+                  : null
+              } `}
+              text={result && result.tagline}
             />
             <Info>
               <IMDb
@@ -81,19 +97,21 @@ const Presenter = ({ isLoading, error, isMovie, result, credits }) => {
                   ? genre.name
                   : `${genre.name}&`
               )
-            }`}
-            text={`${
-              result.release_date
+            } `}
+            text={`${result.runtime && `${result.runtime} min`} 
+            ${result.vote_average && `${result.vote_average} / 10`}
+            ${
+              result && result.release_date
                 ? result.release_date.substring(0, 4)
-                : result.first_air_date
+                : result && result.first_air_date
                 ? result.first_air_date.substring(0, 4)
                 : null
-            } ${result.runtime && `${result.runtime} min`} ${
-              result.vote_average && `${result.vote_average} / 10`
-            }`}
+            }
+            ${result && result.overview}`}
           />
 
-          <Credit credits={credits} />
+          <Credit results={credits} />
+          {!isMovie && <Collection results={result.seasons} />}
 
           {error && <Error text={error} />}
         </Container>

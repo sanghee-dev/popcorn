@@ -21,6 +21,8 @@ const Container = (props) => {
   const [isMovie, setIsMovie] = useState(pathname.includes("/movie/"));
   const [result, setResult] = useState();
   const [credits, setCredits] = useState();
+  const [collectionId, setCollectionId] = useState();
+  const [collection, setCollection] = useState();
 
   useEffect(() => {
     let mounted = true;
@@ -28,13 +30,16 @@ const Container = (props) => {
       setIsLoading(true);
       const fetchData = async () => {
         try {
+          // detail
           if (isMovie) {
             const { data: result } = await moviesApi.detail(id);
             setResult(result);
+            setCollectionId(result.belongs_to_collection.id);
           } else {
             const { data: result } = await tvApi.detail(id);
             setResult(result);
           }
+          // credits
           if (isMovie) {
             const {
               data: { cast },
@@ -46,6 +51,13 @@ const Container = (props) => {
             } = await tvApi.credits(id);
             cast.length > 20 ? setCredits(cast.slice(0, 20)) : setCredits(cast);
           }
+          // collection
+          if (isMovie) {
+            const { data: collection } = await moviesApi.collection(
+              collectionId
+            );
+            setCollection(collection);
+          }
         } catch {
           setError("Can't find anything :(");
         } finally {
@@ -55,7 +67,7 @@ const Container = (props) => {
       fetchData();
     }
     return () => (mounted = false);
-  }, [id, isMovie]);
+  }, [id, isMovie, collectionId]);
   return (
     <Presenter
       isLoading={isLoading}
@@ -63,6 +75,7 @@ const Container = (props) => {
       isMovie={isMovie}
       result={result}
       credits={credits}
+      collection={collection}
     />
   );
 };

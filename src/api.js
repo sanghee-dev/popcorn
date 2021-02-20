@@ -26,8 +26,8 @@ export const moviesApi = {
       },
     }),
   video: (id) => api.get(`/movie/${id}/videos`),
-  credit: (id) => api.get(`/credit/${id}`),
   credits: (id) => api.get(`/movie/${id}/credits`),
+  collection: (id) => api.get(`/collection/${id}`),
 };
 
 export const tvApi = {
@@ -48,6 +48,5 @@ export const tvApi = {
       },
     }),
   video: (id) => api.get(`/tv/${id}/videos`),
-  credit: (id) => api.get(`/credit/${id}`),
   credits: (id) => api.get(`/tv/${id}/credits`),
 };
