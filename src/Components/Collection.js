@@ -63,8 +63,8 @@ const SubTitle = styled.div`
   }
 `;
 const Image = styled.img`
-  width: calc(25vw - 75px);
-  height: calc((25vw - 75px) * 1.5);
+  width: 100%;
+  aspect-ratio: 2/3;
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center center;

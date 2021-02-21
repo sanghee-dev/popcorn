@@ -86,7 +86,7 @@ const Presenter = ({
               marginBottom="var(--quadruple-space)"
               height="calc(33.3vw - 20px)"
             />
-            <Rating grade={result.vote_average} height="calc(33.3vw - 20px)" />
+            {/* <Rating grade={result.vote_average} height="calc(33.3vw - 20px)" /> */}
           </Overview>
 
           {credits && <Credit results={credits} />}

@@ -11,14 +11,15 @@ const Container = styled.div`
   margin-bottom: var(--space);
 `;
 const Title = styled.h1`
-  margin-bottom: var(--quadruple-space);
+  margin-bottom: 80px;
 `;
 const DataContainer = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
   grid-gap: 20px;
-  transition: all 1s;
+  transition: all 0.5s;
   overflow: hidden;
   height: ${(props) =>
     props.current
@@ -35,7 +36,7 @@ const DataContainer = styled.div`
         )`};
 `;
 const Data = styled.div`
-  width: calc(25vw - 35px);
+  width: 100%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -47,6 +48,7 @@ const Data = styled.div`
   }
 `;
 const SubTitle = styled.div`
+  width: 100%;
   height: calc(1 * var(--h3));
   margin-bottom: var(--space);
   & h3 {
@@ -58,8 +60,8 @@ const SubTitle = styled.div`
   }
 `;
 const Image = styled.img`
-  width: calc(25vw - 75px);
-  height: calc((25vw - 75px) * 1.5);
+  width: 100%;
+  aspect-ratio: 2/3;
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center center;

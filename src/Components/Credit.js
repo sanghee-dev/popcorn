@@ -14,20 +14,20 @@ const Title = styled.h1`
   margin-bottom: var(--quadruple-space);
 `;
 const DataContainer = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
   grid-gap: 20px;
-  margin-bottom: var(--space);
   transition: all 1s;
   overflow: hidden;
   height: ${(props) =>
     props.current
       ? `calc(${25 * props.count}vw + ${80 * props.count}px - 20px)`
       : "calc(25vw + 60px)"};
-  border-radius: 20px;
 `;
 const Data = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   & h3:last-child {
@@ -35,8 +35,8 @@ const Data = styled.div`
   }
 `;
 const Image = styled.img`
-  width: calc(25vw - 35px);
-  height: calc(25vw - 35px);
+  width: 100%;
+  aspect-ratio: 1/1;
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center center;
@@ -45,7 +45,7 @@ const Image = styled.img`
   margin-bottom: var(--space);
 `;
 const Info = styled.div`
-  width: calc(25vw - 35px);
+  width: 100%;
   height: 75px;
   & h3 {
     display: -webkit-box;
