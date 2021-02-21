@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -49,7 +49,7 @@ const VideoTitle = styled.h1`
 `;
 const Video = styled.iframe`
   width: 100%;
-  height: 100%;
+  aspect-ratio: 16/9;
   border-radius: 20px;
 `;
 
@@ -87,16 +87,14 @@ const Slider = ({
   index,
   setIndex,
 }) => {
-  const containerRef = useRef(null);
-  const sliderContainerRef = useRef(null);
   const count = data.length;
   const media = data[index];
 
   return (
-    <Container ref={containerRef}>
+    <Container>
       <Column>
         {!isVideo ? (
-          <SliderContainer ref={sliderContainerRef}>
+          <SliderContainer>
             <ImageLink
               key={media.id}
               to={isMovie ? `/movie/${media.id}` : `/tv/${media.id}`}
@@ -112,7 +110,7 @@ const Slider = ({
             </ImageLink>
           </SliderContainer>
         ) : (
-          <SliderContainer ref={sliderContainerRef}>
+          <SliderContainer>
             <VideoContainer>
               <VideoTitle>{data && media.name}</VideoTitle>
               <Video

@@ -10,7 +10,7 @@ import Company from "Components/Company";
 import Credit from "Components/Credit";
 import Collection from "Components/Collection";
 import Season from "Components/Season";
-import Rating from "Components/Rating";
+import Review from "Components/Review";
 
 const Container = styled.div`
   width: 100%;
@@ -53,6 +53,7 @@ const Presenter = ({
   result,
   credits,
   collection,
+  review,
 }) => {
   return (
     <>
@@ -86,7 +87,6 @@ const Presenter = ({
               marginBottom="var(--quadruple-space)"
               height="calc(33.3vw - 20px)"
             />
-            {/* <Rating grade={result.vote_average} height="calc(33.3vw - 20px)" /> */}
           </Overview>
 
           {credits && <Credit results={credits} />}
@@ -95,6 +95,8 @@ const Presenter = ({
             <Collection results={collection} currentId={result.id} />
           )}
           {!isMovie && result.seasons && <Season results={result.seasons} />}
+
+          <Review result={review} />
 
           <IMDbButton
             onClick={() =>

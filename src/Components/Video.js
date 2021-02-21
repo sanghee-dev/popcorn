@@ -7,7 +7,7 @@ import Gradient from "Components/Gradient";
 
 const Container = styled.div`
   width: 100%;
-  height: 600px;
+  height: 100%;
   padding: var(--space);
   margin-bottom: var(--space);
   border-radius: 20px;

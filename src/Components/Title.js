@@ -9,6 +9,7 @@ const Container = styled.div`
   padding: var(--space);
   border-radius: 20px;
   margin-bottom: var(--space);
+  overflow: hidden;
 `;
 const MainTitle = styled.h1`
   margin-bottom: var(--space);

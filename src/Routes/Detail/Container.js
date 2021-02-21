@@ -23,6 +23,7 @@ const Container = (props) => {
   const [credits, setCredits] = useState();
   const [collection, setCollection] = useState();
   const [collectionId, setCollectionId] = useState();
+  const [review, setReview] = useState();
 
   useEffect(() => {
     let mounted = true;
@@ -58,6 +59,13 @@ const Container = (props) => {
             );
             setCollection(collection);
           }
+          // review
+          if (isMovie) {
+            const {
+              data: { results: review },
+            } = await moviesApi.reviews(id);
+            setReview(review);
+          }
         } catch {
           setError("Can't find anything :(");
         } finally {
@@ -76,6 +84,7 @@ const Container = (props) => {
       result={result}
       credits={credits}
       collection={collection}
+      review={review}
     />
   );
 };

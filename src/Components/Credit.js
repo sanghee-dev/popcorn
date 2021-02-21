@@ -14,7 +14,6 @@ const Title = styled.h1`
   margin-bottom: var(--quadruple-space);
 `;
 const DataContainer = styled.div`
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
@@ -28,6 +27,7 @@ const DataContainer = styled.div`
 `;
 const Data = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   & h3:last-child {
