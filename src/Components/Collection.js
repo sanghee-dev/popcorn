@@ -20,47 +20,44 @@ const DataContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
-  grid-gap: 20px;
+  grid-gap: var(--space);
   transition: all 1s;
   overflow: hidden;
   height: ${(props) =>
     props.current
       ? // SubTitle + Image + Info
         `calc(${2 * 18 * props.count}px + 
-        ${37.5 * props.count}vw + ${-112.5 * props.count}px + 
+        ${37.5 * props.count}vw + ${-52.5 * props.count}px + 
         ${4 * 18 * props.count}px + 
-        ${100 * props.count}px + 
+        ${60 * props.count}px + 
         ${-20}px
         )`
       : `calc(${2 * 18}px + 
-        ${37.5}vw + ${-112.5}px + 
+        ${37.5}vw + ${-52.5}px + 
         ${4 * 18}px + 
-        ${100}px + 
+        ${60}px + 
         ${-20}px
         )`};
 `;
 const Data = styled.div`
-  width: calc(25vw - 35px);
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  border-radius: var(--half-space);
-  padding: var(--space);
-  background-color: var(--gray);
   & h3:not(:first-child) {
     color: rgb(100, 100, 100);
   }
 `;
 const SubTitle = styled.div`
+  width: 100%;
   height: calc(2 * var(--h3));
   margin-bottom: var(--space);
-  & h3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 const Image = styled.img`
   width: 100%;
@@ -68,7 +65,8 @@ const Image = styled.img`
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center center;
-  border-radius: 10px;
+  border-radius: var(--half-space);
+  margin-bottom: var(--space);
   filter: grayscale(100%);
   margin-bottom: var(--space);
   filter: ${(props) => (props.current ? "grayscale(40%)" : "grayscale(100%)")};
@@ -76,27 +74,18 @@ const Image = styled.img`
 const Info = styled.div`
   width: 100%;
   height: calc(4 * var(--h3));
-  & h3 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  & h3:first-child {
-    -webkit-line-clamp: 1;
-  }
-  & h3:last-child {
-    -webkit-line-clamp: 4;
-    color: var(--dark-gray);
-  }
+  color: var(--dark-gray);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 const More = styled.div`
   margin-top: var(--space);
   display: flex;
   justify-content: center;
   cursor: pointer;
-  position: realtive;
-  top: 0;
   & :first-child {
     margin-right: 10px;
     font-size: 9px;

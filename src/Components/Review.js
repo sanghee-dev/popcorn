@@ -67,9 +67,6 @@ const Review = ({ result }) => {
   const [moreSecond, setMoreSecond] = useState(false);
   const [moreThird, setMoreThird] = useState(false);
   const containerRef = useRef(null);
-  const count = result ? Math.ceil(result.length / 4) : 0;
-
-  console.log(result);
 
   useEffect(() => {
     Gradient(containerRef);
@@ -86,9 +83,9 @@ const Review = ({ result }) => {
               .slice(0, result.length < 4 ? result.length : 4)
               .map((article) => (
                 <>
-                  <Article>
+                  <Article key={article.id}>
                     <Author>
-                      <h2>{article.author}</h2>
+                      <h3>{article.author}</h3>
                     </Author>
 
                     <Content

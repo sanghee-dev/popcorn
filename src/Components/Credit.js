@@ -22,8 +22,17 @@ const DataContainer = styled.div`
   overflow: hidden;
   height: ${(props) =>
     props.current
-      ? `calc(${25 * props.count}vw + ${80 * props.count}px - 20px)`
-      : "calc(25vw + 60px)"};
+      ? // Image + Info
+        `calc(${25 * props.count}vw + ${-35 * props.count}px + 
+        ${4 * 18 * props.count}px + 
+        ${40 * props.count}px + 
+        ${-20}px
+        )`
+      : `calc(${25}vw + ${-35}px + 
+        ${4 * 18}px + 
+        ${40}px + 
+        ${-20}px
+        )`};
 `;
 const Data = styled.div`
   width: 100%;
@@ -46,7 +55,7 @@ const Image = styled.img`
 `;
 const Info = styled.div`
   width: 100%;
-  height: 75px;
+  height: calc(4 * var(--h3));
   & h3 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -59,8 +68,6 @@ const More = styled.div`
   display: flex;
   justify-content: center;
   cursor: pointer;
-  position: realtive;
-  top: 0;
   & :first-child {
     margin-right: 10px;
     font-size: 9px;

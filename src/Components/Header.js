@@ -38,7 +38,7 @@ const Toggle = styled.div`
   &.Title {
     width: 100%;
     background-color: transparent;
-    font-size: 28px;
+    font-size: var(--h1);
     color: ${(props) =>
       props.current ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 0)"};
     transition: all 0.2s;
