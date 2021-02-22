@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Gradient from "Components/Gradient";
+import { IoEllipse, IoEllipseOutline } from "react-icons/io5";
 
 const Container = styled.div`
   width: 100%;
@@ -10,7 +11,7 @@ const Container = styled.div`
   padding: var(--space);
   margin-bottom: var(--space);
 `;
-const ContentContainer = styled.div`
+const ArticleContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -37,17 +38,36 @@ const Author = styled.div`
 `;
 const Content = styled.div`
   width: 100%;
-  height: calc(6 * var(--h3));
+  height: calc(8 * var(--h3));
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 8;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--dark-gray);
+  transition: all 1s;
+`;
+const More = styled.div`
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  margin: var(--double-space) 0 var(--space);
+  :last-child {
+    margin-bottom: 0;
+  }
+  & :first-child {
+    margin-right: 10px;
+    font-size: 9px;
+    position: relative;
+    top: 3.5px;
+  }
 `;
 
 const Review = ({ result }) => {
+  const [moreFirst, setMoreFirst] = useState(false);
+  const [moreSecond, setMoreSecond] = useState(false);
+  const [moreThird, setMoreThird] = useState(false);
   const containerRef = useRef(null);
+  const count = result ? Math.ceil(result.length / 4) : 0;
 
   console.log(result);
 
@@ -58,19 +78,106 @@ const Review = ({ result }) => {
   return (
     <Container ref={containerRef}>
       <Title>Review</Title>
-      <ContentContainer>
-        {result &&
-          result.map((author) => (
-            <Article>
-              <Author>
-                <h3>{author.author}</h3>
-              </Author>
-              <Content>
-                <h3>{author.content}</h3>
-              </Content>
-            </Article>
-          ))}
-      </ContentContainer>
+
+      {result && result.length > 0 && (
+        <>
+          <ArticleContainer>
+            {result
+              .slice(0, result.length < 4 ? result.length : 4)
+              .map((article) => (
+                <>
+                  <Article>
+                    <Author>
+                      <h2>{article.author}</h2>
+                    </Author>
+
+                    <Content
+                      current={moreFirst}
+                      style={{
+                        height: moreFirst
+                          ? "calc(20 * var(--h3))"
+                          : "calc(8 * var(--h3))",
+                        "-webkit-line-clamp": moreFirst ? "20" : "8",
+                      }}
+                    >
+                      <h3>{article.content}</h3>
+                    </Content>
+                  </Article>
+                </>
+              ))}
+          </ArticleContainer>
+          <More onClick={() => setMoreFirst((prev) => !prev)}>
+            {moreFirst ? <IoEllipseOutline /> : <IoEllipse />}
+            <h4>{moreFirst ? "Close" : "Show Description"}</h4>
+          </More>
+        </>
+      )}
+
+      {result && result.length > 4 && (
+        <>
+          <ArticleContainer>
+            {result
+              .slice(4, result.length < 8 ? result.length : 8)
+              .map((article) => (
+                <>
+                  <Article>
+                    <Author>
+                      <h2>{article.author}</h2>
+                    </Author>
+
+                    <Content
+                      current={moreSecond}
+                      style={{
+                        height: moreSecond
+                          ? "calc(20 * var(--h3))"
+                          : "calc(8 * var(--h3))",
+                        "-webkit-line-clamp": moreSecond ? "20" : "8",
+                      }}
+                    >
+                      <h3>{article.content}</h3>
+                    </Content>
+                  </Article>
+                </>
+              ))}
+          </ArticleContainer>
+          <More onClick={() => setMoreSecond((prev) => !prev)}>
+            {moreSecond ? <IoEllipseOutline /> : <IoEllipse />}
+            <h4>{moreSecond ? "Close" : "Show Description"}</h4>
+          </More>
+        </>
+      )}
+
+      {result && result.length > 8 && (
+        <>
+          <ArticleContainer>
+            {result.slice(8, result.length).map((article) => (
+              <>
+                <Article>
+                  <Author>
+                    <h2>{article.author}</h2>
+                  </Author>
+
+                  <Content
+                    current={moreThird}
+                    style={{
+                      height: moreThird
+                        ? "calc(24 * var(--h3))"
+                        : "calc(8 * var(--h3))",
+                      "-webkit-line-clamp": moreThird ? "24" : "8",
+                    }}
+                  >
+                    <h3>{article.content}</h3>
+                  </Content>
+                </Article>
+              </>
+            ))}
+          </ArticleContainer>
+          <More onClick={() => setMoreThird((prev) => !prev)}>
+            {moreThird ? <IoEllipseOutline /> : <IoEllipse />}
+            <h4>{moreThird ? "Close" : "Show Description"}</h4>
+          </More>
+        </>
+      )}
     </Container>
   );
 };

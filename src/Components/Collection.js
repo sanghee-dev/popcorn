@@ -146,7 +146,7 @@ const Collection = ({ results, currentId }) => {
       {count > 1 && (
         <More onClick={() => setMore((prev) => !prev)}>
           {more ? <IoEllipseOutline /> : <IoEllipse />}
-          <h4>More info</h4>
+          <h4>More collections</h4>
         </More>
       )}
     </Container>

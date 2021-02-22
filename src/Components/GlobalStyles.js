@@ -12,6 +12,7 @@ const globalStyles = createGlobalStyle`
     --red: rgb(255, 0, 0);
     
     --quadruple-space: 80px;
+    --double-space: 40px;
     --space: 20px;
     --half-space: 10px;
 

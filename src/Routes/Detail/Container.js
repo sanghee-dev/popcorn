@@ -65,6 +65,11 @@ const Container = (props) => {
               data: { results: review },
             } = await moviesApi.reviews(id);
             setReview(review);
+          } else {
+            const {
+              data: { results: review },
+            } = await tvApi.reviews(id);
+            setReview(review);
           }
         } catch {
           setError("Can't find anything :(");

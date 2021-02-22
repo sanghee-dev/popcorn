@@ -25,14 +25,14 @@ const DataContainer = styled.div`
     props.current
       ? // SubTitle + Image
         `calc(${18 * props.count}px + 
-        ${37.5 * props.count}vw + ${-112.5 * props.count}px + 
-        ${80 * props.count}px + 
+        ${37.5 * props.count}vw + ${-52.5 * props.count}px + 
+        ${40 * props.count}px + 
         ${-20}px
         )`
       : `calc(${18}px + 
-        ${37.5}vw + ${-112.5}px + 
-        ${80}px + 
-        ${-20}px
+        ${37.5}vw + ${-52.5}px + 
+        ${40}px + 
+        ${-25}px
         )`};
 `;
 const Data = styled.div`
@@ -41,11 +41,6 @@ const Data = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   border-radius: var(--half-space);
-  padding: var(--space);
-  background-color: var(--gray);
-  & h3:not(:first-child) {
-    color: rgb(100, 100, 100);
-  }
 `;
 const SubTitle = styled.div`
   width: 100%;
@@ -97,7 +92,6 @@ const Seasons = ({ results }) => {
     <Container ref={containerRef}>
       <Title>
         <h1>Seasons</h1>
-        {/* <h2>{results.overview}</h2> */}
       </Title>
 
       <DataContainer current={more} count={count}>
@@ -121,7 +115,7 @@ const Seasons = ({ results }) => {
       {count > 1 && (
         <More onClick={() => setMore((prev) => !prev)}>
           {more ? <IoEllipseOutline /> : <IoEllipse />}
-          <h4>More info</h4>
+          <h4>More seasons</h4>
         </More>
       )}
     </Container>

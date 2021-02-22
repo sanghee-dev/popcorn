@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
@@ -72,22 +72,13 @@ const Presenter = ({
                   ? result && result.original_title
                   : result.original_name
               }
-              text={result && result.tagline}
+              subtitle={result && result.overview}
               height="calc(33.3vw - 20px)"
             />
             <Company result={result.production_companies} />
           </TitleContainer>
 
           <Video id={result.id} isMovie={isMovie} />
-
-          <Overview>
-            <Title
-              title="Overview"
-              text={result && result.overview}
-              marginBottom="var(--quadruple-space)"
-              height="calc(33.3vw - 20px)"
-            />
-          </Overview>
 
           {credits && <Credit results={credits} />}
 

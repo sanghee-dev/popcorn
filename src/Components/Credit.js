@@ -104,7 +104,7 @@ const Credit = ({ title = "Credits", results }) => {
       {count > 1 && (
         <More onClick={() => setMore((prev) => !prev)}>
           {more ? <IoEllipseOutline /> : <IoEllipse />}
-          <h4>More info</h4>
+          <h4>{more ? "Close" : "Show Description"}</h4>
         </More>
       )}
     </Container>
