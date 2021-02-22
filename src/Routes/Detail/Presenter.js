@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
@@ -11,20 +12,29 @@ import Credit from "Components/Credit";
 import Collection from "Components/Collection";
 import Season from "Components/Season";
 import Review from "Components/Review";
+import { IoArrowBack } from "react-icons/io5";
 
 const Container = styled.div`
   width: 100%;
   height: 100%;
 `;
+const PrevButton = styled.div`
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  top: var(--space);
+  left: var(--space);
+  border-radius: 20px;
+  background-color: white;
+  z-index: 999;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+`;
 const TitleContainer = styled.div`
   width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-gap: var(--space);
-`;
-
-const Overview = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -65,6 +75,20 @@ const Presenter = ({
         <Loader />
       ) : result ? (
         <Container>
+          {isMovie ? (
+            <Link to="/movie">
+              <PrevButton>
+                <IoArrowBack />
+              </PrevButton>
+            </Link>
+          ) : (
+            <Link to="/tv">
+              <PrevButton>
+                <IoArrowBack />
+              </PrevButton>
+            </Link>
+          )}
+
           <TitleContainer>
             <Title
               title={
@@ -75,7 +99,9 @@ const Presenter = ({
               subtitle={result && result.overview}
               height="calc(33.3vw - 20px)"
             />
-            <Company result={result.production_companies} />
+            <Company
+              result={isMovie ? result.production_companies : result.networks}
+            />
           </TitleContainer>
 
           <Video id={result.id} isMovie={isMovie} />
@@ -85,7 +111,12 @@ const Presenter = ({
           {isMovie && collection && (
             <Collection results={collection} currentId={result.id} />
           )}
-          {!isMovie && result.seasons && <Season results={result.seasons} />}
+          {!isMovie && result.seasons && (
+            <Season
+              results={result.seasons}
+              currentId={result.number_of_seasons}
+            />
+          )}
 
           <Review result={review} />
 
