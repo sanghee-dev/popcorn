@@ -72,6 +72,10 @@ const Image = styled.img`
   margin-bottom: var(--space);
   filter: ${(props) => (props.current ? "grayscale(40%)" : "grayscale(100%)")};
 `;
+const CheckerContainer = styled.div`
+  width: 100%;
+  aspect-ratio: 2/3;
+`;
 const Info = styled.div`
   width: 100%;
   height: calc(4 * var(--h3));
@@ -124,7 +128,10 @@ const Collection = ({ results, currentId }) => {
                   current={part.id === currentId}
                 />
               ) : (
-                <Checkerboard halfRadius={true} />
+                <CheckerContainer>
+                  {" "}
+                  <Checkerboard halfRadius={true} />
+                </CheckerContainer>
               )}
               <Info>
                 <h3>{part.overview}</h3>

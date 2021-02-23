@@ -8,6 +8,7 @@ const globalStyles = createGlobalStyle`
   :root {
     --gray: rgb(190,184,184);
     --dark-gray: rgb(95, 95, 95);
+    --light-gray:  rgb(220,204,204);
     --green: rgb(0, 255, 84);
     --red: rgb(255, 0, 0);
     

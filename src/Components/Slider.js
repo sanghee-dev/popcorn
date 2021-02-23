@@ -36,7 +36,10 @@ const Image = styled.img`
   background-size: cover;
   background-position: center center;
 `;
-
+const CheckerContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 const VideoContainer = styled.div`
   width: 100%;
   display: flex;
@@ -107,7 +110,9 @@ const Slider = ({
                   current={media.poster_path}
                 />
               ) : (
-                <Checkerboard />
+                <CheckerContainer>
+                  <Checkerboard />
+                </CheckerContainer>
               )}
             </ImageContainer>
           </SliderContainer>

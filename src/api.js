@@ -29,6 +29,8 @@ export const moviesApi = {
   credits: (id) => api.get(`/movie/${id}/credits`),
   collection: (id) => api.get(`/collection/${id}`),
   reviews: (id) => api.get(`/movie/${id}/reviews`),
+  trending: (media_type = "movie", time_window = "week") =>
+    api.get(`/trending/${media_type}/${time_window}`),
 };
 
 export const tvApi = {
@@ -51,4 +53,6 @@ export const tvApi = {
   video: (id) => api.get(`/tv/${id}/videos`),
   credits: (id) => api.get(`/tv/${id}/credits`),
   reviews: (id) => api.get(`/tv/${id}/reviews`),
+  trending: (media_type = "tv", time_window = "week") =>
+    api.get(`/trending/${media_type}/${time_window}`),
 };

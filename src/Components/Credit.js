@@ -18,7 +18,7 @@ const DataContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
-  grid-gap: 20px;
+  grid-gap: var(--space);
   transition: all 1s;
   overflow: hidden;
   height: ${(props) =>
@@ -27,7 +27,7 @@ const DataContainer = styled.div`
         `calc(${25 * props.count}vw + ${-35 * props.count}px + 
         ${4 * 18 * props.count}px + 
         ${40 * props.count}px + 
-        ${-20}px
+        ${-45}px
         )`
       : `calc(${25}vw + ${-35}px + 
         ${4 * 18}px + 
@@ -36,7 +36,7 @@ const DataContainer = styled.div`
         )`};
 `;
 const Data = styled.div`
-  width: 100%;
+  width: calc(25vw - 40px);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -53,6 +53,10 @@ const Image = styled.img`
   border-radius: var(--half-space);
   filter: grayscale(100%);
   margin-bottom: var(--space);
+`;
+const CheckerContainer = styled.div`
+  width: 100%;
+  aspect-ratio: 1/1;
 `;
 const Info = styled.div`
   width: 100%;
@@ -99,7 +103,9 @@ const Credit = ({ results, title = "Credits", currentId }) => {
                   imageUrl={`https://image.tmdb.org/t/p/original/${result.profile_path}`}
                 />
               ) : (
-                <Checkerboard halfRadius={true} />
+                <CheckerContainer>
+                  <Checkerboard halfRadius={true} />
+                </CheckerContainer>
               )}
               <Info>
                 <h3>{result.character}</h3>

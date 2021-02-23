@@ -20,7 +20,6 @@ const Title = styled.h1`
 const DataContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: auto;
   grid-gap: var(--space);
   transition: all 1s;
   overflow: hidden;
@@ -41,13 +40,27 @@ const DataContainer = styled.div`
         )`};
 `;
 const Data = styled.div`
-  width: 100%;
+  width: calc(25vw - 35px);
   height: 100%;
   display: flex;
   flex-direction: column;
   & h3:not(:first-child) {
     color: rgb(100, 100, 100);
   }
+`;
+const Image = styled.img`
+  width: 100%;
+  aspect-ratio: 2/3;
+  background-image: url(${(props) => props.imageUrl});
+  background-size: cover;
+  background-position: center center;
+  border-radius: var(--half-space);
+  filter: grayscale(100%);
+  filter: ${(props) => (props.current ? "grayscale(25%)" : "grayscale(100%)")};
+`;
+const CheckerContainer = styled.div`
+  width: 100%;
+  aspect-ratio: 2/3;
 `;
 const SubTitle = styled.div`
   width: 100%;
@@ -58,27 +71,7 @@ const SubTitle = styled.div`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
-const Image = styled.img`
-  width: 100%;
-  aspect-ratio: 2/3;
-  background-image: url(${(props) => props.imageUrl});
-  background-size: cover;
-  background-position: center center;
-  border-radius: var(--half-space);
-  margin-bottom: var(--space);
-  filter: grayscale(100%);
-  filter: ${(props) => (props.current ? "grayscale(25%)" : "grayscale(100%)")};
-`;
-const Info = styled.div`
-  width: 100%;
-  height: calc(4 * var(--h3));
-  color: var(--dark-gray);
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-top: var(--space);
 `;
 const More = styled.div`
   margin-top: var(--space);
@@ -112,21 +105,19 @@ const Seasons = ({ results, currentId }) => {
         {results &&
           results.map((result, index) => (
             <Data key={result.id}>
-              <SubTitle>
-                <h3>{result.name.toUpperCase()}</h3>
-              </SubTitle>
               {result.poster_path ? (
                 <Image
                   imageUrl={`https://image.tmdb.org/t/p/original/${result.poster_path}`}
                   current={index === currentId - 1}
                 />
               ) : (
-                <Checkerboard halfRadius={true} />
+                <CheckerContainer>
+                  <Checkerboard halfRadius={true} />
+                </CheckerContainer>
               )}
-
-              <Info>
-                <h3>{result.overview}</h3>
-              </Info>
+              <SubTitle>
+                <h3>{result.name.toUpperCase()}</h3>
+              </SubTitle>
             </Data>
           ))}
       </DataContainer>

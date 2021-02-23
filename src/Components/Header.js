@@ -93,6 +93,7 @@ const Item = styled.li`
 const Header = ({ location: { pathname } }) => {
   const [toggleList, setToggleList] = useState(false);
   const [title, setTitle] = useState(true);
+  const [isHome, setIsHome] = useState(pathname === "/");
   const [isMovie, setIsMovie] = useState(pathname === "/movie");
   const [search, setSearch] = useState(false);
 
@@ -152,53 +153,94 @@ const Header = ({ location: { pathname } }) => {
         </div>
       </ToggleContainer>
 
-      <List current={toggleList}>
-        <Item current={pathname === "/"}>
-          <Link to="/">Home</Link>
-        </Item>
-        <Item
-          onClick={() => {
-            const location = 0;
-            window.scrollTo({ top: location, behavior: "smooth" });
-            setToggleList(false);
-          }}
-        >
-          {isMovie ? "Now Playing Movies" : "Airing Today Shows"}
-        </Item>
-        <Item
-          onClick={() => {
-            const location = window.innerWidth + 20;
-            window.scrollTo({ top: location, behavior: "smooth" });
-            setToggleList(false);
-          }}
-        >
-          {isMovie ? "Upcoming Movies" : "On The Air Shows"}
-        </Item>
-        <Item
-          onClick={() => {
-            const location = window.innerWidth * 2 + 40;
-            window.scrollTo({ top: location, behavior: "smooth" });
-            setToggleList(false);
-          }}
-        >
-          {isMovie ? "Popular Movies" : "Popular Shows"}
-        </Item>
-        <Item
-          onClick={() => {
-            const location = window.innerWidth * 3 + 60;
-            window.scrollTo({ top: location, behavior: "smooth" });
-            setToggleList(false);
-          }}
-        >
-          {isMovie ? "Top Rated Movies" : "Top Rated Shows"}
-        </Item>
-      </List>
+      {isHome ? (
+        <List current={toggleList}>
+          <Item
+            onClick={() => {
+              const location = 0;
+              window.scrollTo({ top: location, behavior: "smooth" });
+              setToggleList(false);
+            }}
+          >
+            Home
+          </Item>
+          <Item
+            onClick={() => {
+              const location = 210;
+              window.scrollTo({ top: location, behavior: "smooth" });
+              setToggleList(false);
+            }}
+          >
+            Best Actor Right Now
+          </Item>
+          <Item
+            onClick={() => {
+              const location = window.innerWidth + 170;
+              window.scrollTo({ top: location, behavior: "smooth" });
+              setToggleList(false);
+            }}
+          >
+            Best Movies Right Now
+          </Item>
+          <Item
+            onClick={() => {
+              const location = window.innerWidth * 3 + 130;
+              window.scrollTo({ top: location, behavior: "smooth" });
+              setToggleList(false);
+            }}
+          >
+            Best Shows Right Now
+          </Item>
+        </List>
+      ) : (
+        <List current={toggleList}>
+          <Item current={pathname === "/"}>
+            <Link to="/">Home</Link>
+          </Item>
+          <Item
+            onClick={() => {
+              const location = 0;
+              window.scrollTo({ top: location, behavior: "smooth" });
+              setToggleList(false);
+            }}
+          >
+            {isMovie ? "Now Playing Movies" : "Airing Today Shows"}
+          </Item>
+          <Item
+            onClick={() => {
+              const location = window.innerWidth + 20;
+              window.scrollTo({ top: location, behavior: "smooth" });
+              setToggleList(false);
+            }}
+          >
+            {isMovie ? "Upcoming Movies" : "On The Air Shows"}
+          </Item>
+          <Item
+            onClick={() => {
+              const location = window.innerWidth * 2 + 40;
+              window.scrollTo({ top: location, behavior: "smooth" });
+              setToggleList(false);
+            }}
+          >
+            {isMovie ? "Popular Movies" : "Popular Shows"}
+          </Item>
+          <Item
+            onClick={() => {
+              const location = window.innerWidth * 3 + 60;
+              window.scrollTo({ top: location, behavior: "smooth" });
+              setToggleList(false);
+            }}
+          >
+            {isMovie ? "Top Rated Movies" : "Top Rated Shows"}
+          </Item>
+        </List>
+      )}
     </Container>
   );
 };
 
 Header.propTypes = {
-  pathname: PropTypes.string.isRequired,
+  pathname: PropTypes.string,
 };
 
 export default withRouter(Header);
