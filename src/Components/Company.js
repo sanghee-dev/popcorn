@@ -18,7 +18,8 @@ const Logo = styled.div`
   width: 100%;
   aspect-ratio: 1/1;
   background-image: url(${(props) => props.imageUrl});
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center center;
 `;
 const ButtonContainer = styled.div`

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Gradient from "Components/Gradient";
+import Checkerboard from "Components/Checkerboard";
 import { IoEllipse, IoEllipseOutline } from "react-icons/io5";
 
 const Container = styled.div`
@@ -117,14 +118,14 @@ const Collection = ({ results, currentId }) => {
               <SubTitle>
                 <h3>{part.original_title.toUpperCase()}</h3>
               </SubTitle>
-              <Image
-                imageUrl={
-                  part.poster_path
-                    ? `https://image.tmdb.org/t/p/original/${part.poster_path}`
-                    : require("../assets/noPosterSmall.png").default
-                }
-                current={part.id === currentId}
-              />
+              {part.poster_path ? (
+                <Image
+                  imageUrl={`https://image.tmdb.org/t/p/original/${part.poster_path}`}
+                  current={part.id === currentId}
+                />
+              ) : (
+                <Checkerboard halfRadius={true} />
+              )}
               <Info>
                 <h3>{part.overview}</h3>
               </Info>

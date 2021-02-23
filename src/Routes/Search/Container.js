@@ -23,7 +23,6 @@ const Container = () => {
           } = await tvApi.search(searchTerm);
           setMovieResults(movieResults);
           setTvResults(tvResults);
-          console.log(movieResults);
         } catch (e) {
           setError("Can't search results :(");
         } finally {

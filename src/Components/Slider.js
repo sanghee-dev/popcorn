@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Checkerboard from "Components/Checkerboard";
 
 const Container = styled.div`
   width: 100%;
@@ -22,9 +23,11 @@ const SliderContainer = styled.div`
   margin-bottom: var(--space);
   transition: all 0.2s;
 `;
-const ImageLink = styled(Link)`
+const ImageContainer = styled(Link)`
   width: 100%;
   height: 100%;
+  border-radius: var(--space);
+  overflow: hidden;
 `;
 const Image = styled.img`
   width: 100%;
@@ -32,7 +35,6 @@ const Image = styled.img`
   background-image: url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center center;
-  border-radius: 20px;
 `;
 
 const VideoContainer = styled.div`
@@ -94,19 +96,20 @@ const Slider = ({
       <Column>
         {!isVideo ? (
           <SliderContainer>
-            <ImageLink
+            <ImageContainer
               key={media.id}
               to={isMovie ? `/movie/${media.id}` : `/tv/${media.id}`}
             >
-              <Image
-                key={media.id}
-                imageUrl={
-                  media.poster_path
-                    ? `https://image.tmdb.org/t/p/original/${media.poster_path}`
-                    : require("../assets/noPosterSmall.png").default
-                }
-              />
-            </ImageLink>
+              {media.poster_path ? (
+                <Image
+                  key={media.id}
+                  imageUrl={`https://image.tmdb.org/t/p/original/${media.poster_path}`}
+                  current={media.poster_path}
+                />
+              ) : (
+                <Checkerboard />
+              )}
+            </ImageContainer>
           </SliderContainer>
         ) : (
           <SliderContainer>

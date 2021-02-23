@@ -96,7 +96,7 @@ const Presenter = ({
                   ? result && result.original_title
                   : result.original_name
               }
-              subtitle={result && result.overview}
+              text={result && result.overview}
               height="calc(33.3vw - 20px)"
             />
             <Company
@@ -123,7 +123,7 @@ const Presenter = ({
                 : (window.location = result.homepage)
             }
           >
-            <h2>{isMovie ? "IMDb" : "Homepage"}</h2>
+            <h2>{isMovie ? "IMDb" : "homepage"}</h2>
           </IMDbButton>
           {/* {error && <Error text={error} />} */}
         </Container>

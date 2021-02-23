@@ -12,24 +12,24 @@ const Container = styled.div`
   flex-direction: column;
 `;
 const Form = styled.form`
-  width: 400px;
+  width: 100%;
   display: flex;
   align-items: center;
   padding: 10px 20px;
   background-color: white;
   border-radius: 40px;
-  font-size: 18px;
+  font-size: var(--h2);
+  margin-bottom: var(--quadruple-space);
 `;
 const Input = styled.input`
-  width: 300px;
+  width: 100%;
   height: 40px;
-  padding-left: 8px;
+  margin-left: var(--space);
   border: none;
-  color: white;
-  font-size: 18px;
+  font-size: var(--h2);
+  outline: none;
   ::placeholder {
-    font-size: 18px;
-    font-weight: 500;
+    font-size: var(--h2);
   }
 `;
 
@@ -84,7 +84,7 @@ const Presenter = ({
         tvResults &&
         movieResults.length === 0 &&
         tvResults.length === 0 && (
-          <Error text={`Nothing found for ${searchTerm}`} color="yellow" />
+          <Error text={`Nothing found for ${searchTerm}`} />
         )}
     </Container>
   );

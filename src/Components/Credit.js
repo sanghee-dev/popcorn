@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Gradient from "Components/Gradient";
+import Checkerboard from "Components/Checkerboard";
 import { IoEllipse, IoEllipseOutline } from "react-icons/io5";
 
 const Container = styled.div`
@@ -93,13 +94,13 @@ const Credit = ({ results, title = "Credits", currentId }) => {
         {results &&
           results.map((result) => (
             <Data key={result.cast_id}>
-              <Image
-                imageUrl={
-                  result.profile_path
-                    ? `https://image.tmdb.org/t/p/original/${result.profile_path}`
-                    : require("../assets/noPosterSmall.png").default
-                }
-              />
+              {result.profile_path ? (
+                <Image
+                  imageUrl={`https://image.tmdb.org/t/p/original/${result.profile_path}`}
+                />
+              ) : (
+                <Checkerboard halfRadius={true} />
+              )}
               <Info>
                 <h3>{result.character}</h3>
                 <h3>{result.original_name}</h3>

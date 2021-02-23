@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Gradient from "Components/Gradient";
+import Checkerboard from "Components/Checkerboard";
 import { IoEllipse, IoEllipseOutline } from "react-icons/io5";
 
 const Container = styled.div`
@@ -114,14 +115,15 @@ const Seasons = ({ results, currentId }) => {
               <SubTitle>
                 <h3>{result.name.toUpperCase()}</h3>
               </SubTitle>
-              <Image
-                imageUrl={
-                  result.poster_path
-                    ? `https://image.tmdb.org/t/p/original/${result.poster_path}`
-                    : require("../assets/noPosterSmall.png").default
-                }
-                current={index === currentId - 1}
-              />
+              {result.poster_path ? (
+                <Image
+                  imageUrl={`https://image.tmdb.org/t/p/original/${result.poster_path}`}
+                  current={index === currentId - 1}
+                />
+              ) : (
+                <Checkerboard halfRadius={true} />
+              )}
+
               <Info>
                 <h3>{result.overview}</h3>
               </Info>

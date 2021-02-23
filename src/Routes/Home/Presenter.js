@@ -5,7 +5,6 @@ import { Helmet } from "react-helmet";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
 import Title from "Components/Title";
-import Video from "Components/Video";
 
 const Container = styled.div``;
 
@@ -22,9 +21,9 @@ const Presenter = ({ isLoading, error }) => {
         ) : (
           <div>
             <Title text="Home" />
-            <Video />
           </div>
         )}
+
         {error && <Error text={error} />}
       </Container>
     </>
