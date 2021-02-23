@@ -35,7 +35,7 @@ export const tvApi = {
   airingToday: () => api.get("/tv/airing_today"),
   onTheAir: () => api.get("/tv/on_the_air"),
   popular: () => api.get("/tv/popular"),
-  topRated: () => api.get("/movie/top_rated"),
+  topRated: () => api.get("/tv/top_rated"),
   detail: (id) =>
     api.get(`/tv/${id}`, {
       params: {

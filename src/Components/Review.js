@@ -45,6 +45,7 @@ const Content = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   transition: all 1s;
+  color: var(--dark-gray);
 `;
 const More = styled.div`
   display: flex;
@@ -119,7 +120,7 @@ const Review = ({ result }) => {
                 <>
                   <Article>
                     <Author>
-                      <h2>{article.author}</h2>
+                      <h3>{article.author}</h3>
                     </Author>
 
                     <Content
@@ -151,7 +152,7 @@ const Review = ({ result }) => {
               <>
                 <Article>
                   <Author>
-                    <h2>{article.author}</h2>
+                    <h3>{article.author}</h3>
                   </Author>
 
                   <Content

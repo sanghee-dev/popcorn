@@ -11,6 +11,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  position: fixed;
+  top: 80px;
 `;
 
 const Error = ({ text }) => {

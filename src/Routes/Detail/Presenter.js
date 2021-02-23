@@ -105,9 +105,7 @@ const Presenter = ({
           </TitleContainer>
 
           <Video id={result.id} isMovie={isMovie} />
-
           {credits && <Credit results={credits} />}
-
           {isMovie && collection && (
             <Collection results={collection} currentId={result.id} />
           )}
@@ -117,9 +115,7 @@ const Presenter = ({
               currentId={result.number_of_seasons}
             />
           )}
-
           <Review result={review} />
-
           <IMDbButton
             onClick={() =>
               isMovie
@@ -129,7 +125,6 @@ const Presenter = ({
           >
             <h2>IMDb</h2>
           </IMDbButton>
-
           {/* {error && <Error text={error} />} */}
         </Container>
       ) : (

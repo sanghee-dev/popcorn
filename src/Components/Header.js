@@ -81,6 +81,7 @@ const Item = styled.li`
   font-size: 28px;
   color: ${(props) => (props.current ? "rgb(0, 255, 0)" : "rgb(0, 0, 0)")};
   transition: all 0.2s;
+  cursor: pointer;
   :not(:last-child) {
     margin-bottom: 20px;
   }
@@ -92,7 +93,7 @@ const Item = styled.li`
 const Header = ({ location: { pathname } }) => {
   const [toggleList, setToggleList] = useState(false);
   const [title, setTitle] = useState(true);
-  const [isMovie, setIsMovie] = useState(true);
+  const [isMovie, setIsMovie] = useState(pathname === "/movie");
   const [search, setSearch] = useState(false);
 
   useEffect(() => {
@@ -155,11 +156,42 @@ const Header = ({ location: { pathname } }) => {
         <Item current={pathname === "/"}>
           <Link to="/">Home</Link>
         </Item>
-        <Item>Intro</Item>
-        <Item>Now Playing Movies</Item>
-        <Item>Upcoming Movies</Item>
-        <Item>Popular Movies</Item>
-        <Item>Top Rated Movies</Item>
+        <Item
+          onClick={() => {
+            const location = 0;
+            window.scrollTo({ top: location, behavior: "smooth" });
+            setToggleList(false);
+          }}
+        >
+          {isMovie ? "Now Playing Movies" : "Airing Today Shows"}
+        </Item>
+        <Item
+          onClick={() => {
+            const location = window.innerWidth + 20;
+            window.scrollTo({ top: location, behavior: "smooth" });
+            setToggleList(false);
+          }}
+        >
+          {isMovie ? "Upcoming Movies" : "On The Air Shows"}
+        </Item>
+        <Item
+          onClick={() => {
+            const location = window.innerWidth * 2 + 40;
+            window.scrollTo({ top: location, behavior: "smooth" });
+            setToggleList(false);
+          }}
+        >
+          {isMovie ? "Popular Movies" : "Popular Shows"}
+        </Item>
+        <Item
+          onClick={() => {
+            const location = window.innerWidth * 3 + 60;
+            window.scrollTo({ top: location, behavior: "smooth" });
+            setToggleList(false);
+          }}
+        >
+          {isMovie ? "Top Rated Movies" : "Top Rated Shows"}
+        </Item>
       </List>
     </Container>
   );

@@ -7,12 +7,14 @@ import Slider from "Components/Slider";
 const Container = styled.div`
   width: 100%;
   height: calc(100vw - 60px);
-  margin-bottom: var(--space);
   padding: var(--space);
   border-radius: 20px;
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: var(--space);
+  :not(:last-child) {
+    margin-bottom: var(--quadruple-space);
+  }
 `;
 const Column = styled.div`
   display: flex;
