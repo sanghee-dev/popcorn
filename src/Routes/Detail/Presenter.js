@@ -105,7 +105,7 @@ const Presenter = ({
           </TitleContainer>
 
           <Video id={result.id} isMovie={isMovie} />
-          {credits && <Credit results={credits} />}
+          {credits && <Credit results={credits} currentId={result.id} />}
           {isMovie && collection && (
             <Collection results={collection} currentId={result.id} />
           )}
@@ -115,7 +115,7 @@ const Presenter = ({
               currentId={result.number_of_seasons}
             />
           )}
-          <Review result={review} />
+          {review && <Review results={review} currentId={result.id} />}
           <IMDbButton
             onClick={() =>
               isMovie
@@ -123,7 +123,7 @@ const Presenter = ({
                 : (window.location = result.homepage)
             }
           >
-            <h2>IMDb</h2>
+            <h2>{isMovie ? "IMDb" : "Homepage"}</h2>
           </IMDbButton>
           {/* {error && <Error text={error} />} */}
         </Container>
@@ -137,9 +137,13 @@ const Presenter = ({
 Presenter.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   error: PropTypes.string,
+  isMovie: PropTypes.bool.isRequired,
   result: PropTypes.shape({
     backdrop_path: PropTypes.string,
   }),
+  credits: PropTypes.array,
+  collection: PropTypes.array,
+  review: PropTypes.array,
 };
 
 export default Presenter;

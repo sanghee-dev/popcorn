@@ -141,6 +141,7 @@ const Seasons = ({ results, currentId }) => {
 
 Seasons.propTypes = {
   results: PropTypes.array.isRequired,
+  currentId: PropTypes.number.isRequired,
 };
 
 export default Seasons;

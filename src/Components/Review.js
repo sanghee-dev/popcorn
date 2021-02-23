@@ -63,7 +63,7 @@ const More = styled.div`
   }
 `;
 
-const Review = ({ result }) => {
+const Review = ({ results, currentId }) => {
   const [moreFirst, setMoreFirst] = useState(false);
   const [moreSecond, setMoreSecond] = useState(false);
   const [moreThird, setMoreThird] = useState(false);
@@ -74,14 +74,14 @@ const Review = ({ result }) => {
   }, []);
 
   return (
-    <Container ref={containerRef}>
+    <Container ref={containerRef} key={currentId}>
       <Title>Review</Title>
 
-      {result && result.length > 0 && (
+      {results && results.length > 0 && (
         <>
           <ArticleContainer>
-            {result
-              .slice(0, result.length < 4 ? result.length : 4)
+            {results
+              .slice(0, results.length < 4 ? results.length : 4)
               .map((article) => (
                 <>
                   <Article key={article.id}>
@@ -111,11 +111,11 @@ const Review = ({ result }) => {
         </>
       )}
 
-      {result && result.length > 4 && (
+      {results && results.length > 4 && (
         <>
           <ArticleContainer>
-            {result
-              .slice(4, result.length < 8 ? result.length : 8)
+            {results
+              .slice(4, results.length < 8 ? results.length : 8)
               .map((article) => (
                 <>
                   <Article>
@@ -145,10 +145,10 @@ const Review = ({ result }) => {
         </>
       )}
 
-      {result && result.length > 8 && (
+      {results && results.length > 8 && (
         <>
           <ArticleContainer>
-            {result.slice(8, result.length).map((article) => (
+            {results.slice(8, results.length).map((article) => (
               <>
                 <Article>
                   <Author>
@@ -181,7 +181,8 @@ const Review = ({ result }) => {
 };
 
 Review.propTypes = {
-  result: PropTypes.array,
+  results: PropTypes.array.isRequired,
+  currentId: PropTypes.number.isRequired,
 };
 
 export default Review;

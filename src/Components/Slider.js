@@ -82,7 +82,6 @@ const Slider = ({
   data,
   isMovie = true,
   isVideo = false,
-  isCredit = false,
   hasCount = false,
   index,
   setIndex,
@@ -146,11 +145,11 @@ const Slider = ({
 
 Slider.propTypes = {
   data: PropTypes.array.isRequired,
-  hasLink: PropTypes.bool,
   isMovie: PropTypes.bool,
-  gradient: PropTypes.bool,
-  index: PropTypes.number,
-  setIndex: PropTypes.func,
+  isVideo: PropTypes.bool,
+  hasCount: PropTypes.bool,
+  index: PropTypes.number.isRequired,
+  setIndex: PropTypes.func.isRequired,
 };
 
 export default Slider;

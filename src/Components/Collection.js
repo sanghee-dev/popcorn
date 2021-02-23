@@ -144,6 +144,7 @@ const Collection = ({ results, currentId }) => {
 
 Collection.propTypes = {
   results: PropTypes.object.isRequired,
+  currentId: PropTypes.number.isRequired,
 };
 
 export default Collection;

@@ -99,7 +99,7 @@ const Company = ({ result }) => {
 };
 
 Company.propTypes = {
-  result: PropTypes.array,
+  result: PropTypes.array.isRequired,
 };
 
 export default Company;

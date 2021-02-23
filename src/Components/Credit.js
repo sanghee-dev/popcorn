@@ -76,7 +76,7 @@ const More = styled.div`
   }
 `;
 
-const Credit = ({ title = "Credits", results }) => {
+const Credit = ({ results, title = "Credits", currentId }) => {
   const [more, setMore] = useState(false);
   const containerRef = useRef(null);
   const count = results ? Math.ceil(results.length / 4) : 1;
@@ -86,10 +86,10 @@ const Credit = ({ title = "Credits", results }) => {
   }, []);
 
   return (
-    <Container ref={containerRef}>
+    <Container ref={containerRef} key={currentId}>
       <Title>{title}</Title>
 
-      <DataContainer current={more} count={count}>
+      <DataContainer current={more} count={count} key={currentId}>
         {results &&
           results.map((result) => (
             <Data key={result.cast_id}>
@@ -119,7 +119,9 @@ const Credit = ({ title = "Credits", results }) => {
 };
 
 Credit.propTypes = {
-  result: PropTypes.array,
+  results: PropTypes.array.isRequired,
+  title: PropTypes.string,
+  currentId: PropTypes.number.isRequired,
 };
 
 export default Credit;

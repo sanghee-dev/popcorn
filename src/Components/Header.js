@@ -198,7 +198,7 @@ const Header = ({ location: { pathname } }) => {
 };
 
 Header.propTypes = {
-  pathname: PropTypes.string,
+  pathname: PropTypes.string.isRequired,
 };
 
 export default withRouter(Header);
