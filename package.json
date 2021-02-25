@@ -21,9 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "deploy": "gh-pages -d build",
-    "predeploy": "npm run build"
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +43,5 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3"
-  },
-  "homepage": "https://sanghee-dev.github.io/popcorn/"
+  }
 }
