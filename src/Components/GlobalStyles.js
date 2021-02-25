@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import ObjectSansRegular from "../Fonts/ObjectSans-Regular.otf";
-import ObjectSansSlanted from "../Fonts/ObjectSans-Slanted.otf";
+import ObjectSansRegular from "Fonts/ObjectSans-Regular.otf";
+import ObjectSansSlanted from "Fonts/ObjectSans-Slanted.otf";
 
 const globalStyles = createGlobalStyle`
   ${reset};
