@@ -38,7 +38,7 @@ const DataContainer = styled.div`
         )`};
 `;
 const Data = styled.div`
-  width: calc(25vw - 35px);
+  width: calc(25vw - 40px);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -88,8 +88,6 @@ const Seasons = ({ results, currentId }) => {
   const [more, setMore] = useState(false);
   const containerRef = useRef(null);
   const count = results ? Math.ceil(results.length / 4) : 1;
-
-  console.log(results, currentId);
 
   useEffect(() => {
     Gradient(containerRef);

@@ -9,14 +9,6 @@ import ImageSlider from "Components/ImageSlider";
 
 const Container = styled.div`
   padding-top: 80px;
-  @media screen and (min-width: 1000px) {
-    & {
-      display: grid;
-      grid-gap: 20px;
-      grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: 1fr;
-    }
-  }
 `;
 const Form = styled.form`
   width: 100%;
@@ -38,6 +30,16 @@ const Input = styled.input`
   outline: none;
   ::placeholder {
     font-size: var(--h2);
+  }
+`;
+const ImageSliderContainer = styled.div`
+  @media screen and (min-width: 1000px) {
+    & {
+      display: grid;
+      grid-gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1fr;
+    }
   }
 `;
 
@@ -67,7 +69,7 @@ const Presenter = ({
       {isLoading ? (
         <Loader />
       ) : (
-        <>
+        <ImageSliderContainer>
           {movieResults && movieResults.length > 0 && (
             <ImageSlider
               title="Movie Results"
@@ -85,7 +87,7 @@ const Presenter = ({
               reverse={true}
             />
           )}
-        </>
+        </ImageSliderContainer>
       )}
       {error && <Error text={error} />}
       {movieResults &&

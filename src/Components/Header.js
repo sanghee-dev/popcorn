@@ -5,10 +5,11 @@ import styled from "styled-components";
 import { IoSearch, IoEllipsisHorizontal } from "react-icons/io5";
 
 const Container = styled.div`
-  width: calc(100vw - 60px);
   position: fixed;
   top: var(--space);
-  z-index: 2;
+  z-index: 999;
+  width: ${(props) =>
+    props.current ? "calc(100vw - 40px)" : "calc(100vw - 50px)"};
 `;
 const ToggleContainer = styled.div`
   display: flex;
@@ -95,6 +96,9 @@ const Header = ({ location: { pathname } }) => {
   const [title, setTitle] = useState(true);
   const [isHome, setIsHome] = useState(pathname === "/");
   const [isMovie, setIsMovie] = useState(pathname === "/movie");
+  const [isScroll, setIsScroll] = useState(
+    window.scrollWidth > document.documentElement.clientWidth
+  );
 
   useEffect(() => {
     window.addEventListener("scroll", () => setTitle(window.scrollY < 50));
@@ -104,7 +108,7 @@ const Header = ({ location: { pathname } }) => {
   }, []);
 
   return (
-    <Container>
+    <Container current={isScroll}>
       <ToggleContainer>
         <div>
           <Toggle

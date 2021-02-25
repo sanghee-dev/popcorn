@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Loader from "Components/Loader";
 import Error from "Components/Error";
@@ -64,6 +63,7 @@ const Presenter = ({
   credits,
   collection,
   review,
+  goBack,
 }) => {
   return (
     <>
@@ -76,17 +76,13 @@ const Presenter = ({
       ) : result ? (
         <Container>
           {isMovie ? (
-            <Link to="/movie">
-              <PrevButton>
-                <IoArrowBack />
-              </PrevButton>
-            </Link>
+            <PrevButton onClick={() => goBack()}>
+              <IoArrowBack />
+            </PrevButton>
           ) : (
-            <Link to="/tv">
-              <PrevButton>
-                <IoArrowBack />
-              </PrevButton>
-            </Link>
+            <PrevButton onClick={() => goBack()}>
+              <IoArrowBack />
+            </PrevButton>
           )}
 
           <TitleContainer>

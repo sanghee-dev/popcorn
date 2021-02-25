@@ -13,7 +13,7 @@ const TitleContainer = styled.div`
   width: 100%;
   height: 200px;
   border: 1px solid var(--gray);
-  padding: var(--space);
+  padding: var(--space) 0;
   border-radius: var(--space);
   margin-bottom: var(--quadruple-space);
 `;

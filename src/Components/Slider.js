@@ -18,7 +18,7 @@ const Column = styled.div`
   margin-bottom: var(--space);
 `;
 const SliderContainer = styled.div`
-  display: flex;
+  width: 100%;
   height: 100%;
   margin-bottom: var(--space);
   transition: all 0.2s;
@@ -56,6 +56,12 @@ const Video = styled.iframe`
   width: 100%;
   aspect-ratio: 16/9;
   border-radius: 20px;
+  @media screen and (min-width: 1000px) {
+    & {
+      width: calc(1000px - 80px);
+      margin-left: calc(50vw - 500px);
+    }
+  }
 `;
 
 const ButtonContainer = styled.div`

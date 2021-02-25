@@ -19,6 +19,9 @@ const Container = styled.div`
     & {
       height: calc(50vw - 30px);
     }
+    :not(:last-child) {
+      margin-bottom: 0;
+    }
   }
 `;
 const Column = styled.div`

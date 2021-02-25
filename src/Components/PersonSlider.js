@@ -20,7 +20,6 @@ const Info = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--quadruple-space);
-  z-index: 3;
   padding: 0 var(--space);
   position: relative;
   bottom: calc(100vw - 60px);
@@ -32,7 +31,6 @@ const SliderContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: var(--space);
   position: relative;
-  z-index: 2;
 `;
 const Slider = styled.div`
   width: 100%;
@@ -86,7 +84,6 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
   padding: 0 var(--space);
   position: relative;
   bottom: 150px;

@@ -5,7 +5,7 @@ import { moviesApi, tvApi } from "api";
 
 const Container = (props) => {
   const {
-    history: { push },
+    history: { push, goBack },
     location: { pathname },
     match: {
       params: { id },
@@ -90,6 +90,7 @@ const Container = (props) => {
       credits={credits}
       collection={collection}
       review={review}
+      goBack={goBack}
     />
   );
 };

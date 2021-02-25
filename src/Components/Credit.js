@@ -97,7 +97,7 @@ const Credit = ({ results, title = "Credits", currentId }) => {
       <DataContainer current={more} count={count} key={currentId}>
         {results &&
           results.map((result) => (
-            <Data key={result.cast_id}>
+            <Data key={(currentId, result.cast_id)}>
               {result.profile_path ? (
                 <Image
                   imageUrl={`https://image.tmdb.org/t/p/original/${result.profile_path}`}

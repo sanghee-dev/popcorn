@@ -12,6 +12,7 @@ const Container = styled.div`
   margin-bottom: var(--space);
   border-radius: 20px;
 `;
+const SliderContainer = styled.div``;
 
 const Video = ({ id, isMovie = true }) => {
   const [isLoading, setIsLoading] = useState(false);
