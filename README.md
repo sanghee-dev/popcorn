@@ -5,7 +5,7 @@
 - Popcorn is a **movie service** that offers a variety of TV shows, movies, anime, documentaries.
 - https://silly-panini-ade1e2.netlify.app/
 
-## Screens
+### Screens
 
 - Home
 - TV
