@@ -52,7 +52,6 @@ const Image = styled.img`
   background-position: center center;
   border-radius: var(--half-space);
   filter: grayscale(100%);
-  margin-bottom: var(--space);
 `;
 const CheckerContainer = styled.div`
   width: 100%;
@@ -61,6 +60,7 @@ const CheckerContainer = styled.div`
 const Info = styled.div`
   width: 100%;
   height: calc(4 * var(--h3));
+  margin-top: var(--space);
   & h3 {
     display: -webkit-box;
     -webkit-line-clamp: 2;

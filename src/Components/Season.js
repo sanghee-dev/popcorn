@@ -89,6 +89,8 @@ const Seasons = ({ results, currentId }) => {
   const containerRef = useRef(null);
   const count = results ? Math.ceil(results.length / 4) : 1;
 
+  console.log(results, currentId);
+
   useEffect(() => {
     Gradient(containerRef);
   }, []);

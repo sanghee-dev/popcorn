@@ -118,7 +118,7 @@ const Review = ({ results, currentId }) => {
               .slice(4, results.length < 8 ? results.length : 8)
               .map((article) => (
                 <>
-                  <Article>
+                  <Article key={article.id}>
                     <Author>
                       <h3>{article.author}</h3>
                     </Author>
@@ -150,7 +150,7 @@ const Review = ({ results, currentId }) => {
           <ArticleContainer>
             {results.slice(8, results.length).map((article) => (
               <>
-                <Article>
+                <Article key={article.id}>
                   <Author>
                     <h3>{article.author}</h3>
                   </Author>

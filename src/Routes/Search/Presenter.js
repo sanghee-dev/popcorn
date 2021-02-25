@@ -19,15 +19,15 @@ const Container = styled.div`
   }
 `;
 const Form = styled.form`
-  width: calc(100vw - 40px);
+  width: 100%;
   display: flex;
   align-items: center;
   padding: 10px 20px;
   background-color: white;
   border-radius: 40px;
   font-size: var(--h2);
-  position: fixed;
-  top: 80px;
+  position: relative;
+  top: -80px;
 `;
 const Input = styled.input`
   width: 100%;

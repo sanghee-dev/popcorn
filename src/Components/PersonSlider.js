@@ -50,7 +50,8 @@ const ImageContainer = styled(Link)`
   width: 100%;
 `;
 const ImageTitle = styled.h1`
-  width: 100%;
+  width: calc(33.3vw - 70px);
+  height: 28px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

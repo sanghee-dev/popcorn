@@ -107,17 +107,21 @@ const Presenter = ({
           </TitleContainer>
 
           <Video id={result.id} isMovie={isMovie} />
-          {credits && <Credit results={credits} currentId={result.id} />}
-          {isMovie && collection && (
+          {credits && credits.length > 0 && (
+            <Credit results={credits} currentId={result.id} />
+          )}
+          {isMovie && collection && collection.length > 0 && (
             <Collection results={collection} currentId={result.id} />
           )}
-          {!isMovie && result.seasons && (
+          {!isMovie && result.seasons && result.seasons.length > 0 && (
             <Season
               results={result.seasons}
               currentId={result.number_of_seasons}
             />
           )}
-          {review && <Review results={review} currentId={result.id} />}
+          {review && review.length > 0 && (
+            <Review results={review} currentId={result.id} />
+          )}
           <IMDbButton
             onClick={() =>
               isMovie

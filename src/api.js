@@ -52,7 +52,8 @@ export const tvApi = {
     }),
   video: (id) => api.get(`/tv/${id}/videos`),
   credits: (id) => api.get(`/tv/${id}/credits`),
-  reviews: (id) => api.get(`/tv/${id}/reviews`),
+  seasons: (id) => api.get(`/tv/${id}/credits`),
+  reviews: (id, season_number) => api.get(`/tv/${id}/season/${season_number}`),
   trending: (media_type = "tv", time_window = "week") =>
     api.get(`/trending/${media_type}/${time_window}`),
 };
