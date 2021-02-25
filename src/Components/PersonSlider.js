@@ -7,8 +7,7 @@ import Checkerboard from "Components/Checkerboard";
 
 const Container = styled.div`
   width: 100%;
-  height: calc(100vw - 60px);
-  padding: var(--space);
+  height: calc(100vw - 40px);
   margin-bottom: var(--space);
   border-radius: 20px;
   display: flex;
@@ -18,28 +17,34 @@ const Container = styled.div`
 const Column = styled.div``;
 const Info = styled.div`
   width: 100%;
-  /* height: calc(33.3vw - 40px); */
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--quadruple-space);
-`;
-const Profile = styled.img`
-  height: 100%;
-  aspect-ratio: 1/1;
-  border-radius: var(--half-space);
-  background-image: url(${(props) => props.imageUrl});
-  background-size: cover;
-  background-position: center center;
-  filter: grayscale(100%);
+  z-index: 3;
+  padding: 0 var(--space);
+  position: relative;
+  bottom: calc(100vw - 60px);
 `;
 const SliderContainer = styled.div`
   width: 100%;
+  height: calc(100vw - 40px);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: var(--space);
+  position: relative;
+  z-index: 2;
 `;
 const Slider = styled.div`
-  width: calc(33.3vw - 45px);
+  width: 100%;
+  border-radius: var(--space);
+  padding: 105px var(--space) 0;
+  background: linear-gradient(rgba(0, 255, 84, 1) 0%, rgba(0, 255, 84, 0) 100%);
+  :nth-child(2n) {
+    background: linear-gradient(
+      rgba(0, 255, 84, 0) 0%,
+      rgba(0, 255, 84, 1) 100%
+    );
+  }
 `;
 const ImageContainer = styled(Link)`
   width: 100%;
@@ -67,9 +72,9 @@ const CheckerContainer = styled.div`
 const Overview = styled.div`
   width: 100%;
   height: calc(8 * var(--h3));
-  color: var(--dark-gray);
+  line-height: 1.2;
   display: -webkit-box;
-  -webkit-line-clamp: 8;
+  -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -80,6 +85,10 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 3;
+  padding: 0 var(--space);
+  position: relative;
+  bottom: 150px;
 `;
 const Button = styled.button`
   all: unset;
@@ -106,44 +115,26 @@ const PersonSlider = ({ data }) => {
   const count = data.length;
 
   useEffect(() => {
-    const styleRef = () => {};
-    styleRef();
-
-    Gradient(containerRef);
+    // Gradient(containerRef);
   }, [index, count]);
-
-  console.log(data);
 
   return (
     <Container ref={containerRef}>
       <Column>
-        <Info>
-          <h1>
-            {data[index].gender === 1 ? "Actress: " : "Actor: "}
-            {data[index].name}
-          </h1>
-          {/* <Profile
-            key={data[index].id}
-            imageUrl={`https://image.tmdb.org/t/p/original/${data[index].profile_path}`}
-            current={data[index].profile_path}
-          /> */}
-        </Info>
-
         <SliderContainer>
           {data[index].known_for.map((media) => (
-            <Slider
-              key={media.id}
-              to={
-                media.media_type === "movie"
-                  ? `/movie/${media.id}`
-                  : `/tv/${media.id}`
-              }
-            >
+            <Slider key={media.id}>
               <ImageTitle>
                 <h1>{media.original_title}</h1>
               </ImageTitle>
               {media.poster_path ? (
-                <ImageContainer>
+                <ImageContainer
+                  to={
+                    media.media_type === "movie"
+                      ? `/movie/${media.id}`
+                      : `/tv/${media.id}`
+                  }
+                >
                   <Image
                     key={media.id}
                     imageUrl={`https://image.tmdb.org/t/p/original/${media.poster_path}`}
@@ -161,6 +152,13 @@ const PersonSlider = ({ data }) => {
             </Slider>
           ))}
         </SliderContainer>
+
+        <Info>
+          <h1>
+            {data[index].gender === 1 ? "Actress: " : "Actor: "}
+            {data[index].name}
+          </h1>
+        </Info>
       </Column>
 
       <ButtonContainer>
@@ -179,10 +177,7 @@ const PersonSlider = ({ data }) => {
 };
 
 PersonSlider.propTypes = {
-  title: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
-  isMovie: PropTypes.bool,
-  reverse: PropTypes.bool,
 };
 
 export default PersonSlider;

@@ -8,18 +8,26 @@ import { IoSearch } from "react-icons/io5";
 import ImageSlider from "Components/ImageSlider";
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  padding-top: 80px;
+  @media screen and (min-width: 1000px) {
+    & {
+      display: grid;
+      grid-gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1fr;
+    }
+  }
 `;
 const Form = styled.form`
-  width: 100%;
+  width: calc(100vw - 40px);
   display: flex;
   align-items: center;
   padding: 10px 20px;
   background-color: white;
   border-radius: 40px;
   font-size: var(--h2);
-  margin-bottom: var(--quadruple-space);
+  position: fixed;
+  top: 80px;
 `;
 const Input = styled.input`
   width: 100%;

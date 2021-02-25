@@ -1,4 +1,4 @@
-const Gradient = (element, color = "rgba(0, 255, 0, 1)") => {
+const Gradient = (element, color = "rgba(0, 255, 84, 1)") => {
   const addGradient = (e) => {
     const mouseX = Math.round(
       (e.offsetX < 0 ? 0 : e.offsetX / element.current.clientWidth) * 100

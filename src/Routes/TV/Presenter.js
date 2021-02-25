@@ -6,7 +6,16 @@ import Loader from "Components/Loader";
 import Error from "Components/Error";
 import ImageSlider from "Components/ImageSlider";
 
-const Container = styled.div``;
+const Container = styled.div`
+  @media screen and (min-width: 1000px) {
+    & {
+      display: grid;
+      grid-gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1fr;
+    }
+  }
+`;
 
 const Presenter = ({
   isLoading,

@@ -11,7 +11,7 @@ const Container = styled.div`
   margin-bottom: var(--space);
   overflow: hidden;
 `;
-const MainTitle = styled.h1`
+const MainTitle = styled.div`
   margin-bottom: var(--space);
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -37,6 +37,7 @@ const Text = styled.h2`
 
 const Title = ({
   title,
+  titleSize = "28px",
   text,
   height = "190px",
   color = "black",
@@ -54,9 +55,13 @@ const Title = ({
       ref={containerRef}
       style={{ color: `${color}`, height: `${height}` }}
     >
-      <MainTitle style={{ marginBottom: `${marginBottom}` }}>
-        {title && title}
-      </MainTitle>
+      {title && (
+        <MainTitle
+          style={{ marginBottom: `${marginBottom}`, fontSize: titleSize }}
+        >
+          {title}
+        </MainTitle>
+      )}
       {subtitle && <SubTitle>{subtitle}</SubTitle>}
       {text && <Text>{text}</Text>}
     </Container>

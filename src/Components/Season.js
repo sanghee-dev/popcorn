@@ -25,16 +25,14 @@ const DataContainer = styled.div`
   overflow: hidden;
   height: ${(props) =>
     props.current
-      ? // SubTitle + Image + Info
+      ? // SubTitle + Image
         `calc(${1 * 18 * props.count}px + 
         ${37.5 * props.count}vw + ${-52.5 * props.count}px + 
-        ${4 * 18 * props.count}px + 
         ${60 * props.count}px + 
         ${-20}px
         )`
       : `calc(${1 * 18}px + 
         ${37.5}vw + ${-52.5}px + 
-        ${4 * 18}px + 
         ${60}px + 
         ${-20}px
         )`};

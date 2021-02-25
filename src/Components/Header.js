@@ -95,7 +95,6 @@ const Header = ({ location: { pathname } }) => {
   const [title, setTitle] = useState(true);
   const [isHome, setIsHome] = useState(pathname === "/");
   const [isMovie, setIsMovie] = useState(pathname === "/movie");
-  const [search, setSearch] = useState(false);
 
   useEffect(() => {
     window.addEventListener("scroll", () => setTitle(window.scrollY < 50));
@@ -126,11 +125,7 @@ const Header = ({ location: { pathname } }) => {
         </div>
 
         <div>
-          <Toggle
-            className="Search"
-            onClick={() => setSearch((prev) => !prev)}
-            current={search}
-          >
+          <Toggle className="Search">
             <Link to="/search">
               <IoSearch />
             </Link>

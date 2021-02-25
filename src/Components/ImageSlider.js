@@ -6,7 +6,7 @@ import Slider from "Components/Slider";
 
 const Container = styled.div`
   width: 100%;
-  height: calc(100vw - 60px);
+  height: calc(100vw - 40px);
   padding: var(--space);
   border-radius: 20px;
   display: grid;
@@ -14,6 +14,11 @@ const Container = styled.div`
   gap: var(--space);
   :not(:last-child) {
     margin-bottom: var(--quadruple-space);
+  }
+  @media screen and (min-width: 1000px) {
+    & {
+      height: calc(50vw - 30px);
+    }
   }
 `;
 const Column = styled.div`

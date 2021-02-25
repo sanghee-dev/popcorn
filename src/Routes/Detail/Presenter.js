@@ -99,9 +99,11 @@ const Presenter = ({
               text={result && result.overview}
               height="calc(33.3vw - 20px)"
             />
-            <Company
-              result={isMovie ? result.production_companies : result.networks}
-            />
+            {isMovie
+              ? result.production_companies && (
+                  <Company result={result.production_companies} />
+                )
+              : result.networks && <Company result={result.networks} />}
           </TitleContainer>
 
           <Video id={result.id} isMovie={isMovie} />
