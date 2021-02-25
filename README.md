@@ -12,12 +12,19 @@
 - Search
 - Detail
 
-| Movies      |      TV      |
-| :---------- | :----------: |
-| Now playing | Airing Today |
-| Upcoming    |  On the air  |
-| Popular     |   Popular    |
-| Top rated   |  Top rated   |
+### Movies
+
+- Now playing
+- Upcoming
+- Popular
+- Top rated
+
+### TV
+
+- Airing Today
+- On the air
+- Popular
+- Top rated
 
 ![Home](https://user-images.githubusercontent.com/61302874/109192112-30c93280-77da-11eb-83c6-ec87a5ec2f26.png)
 
