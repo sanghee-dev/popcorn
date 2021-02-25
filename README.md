@@ -12,19 +12,14 @@
 - Search
 - Detail
 
-### Movies
-
-- Now playing
-- Upcoming
-- Popular
-- top rated
-
-### TV
-
-- Airing Today
-- On the air
-- Popular
-- top rated
+| Movies      |      TV      |
+| :---------- | :----------: |
+| Now playing | Airing Today |
+| Upcoming    |  On the air  |
+| Popular     |   Popular    |
+| Top rated   |  Top rated   |
+|             |              |
 
 ![Home](https://user-images.githubusercontent.com/61302874/109192112-30c93280-77da-11eb-83c6-ec87a5ec2f26.png)
+
 ![Movie](https://user-images.githubusercontent.com/61302874/109192139-39216d80-77da-11eb-92cb-3284dc8bfd69.png)
